@@ -1,0 +1,28 @@
+{
+  "name": "api.future150.com",
+  "version": "1.0.0",
+  "description": "A data API for Future150.",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Future150/api.future150.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Future150/api.future150.com/issues"
+  },
+  "homepage": "https://github.com/Future150/api.future150.com",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.2.7"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jasmine-node": "^1.0.3",
+    "jasmine-node": "^1.14.5"
+  }
+}
