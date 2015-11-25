@@ -12,6 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-require('./app/routes')(app);
+require('./app/controllers/contactController')(app);
 
 app.listen(port);
