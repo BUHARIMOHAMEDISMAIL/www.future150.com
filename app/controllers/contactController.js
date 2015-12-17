@@ -6,7 +6,9 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      res.json(contacts);
+      res.json({
+        contacts: contacts
+      });
     })
   });
 };
