@@ -19,4 +19,30 @@ module.exports = function(app) {
       res.json(contact);
     });
   });
+  app.post('/contacts', function(req, res) {
+    var contact = new Contact();
+    contact.firstName = req.body.firstName;
+
+    contact.save(function(err) {
+      if (err) {
+        throw err;
+      }
+      res.sendStatus(201);
+    });
+  });
+  app.put('/contacts/:id', function(req, res) {
+    Contact.findById(req.params.id, function(err, contact) {
+      if (err) {
+        throw err;
+      }
+      contact.firstName = req.body.firstName;
+
+      contact.save(function(err) {
+        if (err) {
+          throw err;
+        }
+        res.sendStatus(204);
+      });
+    });
+  });
 };
