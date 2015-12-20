@@ -11,4 +11,12 @@ module.exports = function(app) {
       });
     });
   });
+  app.get('/contacts/:id', function(req, res) {
+    Contact.findById(req.params.id, function(err, contact) {
+      if (err) {
+        throw err;
+      }
+      res.json(contact);
+    });
+  });
 };
