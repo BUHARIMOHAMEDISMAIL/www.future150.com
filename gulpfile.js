@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
   jasmine = require('gulp-jasmine-node'),
   jshint = require('gulp-jshint'),
-  stylish = require('jshint-stylish');
+  stylish = require('jshint-stylish'),
+  jscs = require('gulp-jscs');
 
-gulp.task('test', ['lint', 'jasmine']);
+gulp.task('test', ['lint', 'jscs', 'jasmine']);
 
 gulp.task('jasmine', function () {
   return gulp.src('tests/**/*.spec.js')
@@ -15,4 +16,11 @@ gulp.task('lint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
     .pipe(jshint.reporter('fail'));
+});
+
+gulp.task('jscs', function() {
+  return gulp.src(['./*.js', './app/**/*.js', './tests/**/*.js'])
+    .pipe(jscs())
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'));
 });

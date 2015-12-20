@@ -24,6 +24,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-jasmine-node": "^1.0.3",
+    "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
     "jasmine-node": "^1.14.5",
     "jshint": "^2.8.0",
