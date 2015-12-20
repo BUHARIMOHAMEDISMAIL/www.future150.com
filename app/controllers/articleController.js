@@ -1,5 +1,8 @@
-module.exports = function(app) {
-  app.get('/articles', function(req, res) {
+var express = require('express'),
+router = express.Router();
+
+router.route('/articles')
+  .get(function(req, res) {
     var result =  {
       count: 4,
       articles: [
@@ -35,4 +38,5 @@ module.exports = function(app) {
     };
     res.json(result);
   });
-};
+
+module.exports = router;
