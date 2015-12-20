@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.get('/contacts', function(req, res) {
+  app.get('/articles', function(req, res) {
     var result =  {
       count: 4,
       articles: [
