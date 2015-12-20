@@ -9,6 +9,7 @@ var express = require('express'),
 
 mongoose.connect(config.database.url);
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
