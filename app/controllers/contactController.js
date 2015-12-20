@@ -20,8 +20,7 @@ module.exports = function(app) {
     });
   });
   app.post('/contacts', function(req, res) {
-    var contact = new Contact();
-    contact.firstName = req.body.firstName;
+    var contact = new Contact(req.body);
 
     contact.save(function(err) {
       if (err) {
@@ -31,18 +30,11 @@ module.exports = function(app) {
     });
   });
   app.put('/contacts/:id', function(req, res) {
-    Contact.findById(req.params.id, function(err, contact) {
+    Contact.findByIdAndUpdate(req.params.id, req.body, function(err, contact) {
       if (err) {
         throw err;
       }
-      contact.firstName = req.body.firstName;
-
-      contact.save(function(err) {
-        if (err) {
-          throw err;
-        }
-        res.sendStatus(204);
-      });
+      res.sendStatus(204);
     });
   });
 };
