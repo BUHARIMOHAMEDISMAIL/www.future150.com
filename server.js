@@ -15,5 +15,6 @@ app.use(methodOverride());
 app.use(cors());
 
 require('./app/controllers/contactController')(app);
+require('./app/controllers/articleController')(app);
 
 app.listen(port);
