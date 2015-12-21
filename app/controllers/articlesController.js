@@ -1,8 +1,7 @@
 var express = require('express'),
 router = express.Router();
 
-router.route('/articles')
-  .get(function(req, res) {
+router.get('/articles', function(req, res) {
     var result =  {
       count: 4,
       articles: [
