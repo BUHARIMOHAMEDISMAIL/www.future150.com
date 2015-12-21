@@ -5,9 +5,13 @@ HOST: https://future150.herokuapp.com
 
 The best source for college basketball recruiting, class rankings and elite player profiles. Discover which high school players are the hottest recruits.
 
-## Contacts Collection [/contacts?q={q}page={page}&pageSize={pageSize}]
+## Contacts Collection [/contacts/?q={q}page={page}&pageSize={pageSize}]
 
 Displays Future150 contacts
+
+### List All Contacts [GET]
+
+Returns a list of all Future150 contacts.
 
 + Parameters
     + q (string, optional) - Search string
@@ -15,11 +19,6 @@ Displays Future150 contacts
         + Default: 1
     + pageSize (int, optional) - Page size
         + Default: 10
-
-
-### List All Contacts [GET]
-
-Returns a list of all Future150 contacts.
 
 + Response 200 (application/json)
 
@@ -48,6 +47,37 @@ Returns a list of all Future150 contacts.
                 }
             ]
         }
+
+## Contact [/contacts/{id}]
+
+### Get Contact [GET]
+
+Returns a Future150 contact.
+
++ Parameters
+    + id(string) - Id of the contact
+
++ Response 200 (application/json)
+
+        {
+            "_id": "bd3f7ff5-c1b4-428a-b9a0-8f5e117c3831",
+            "firstName": "Jason",
+            "lastName": "Pratt",
+            "title": "President/Sr. Analyst",
+            "phoneNumber": "312-953-9130",
+            "emailAddress": "jpratt@future150.com",
+            "twitterHandle": "@F150PREZ",
+            "profileImageUrl": "//future150.com/images/uploads/main/jason_pratt.jpg"
+        }
+        
+### Add Contact [POST]
+
+Creates a Future150 contact.
+
++ Parameters
+    + id(string) - Id of the contact
+
++ Response 201 (application/json)
 
 ## Players Collection [/players]
 
