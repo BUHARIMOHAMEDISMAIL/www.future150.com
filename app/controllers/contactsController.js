@@ -3,15 +3,24 @@ var express = require('express'),
   Contact = require('../models/contact');
 
 router.get('/contacts', function(req, res) {
-  Contact.find({}, function(err, contacts) {
-    if (err) {
-      throw err;
-    }
-    res.json({
-      count: contacts.length,
-      contacts: contacts
+  Contact.find()
+    .sort('lastName')
+    .skip((req.query.page - 1 || 0) * 2)
+    .limit(req.query.pageSize || 10)
+    .exec(function(err, contacts) {
+      if (err) {
+        throw err;
+      }
+      Contact.count().exec(function(err, count) {
+        if (err) {
+          throw err;
+        }
+        res.json({
+          count: count,
+          contacts: contacts
+        });
+      });
     });
-  });
 });
 
 router.get('/contacts/:id', function(req, res) {
