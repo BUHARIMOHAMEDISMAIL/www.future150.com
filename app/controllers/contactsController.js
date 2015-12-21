@@ -8,6 +8,7 @@ router.get('/contacts', function(req, res) {
       throw err;
     }
     res.json({
+      count: contacts.length,
       contacts: contacts
     });
   });
