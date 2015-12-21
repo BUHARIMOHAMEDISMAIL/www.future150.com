@@ -48,6 +48,12 @@ Returns a list of all Future150 contacts.
             ]
         }
 
+### Add Contact [POST]
+
+Updates a Future150 contact.
+
++ Response 201 (application/json)
+
 ## Contact [/contacts/{id}]
 
 ### Get Contact [GET]
@@ -70,14 +76,14 @@ Returns a Future150 contact.
             "profileImageUrl": "//future150.com/images/uploads/main/jason_pratt.jpg"
         }
 
-### Add Contact [POST]
+### Update Contact [PUT]
 
-Creates a Future150 contact.
+Updates a Future150 contact.
 
 + Parameters
     + id(string) - Id of the contact
 
-+ Response 201 (application/json)
++ Response 203 (application/json)
 
 ## Players Collection [/players]
 
