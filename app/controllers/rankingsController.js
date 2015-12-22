@@ -13,6 +13,7 @@ router.get('/rankings/:id([0-9a-f]{24})', function(req, res) {
 
 router.get('/rankings/:type', function(req, res) {
   Ranking.find({ type: req.params.type })
+    .populate('players.player')
     .sort('title')
     .exec(function(err, rankings) {
       if (err) {
