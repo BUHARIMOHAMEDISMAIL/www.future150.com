@@ -3,17 +3,18 @@ var express = require('express'),
   Ranking = require('../models/ranking');
 
 router.get('/rankings/:id([0-9a-f]{24})', function(req, res) {
-  Ranking.findById(req.params.id, function(err, ranking) {
-    if (err) {
-      throw err;
-    }
-    res.json(ranking);
-  });
+  Ranking.findById(req.params.id)
+    .populate('players.player')
+    .exec(function(err, ranking) {
+      if (err) {
+        throw err;
+      }
+      res.json(ranking);
+    });
 });
 
 router.get('/rankings/:type', function(req, res) {
   Ranking.find({ type: req.params.type })
-    .populate('players.player')
     .sort('title')
     .exec(function(err, rankings) {
       if (err) {
