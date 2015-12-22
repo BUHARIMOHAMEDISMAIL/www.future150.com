@@ -9,7 +9,8 @@ var express = require('express'),
   // Controllers
   contactsController = require('./app/controllers/contactsController'),
   articlesController = require('./app/controllers/articlesController'),
-  playersController = require('./app/controllers/playersController');
+  playersController = require('./app/controllers/playersController'),
+  rankingsController = require('./app/controllers/rankingsController');
 
 mongoose.connect(config.database.url);
 
@@ -22,5 +23,6 @@ app.use(cors());
 app.use(contactsController);
 app.use(articlesController);
 app.use(playersController);
+app.use(rankingsController);
 
 app.listen(port);
