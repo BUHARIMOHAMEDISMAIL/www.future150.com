@@ -2,6 +2,15 @@ var express = require('express'),
   router = express.Router(),
   Ranking = require('../models/ranking');
 
+router.get('/rankings/:id([0-9a-f]{24})', function(req, res) {
+  Ranking.findById(req.params.id, function(err, ranking) {
+    if (err) {
+      throw err;
+    }
+    res.json(ranking);
+  });
+});
+
 router.get('/rankings/:type', function(req, res) {
   Ranking.find({ type: req.params.type })
     .sort('title')
@@ -19,15 +28,6 @@ router.get('/rankings/:type', function(req, res) {
         });
       });
     });
-});
-
-router.get('/rankings/:id([0-9a-f]{24})', function(req, res) {
-  Ranking.findById(req.params.id, function(err, ranking) {
-    if (err) {
-      throw err;
-    }
-    res.json(ranking);
-  });
 });
 
 router.post('/rankings', function(req, res) {
