@@ -23,4 +23,33 @@ router.get('/articles', function(req, res) {
     });
 });
 
+router.get('/articles/:id', function(req, res) {
+  Article.findById(req.params.id, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
+  });
+});
+
+router.post('/articles', function(req, res) {
+  var article = new Article(req.body);
+
+  article.save(function(err) {
+    if (err) {
+      throw err;
+    }
+    res.sendStatus(201);
+  });
+});
+
+router.put('/articles/:id', function(req, res) {
+  Article.findByIdAndUpdate(req.params.id, req.body, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.sendStatus(204);
+  });
+});
+
 module.exports = router;
