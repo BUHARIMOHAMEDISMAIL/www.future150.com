@@ -4,7 +4,7 @@ var express = require('express'),
 
 router.get('/rankings/:type', function(req, res) {
   Ranking.find({ type: req.params.type })
-    .year('title')
+    .sort('title')
     .exec(function(err, rankings) {
       if (err) {
         throw err;

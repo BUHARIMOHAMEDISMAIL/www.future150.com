@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-  Player = require('./player');
+var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Ranking', {
   type: String,
@@ -7,7 +6,9 @@ module.exports = mongoose.model('Ranking', {
   players: [
     {
       rank: Number,
-      player: Player
+      player: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Player'}
     }
   ]
 });
