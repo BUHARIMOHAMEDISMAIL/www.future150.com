@@ -23,8 +23,17 @@ router.get('/articles', function(req, res) {
     });
 });
 
-router.get('/articles/:id', function(req, res) {
+router.get('/articles/:id([0-9a-f]{24})', function(req, res) {
   Article.findById(req.params.id, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
+  });
+});
+
+router.get('/articles/:slug', function(req, res) {
+  Article.findOne({ slug: req.params.slug }, function(err, article) {
     if (err) {
       throw err;
     }
