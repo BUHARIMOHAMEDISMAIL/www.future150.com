@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Player', {
+  legacyId: Number,
   slug: String,
   description: String,
   firstName: String,
