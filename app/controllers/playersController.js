@@ -23,6 +23,18 @@ router.get('/players', function(req, res) {
     });
 });
 
+router.get('/players/trending', function(req, res) {
+  Player.find()
+    .sort('lastName')
+    .limit(req.query.pageSize || 4)
+    .exec(function(err, players) {
+      if (err) {
+        throw err;
+      }
+      res.json(players);
+    });
+});
+
 router.get('/players/:id([0-9a-f]{24})', function(req, res) {
   Player.findById(req.params.id, function(err, player) {
     if (err) {
