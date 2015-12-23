@@ -4,7 +4,7 @@ var express = require('express'),
 
 router.get('/articles', function(req, res) {
   Article.find()
-    .sort('createdDate')
+    .sort('-createdDate')
     .skip((req.query.page - 1 || 0) * 2)
     .limit(req.query.pageSize || 10)
     .exec(function(err, articles) {
