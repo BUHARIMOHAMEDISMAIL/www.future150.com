@@ -12,7 +12,8 @@ var express = require('express'),
   playersController = require('./app/controllers/playersController'),
   rankingsController = require('./app/controllers/rankingsController'),
   collegesController = require('./app/controllers/collegesController'),
-  eventsController = require('./app/controllers/eventsController');
+  eventsController = require('./app/controllers/eventsController'),
+  videosController = require('./app/controllers/videosController');
 
 mongoose.connect(config.database.url);
 
@@ -28,5 +29,6 @@ app.use(playersController);
 app.use(rankingsController);
 app.use(collegesController);
 app.use(eventsController);
+app.use(videosController);
 
 app.listen(port);
