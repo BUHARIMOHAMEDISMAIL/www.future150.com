@@ -8,7 +8,8 @@ module.exports = mongoose.model('Ranking', {
       rank: Number,
       player: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Player'}
+        ref: 'Player'
+      }
     }
   ]
 });
