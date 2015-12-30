@@ -10,6 +10,7 @@ var express = require('express'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
   authenticationController = require('./app/controllers/authenticationController'),
+  usersController = require('./app/controllers/usersController'),
   contactsController = require('./app/controllers/contactsController'),
   articlesController = require('./app/controllers/articlesController'),
   playersController = require('./app/controllers/playersController'),
@@ -32,6 +33,7 @@ app.use(session({
 }));
 
 app.use(authenticationController);
+app.use(usersController);
 app.use(contactsController);
 app.use(articlesController);
 app.use(playersController);
