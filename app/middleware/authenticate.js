@@ -1,10 +1,17 @@
+var jwt = require('jsonwebtoken');
+
 module.exports = function() {
   return function(req, res, next) {
-    if (req.isAuthenticated()) {
+    var authorizationHeader = req.headers.authorization,
+      token = authorizationHeader.replace('Bearer ', ''),
+      isAuthenticated = token && jwt.verify(token, 'WRhHeSQgRGdrmnGZ');
+
+    if (isAuthenticated) {
+      req.user = jwt.verify(token, 'WRhHeSQgRGdrmnGZ');
       return next();
     }
     else {
-      res.send(401, 'Unauthorized');
+      res.status(401).send('Unauthorized');
     }
   };
 };

@@ -4,11 +4,9 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
   session = require('express-session'),
-  passport = require('passport'),
   cors = require('cors'),
   port = process.env.PORT || 8080,
   databaseConfig = require('./config/database'),
-  passportConfig = require('./config/passport'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
   authenticationController = require('./app/controllers/authenticationController'),
@@ -32,10 +30,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-passportConfig();
 
 app.use(authenticationController);
 app.use(contactsController);
