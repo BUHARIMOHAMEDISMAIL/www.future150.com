@@ -1,6 +1,7 @@
 var express = require('express'),
   router = express.Router(),
-  Article = require('../models/article');
+  Article = require('../models/article'),
+  authenticate = require('../middleware/authenticate');
 
 router.get('/articles', function(req, res) {
   Article.find()
@@ -23,7 +24,7 @@ router.get('/articles', function(req, res) {
     });
 });
 
-router.get('/articles/:id([0-9a-f]{24})', function(req, res) {
+router.get('/articles/:id([0-9a-f]{24})', authenticate(), function(req, res) {
   Article.findById(req.params.id, function(err, article) {
     if (err) {
       throw err;
@@ -41,7 +42,7 @@ router.get('/articles/:slug', function(req, res) {
   });
 });
 
-router.post('/articles', function(req, res) {
+router.post('/articles', authenticate(), function(req, res) {
   var article = new Article(req.body);
 
   article.save(function(err) {
@@ -52,7 +53,7 @@ router.post('/articles', function(req, res) {
   });
 });
 
-router.put('/articles/:id', function(req, res) {
+router.put('/articles/:id', authenticate(), function(req, res) {
   Article.findByIdAndUpdate(req.params.id, req.body, function(err, article) {
     if (err) {
       throw err;
