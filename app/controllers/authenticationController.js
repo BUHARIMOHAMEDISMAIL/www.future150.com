@@ -5,9 +5,18 @@ var express = require('express'),
   router = express.Router();
 
 router.post('/token', function(req, res) {
-  var user = req.body;
-  res.json({
-    token: jwt.sign(user, 'WRhHeSQgRGdrmnGZ')
+  User.findOne({ username: req.body.username }, function(err, user) {
+    if (err) {
+      throw err;
+    }
+    if (!user) {
+      res.status(401).send('Unauthorized');
+    }
+    else {
+      res.json({
+        token: jwt.sign(user, 'WRhHeSQgRGdrmnGZ')
+      });
+    }
   });
 });
 
@@ -23,8 +32,13 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/profile', authenticate(), function(req, res) {
-  res.json({
-    user: req.user
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      throw err;
+    }
+    res.json({
+      user: req.user
+    });
   });
 });
 
