@@ -23,8 +23,17 @@ router.get('/events', function(req, res) {
     });
 });
 
-router.get('/events/:id', function(req, res) {
+router.get('/events/:id([0-9a-f]{24})', function(req, res) {
   Event.findById(req.params.id, function(err, event) {
+    if (err) {
+      throw err;
+    }
+    res.json(event);
+  });
+});
+
+router.get('/events/:slug', function(req, res) {
+  Event.findOne({ slug: req.params.slug }, function(err, event) {
     if (err) {
       throw err;
     }
