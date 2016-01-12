@@ -17,5 +17,9 @@ module.exports = mongoose.model('Article', {
   },
   status: String,
   body: String,
-  isPaywalled: Boolean
+  isPaywalled: Boolean,
+  city: String,
+  state: String,
+  site: String,
+  isVip: Boolean
 });
