@@ -4,7 +4,11 @@ var express = require('express'),
   authenticate = require('../middleware/authenticate');
 
 router.get('/articles', function(req, res) {
-  Article.find({ site: req.query.site })
+  var filter = {};
+  if (req.query.site) {
+    filter.site = req.query.site;
+  }
+  Article.find(filter)
     .sort('-createdDate')
     .skip((req.query.page - 1 || 0) * 2)
     .limit(req.query.pageSize || 10)
@@ -12,7 +16,7 @@ router.get('/articles', function(req, res) {
       if (err) {
         throw err;
       }
-      Article.count().exec(function(err, count) {
+      Article.count(filter).exec(function(err, count) {
         if (err) {
           throw err;
         }
