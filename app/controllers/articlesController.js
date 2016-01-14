@@ -4,7 +4,7 @@ var express = require('express'),
   authenticate = require('../middleware/authenticate');
 
 router.get('/articles', function(req, res) {
-  Article.find()
+  Article.find({ site: req.query.site })
     .sort('-createdDate')
     .skip((req.query.page - 1 || 0) * 2)
     .limit(req.query.pageSize || 10)
