@@ -28,8 +28,17 @@ router.get('/articles', function(req, res) {
     });
 });
 
-router.get('/articles/:id([0-9a-f]{24})', authenticate(), function(req, res) {
+router.get('/articles/:id([0-9a-f]{24})', function(req, res) {
   Article.findById(req.params.id, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
+  });
+});
+
+router.get('/articles/:legacyId([0-9]+)', function(req, res) {
+  Article.findOne({ legacyId: req.params.legacyId }, function(err, article) {
     if (err) {
       throw err;
     }
@@ -46,7 +55,7 @@ router.get('/articles/:slug', function(req, res) {
   });
 });
 
-router.post('/articles', authenticate(), function(req, res) {
+router.post('/articles', function(req, res) {
   var article = new Article(req.body);
 
   article.save(function(err) {
@@ -57,7 +66,7 @@ router.post('/articles', authenticate(), function(req, res) {
   });
 });
 
-router.put('/articles/:id', authenticate(), function(req, res) {
+router.put('/articles/:id', function(req, res) {
   Article.findByIdAndUpdate(req.params.id, req.body, function(err, article) {
     if (err) {
       throw err;
