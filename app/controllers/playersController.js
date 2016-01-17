@@ -44,6 +44,15 @@ router.get('/players/:id([0-9a-f]{24})', function(req, res) {
   });
 });
 
+router.get('/players/:legacyId([0-9]+)', function(req, res) {
+  Player.findOne({ legacyId: req.params.legacyId }, function(err, player) {
+    if (err) {
+      throw err;
+    }
+    res.json(player);
+  });
+});
+
 router.get('/players/:slug', function(req, res) {
   Player.findOne({ slug: req.params.slug }, function(err, player) {
     if (err) {
