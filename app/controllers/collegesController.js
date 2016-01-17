@@ -23,8 +23,17 @@ router.get('/colleges', function(req, res) {
     });
 });
 
-router.get('/colleges/:id', function(req, res) {
+router.get('/colleges/:id([0-9a-f]{24})', function(req, res) {
   College.findById(req.params.id, function(err, college) {
+    if (err) {
+      throw err;
+    }
+    res.json(college);
+  });
+});
+
+router.get('/colleges/:legacyId', function(req, res) {
+  College.findOne({ legacyId: req.params.legacyId }, function(err, college) {
     if (err) {
       throw err;
     }
