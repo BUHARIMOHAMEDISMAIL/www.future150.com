@@ -3,7 +3,16 @@ var express = require('express'),
   Player = require('../models/player');
 
 router.get('/players', function(req, res) {
-  Player.find()
+  var filter = {};
+  if (req.query.q) {
+    filter = {
+      $or: [
+        { firstName: { $regex: req.query.q, $options: '-i' } },
+        { lastName: { $regex: req.query.q, $options: '-i' } }
+      ]
+    };
+  }
+  Player.find(filter)
     .sort('lastName')
     .skip((req.query.page - 1 || 0) * 2)
     .limit(req.query.pageSize || 10)
@@ -11,7 +20,7 @@ router.get('/players', function(req, res) {
       if (err) {
         throw err;
       }
-      Player.count().exec(function(err, count) {
+      Player.count(filter).exec(function(err, count) {
         if (err) {
           throw err;
         }
