@@ -23,8 +23,17 @@ router.get('/contacts', function(req, res) {
     });
 });
 
-router.get('/contacts/:id', function(req, res) {
+router.get('/contacts/:id([0-9a-f]{24})', function(req, res) {
   Contact.findById(req.params.id, function(err, contact) {
+    if (err) {
+      throw err;
+    }
+    res.json(contact);
+  });
+});
+
+router.get('/contacts/:legacyId', function(req, res) {
+  Contact.findOne({ legacyId: req.params.legacyId }, function(err, contact) {
     if (err) {
       throw err;
     }
