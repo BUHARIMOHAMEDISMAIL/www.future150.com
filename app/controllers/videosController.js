@@ -3,10 +3,12 @@ var express = require('express'),
   Video = require('../models/video');
 
 router.get('/videos', function(req, res) {
+  var page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   Video.find()
     .sort('title')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, videos) {
       if (err) {
         throw err;

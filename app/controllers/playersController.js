@@ -3,7 +3,9 @@ var express = require('express'),
   Player = require('../models/player');
 
 router.get('/players', function(req, res) {
-  var filter = {};
+  var filter = {},
+    page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   if (req.query.q) {
     filter = {
       $or: [
@@ -14,8 +16,8 @@ router.get('/players', function(req, res) {
   }
   Player.find(filter)
     .sort('lastName')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, players) {
       if (err) {
         throw err;

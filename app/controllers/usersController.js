@@ -3,10 +3,12 @@ var express = require('express'),
   User = require('../models/user');
 
 router.get('/users', function(req, res) {
+  var page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   User.find()
     .sort('title')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, users) {
       if (err) {
         throw err;

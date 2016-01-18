@@ -3,10 +3,12 @@ var express = require('express'),
   Contact = require('../models/contact');
 
 router.get('/contacts', function(req, res) {
+  var page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   Contact.find()
     .sort('lastName')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, contacts) {
       if (err) {
         throw err;

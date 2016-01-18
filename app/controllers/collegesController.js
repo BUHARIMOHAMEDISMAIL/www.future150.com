@@ -3,10 +3,12 @@ var express = require('express'),
   College = require('../models/college');
 
 router.get('/colleges', function(req, res) {
+  var page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   College.find()
     .sort('name')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, colleges) {
       if (err) {
         throw err;
