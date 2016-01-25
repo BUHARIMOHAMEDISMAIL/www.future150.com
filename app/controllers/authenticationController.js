@@ -1,6 +1,7 @@
 var express = require('express'),
   jwt = require('jsonwebtoken'),
   authenticate = require('../middleware/authenticate'),
+  authenticationConfig = require('../../config/authentication'),
   User = require('../models/user'),
   router = express.Router();
 
@@ -14,7 +15,7 @@ router.post('/token', function(req, res) {
     }
     else {
       res.json({
-        token: jwt.sign(user, 'WRhHeSQgRGdrmnGZ')
+        token: jwt.sign(user, authenticationConfig.secret)
       });
     }
   });

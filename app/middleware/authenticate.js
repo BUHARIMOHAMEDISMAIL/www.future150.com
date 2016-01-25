@@ -1,13 +1,14 @@
-var jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken'),
+  authenticationConfig = require('../../config/authentication');
 
 module.exports = function() {
   return function(req, res, next) {
     var authorizationHeader = req.headers.authorization,
       token = authorizationHeader.replace('Bearer ', ''),
-      isAuthenticated = token && jwt.verify(token, 'WRhHeSQgRGdrmnGZ');
+      isAuthenticated = token && jwt.verify(token, authenticationConfig.secret);
 
     if (isAuthenticated) {
-      req.user = jwt.verify(token, 'WRhHeSQgRGdrmnGZ');
+      req.user = jwt.verify(token, authenticationConfig.secret);
       return next();
     }
     else {

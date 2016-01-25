@@ -7,6 +7,7 @@ var express = require('express'),
   cors = require('cors'),
   port = process.env.PORT || 8080,
   databaseConfig = require('./config/database'),
+  authenticationConfig = require('./config/authentication'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
   authenticationController = require('./app/controllers/authenticationController'),
@@ -27,7 +28,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
 app.use(session({
-  secret: 'DYDMPyPxuuTkDbYY',
+  secret: authenticationConfig.secret,
   resave: true,
   saveUninitialized: true
 }));
