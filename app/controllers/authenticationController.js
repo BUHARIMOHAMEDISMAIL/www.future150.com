@@ -37,7 +37,7 @@ router.get('/profile', authenticate(), function(req, res) {
       throw err;
     }
     res.json({
-      user: req.user
+      user: user
     });
   });
 });
