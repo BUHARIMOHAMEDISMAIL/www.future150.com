@@ -25,8 +25,17 @@ router.get('/users', function(req, res) {
     });
 });
 
-router.get('/users/:id', function(req, res) {
+router.get('/users/:id([0-9a-f]{24})', function(req, res) {
   User.findById(req.params.id, function(err, user) {
+    if (err) {
+      throw err;
+    }
+    res.json(user);
+  });
+});
+
+router.get('/users/:legacyId([0-9]+)', function(req, res) {
+  User.findOne({ legacyId: req.params.legacyId }, function(err, user) {
     if (err) {
       throw err;
     }
