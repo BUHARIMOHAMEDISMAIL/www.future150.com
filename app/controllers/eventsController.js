@@ -3,9 +3,13 @@ var express = require('express'),
   Event = require('../models/event');
 
 router.get('/events', function(req, res) {
-  var page = (req.query.page - 1) || 0,
+  var filter = {},
+    page = (req.query.page - 1) || 0,
     pageSize = req.query.pageSize || 10;
-  Event.find()
+  if (req.query.eventType) {
+    filter.type = req.query.eventType;
+  }
+  Event.find(filter)
     .sort('title')
     .skip(page * pageSize)
     .limit(pageSize)
@@ -13,7 +17,7 @@ router.get('/events', function(req, res) {
       if (err) {
         throw err;
       }
-      Event.count().exec(function(err, count) {
+      Event.count(filter).exec(function(err, count) {
         if (err) {
           throw err;
         }
