@@ -6,5 +6,6 @@ module.exports = mongoose.model('Event', {
   title: String,
   city: String,
   state: String,
-  imageUrl: String
+  imageUrl: String,
+  description: String
 });
