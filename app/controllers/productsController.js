@@ -34,8 +34,8 @@ router.get('/products/:id([0-9a-f]{24})', function(req, res) {
   });
 });
 
-router.get('/products/:legacyId', function(req, res) {
-  Product.findOne({ legacyId: req.params.legacyId }, function(err, product) {
+router.get('/products/:slug', function(req, res) {
+  Product.findOne({ slug: req.params.slug }, function(err, product) {
     if (err) {
       throw err;
     }
