@@ -17,7 +17,7 @@ module.exports = mongoose.model('Player', {
   heightFeet: Number,
   heightInches: Number,
   highSchool: String,
-  starts: Number,
+  stars: Number,
   weight: Number,
   notes: String,
   projections: String
