@@ -20,5 +20,6 @@ module.exports = mongoose.model('Player', {
   stars: Number,
   weight: Number,
   notes: String,
-  projections: String
+  projections: String,
+  score: Number
 });
