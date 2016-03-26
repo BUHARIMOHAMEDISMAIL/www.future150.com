@@ -23,14 +23,14 @@ describe('contactsService', function() {
       expect(contactsService.getAll).toBeDefined();
     });
     it('should return the correct result without parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/contacts').respond(mockContactsResponse);
+      httpBackend.whenGET('/contacts').respond(mockContactsResponse);
       contactsService.getAll().then(function(result) {
         expect(result).toEqual(mockContactsResponse);
       });
       httpBackend.flush();
     });
     it('should return the correct result with parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/contacts?page=3&pageSize=10&q=test').respond(mockContactsResponse);
+      httpBackend.whenGET('/contacts?page=3&pageSize=10&q=test').respond(mockContactsResponse);
       contactsService.getAll('test', 3, 10).then(function(result) {
         expect(result).toEqual(mockContactsResponse);
       });
@@ -43,7 +43,7 @@ describe('contactsService', function() {
       expect(contactsService.getById).toBeDefined();
     });
     it('should return the correct contact', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/contacts/123').respond(mockContactResponse);
+      httpBackend.whenGET('/contacts/123').respond(mockContactResponse);
       contactsService.getById(123).then(function(contact) {
         expect(contact).toEqual(mockContactResponse);
       });
@@ -56,12 +56,12 @@ describe('contactsService', function() {
       expect(contactsService.save).toBeDefined();
     });
     it('should make post request to /contacts', function() {
-      httpBackend.expectPOST('//future150.herokuapp.com/contacts').respond(201);
+      httpBackend.expectPOST('/contacts').respond(201);
       contactsService.save({});
       httpBackend.flush();
     });
     it('should make put request to /contacts/123', function() {
-      httpBackend.expectPUT('//future150.herokuapp.com/contacts/123').respond(204);
+      httpBackend.expectPUT('/contacts/123').respond(204);
       contactsService.save({ _id: 123 });
       httpBackend.flush();
     });

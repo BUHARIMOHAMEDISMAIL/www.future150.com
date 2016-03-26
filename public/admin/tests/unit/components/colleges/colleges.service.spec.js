@@ -23,14 +23,14 @@ describe('collegesService', function() {
       expect(collegesService.getAll).toBeDefined();
     });
     it('should return the correct result without parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/colleges').respond(mockCollegesResponse);
+      httpBackend.whenGET('/colleges').respond(mockCollegesResponse);
       collegesService.getAll().then(function(result) {
         expect(result).toEqual(mockCollegesResponse);
       });
       httpBackend.flush();
     });
     it('should return the correct result with parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/colleges?page=3&pageSize=10&q=test').respond(mockCollegesResponse);
+      httpBackend.whenGET('/colleges?page=3&pageSize=10&q=test').respond(mockCollegesResponse);
       collegesService.getAll('test', 3, 10).then(function(result) {
         expect(result).toEqual(mockCollegesResponse);
       });
@@ -43,7 +43,7 @@ describe('collegesService', function() {
       expect(collegesService.getById).toBeDefined();
     });
     it('should return the correct college', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/colleges/123').respond(mockCollegeResponse);
+      httpBackend.whenGET('/colleges/123').respond(mockCollegeResponse);
       collegesService.getById(123).then(function(college) {
         expect(college).toEqual(mockCollegeResponse);
       });
@@ -56,12 +56,12 @@ describe('collegesService', function() {
       expect(collegesService.save).toBeDefined();
     });
     it('should make post request to /colleges', function() {
-      httpBackend.expectPOST('//future150.herokuapp.com/colleges').respond(201);
+      httpBackend.expectPOST('/colleges').respond(201);
       collegesService.save({});
       httpBackend.flush();
     });
     it('should make put request to /colleges/123', function() {
-      httpBackend.expectPUT('//future150.herokuapp.com/colleges/123').respond(204);
+      httpBackend.expectPUT('/colleges/123').respond(204);
       collegesService.save({ _id: 123 });
       httpBackend.flush();
     });

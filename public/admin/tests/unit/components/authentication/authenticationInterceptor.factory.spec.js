@@ -32,8 +32,8 @@ describe('authenticationInterceptor', function() {
     });
     it('should return correct result when not requesting api url and token exists', function() {
       authenticationServiceGetAuthTokenStub.returns('12345');
-      var result = authenticationInterceptor.request({ url: ''});
-      expect(result).toEqual({ url: ''});
+      var result = authenticationInterceptor.request({ url: '', headers: {}});
+      expect(result).toEqual({ url: '', headers: { Authorization: 'Bearer 12345' }});
     });
     it('should return correct result when requesting api url and token does not exist', function() {
       var result = authenticationInterceptor.request({ url: '//future150.herokuapp.com' });

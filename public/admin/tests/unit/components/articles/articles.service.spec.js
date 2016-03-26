@@ -23,14 +23,14 @@ describe('articlesService', function() {
       expect(articlesService.getAll).toBeDefined();
     });
     it('should return the correct result without parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/articles').respond(mockArticlesResponse);
+      httpBackend.whenGET('/articles').respond(mockArticlesResponse);
       articlesService.getAll().then(function(result) {
         expect(result).toEqual(mockArticlesResponse);
       });
       httpBackend.flush();
     });
     it('should return the correct result with parameters', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/articles?page=3&pageSize=10&q=test').respond(mockArticlesResponse);
+      httpBackend.whenGET('/articles?page=3&pageSize=10&q=test').respond(mockArticlesResponse);
       articlesService.getAll('test', 3, 10).then(function(result) {
         expect(result).toEqual(mockArticlesResponse);
       });
@@ -43,7 +43,7 @@ describe('articlesService', function() {
       expect(articlesService.getById).toBeDefined();
     });
     it('should return the correct article', function() {
-      httpBackend.whenGET('//future150.herokuapp.com/articles/123').respond(mockArticleResponse);
+      httpBackend.whenGET('/articles/123').respond(mockArticleResponse);
       articlesService.getById(123).then(function(article) {
         expect(article).toEqual(mockArticleResponse);
       });
@@ -56,12 +56,12 @@ describe('articlesService', function() {
       expect(articlesService.save).toBeDefined();
     });
     it('should make post request to /articles', function() {
-      httpBackend.expectPOST('//future150.herokuapp.com/articles').respond(201);
+      httpBackend.expectPOST('/articles').respond(201);
       articlesService.save({});
       httpBackend.flush();
     });
     it('should make put request to /articles/123', function() {
-      httpBackend.expectPUT('//future150.herokuapp.com/articles/123').respond(204);
+      httpBackend.expectPUT('/articles/123').respond(204);
       articlesService.save({ _id: 123 });
       httpBackend.flush();
     });

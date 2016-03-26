@@ -29,34 +29,34 @@ describe('authenticationService', function() {
       expect(authenticationService.login).toBeDefined();
     });
     it('should make post request to /token', function() {
-      httpBackend.expectPOST('//future150.herokuapp.com/token').respond(201, { token: '12345' });
-      httpBackend.whenGET('//future150.herokuapp.com/profile').respond({ user: {} });
+      httpBackend.expectPOST('/token').respond(201, { token: '12345' });
+      httpBackend.whenGET('/profile').respond({ user: {} });
       authenticationService.login({});
       httpBackend.flush();
     });
     it('should call set function of localStorageService with correct parameters', function() {
-      httpBackend.whenPOST('//future150.herokuapp.com/token').respond(201, { token: '12345' });
-      httpBackend.whenGET('//future150.herokuapp.com/profile').respond({ user: {} });
+      httpBackend.whenPOST('/token').respond(201, { token: '12345' });
+      httpBackend.whenGET('/profile').respond({ user: {} });
       authenticationService.login({});
       httpBackend.flush();
       expect(localStorageServiceSetStub.calledWith('token', '12345')).toBeTruthy();
     });
     it('should make get request to /profile', function() {
-      httpBackend.whenPOST('//future150.herokuapp.com/token').respond(201, { token: '12345' });
-      httpBackend.expectGET('//future150.herokuapp.com/profile').respond({ user: {} });
+      httpBackend.whenPOST('/token').respond(201, { token: '12345' });
+      httpBackend.expectGET('/profile').respond({ user: {} });
       authenticationService.login({});
       httpBackend.flush();
     });
     it('should call set function of localStorageService with correct parameters when profileImageUrl is empty', function() {
-      httpBackend.whenPOST('//future150.herokuapp.com/token').respond(201, { token: '12345' });
-      httpBackend.whenGET('//future150.herokuapp.com/profile').respond({ user: { username: 'test' } });
+      httpBackend.whenPOST('/token').respond(201, { token: '12345' });
+      httpBackend.whenGET('/profile').respond({ user: { username: 'test' } });
       authenticationService.login({});
       httpBackend.flush();
-      expect(localStorageServiceSetStub.calledWith('user', { username: 'test', profileImageUrl: '/assets/img/profile.png' })).toBeTruthy();
+      expect(localStorageServiceSetStub.calledWith('user', { username: 'test', profileImageUrl: '//placehold.it/160x160?text=No Image' })).toBeTruthy();
     });
     it('should call set function of localStorageService with correct parameters when profileImageUrl is not empty', function() {
-      httpBackend.whenPOST('//future150.herokuapp.com/token').respond(201, { token: '12345' });
-      httpBackend.whenGET('//future150.herokuapp.com/profile').respond({ user: { username: 'test', profileImageUrl: 'test.png' } });
+      httpBackend.whenPOST('/token').respond(201, { token: '12345' });
+      httpBackend.whenGET('/profile').respond({ user: { username: 'test', profileImageUrl: 'test.png' } });
       authenticationService.login({});
       httpBackend.flush();
       expect(localStorageServiceSetStub.calledWith('user', { username: 'test', profileImageUrl: 'test.png' })).toBeTruthy();

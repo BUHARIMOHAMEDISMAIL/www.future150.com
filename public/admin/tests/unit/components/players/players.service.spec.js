@@ -16,7 +16,7 @@ describe('playersService', function() {
       $httpBackend) {
     playersService = _playersService_;
 
-    $httpBackend.whenGET('http://private-338da3-future150.apiary-mock.com/players').respond(mockPlayerResult);
+    $httpBackend.whenGET('/players').respond(mockPlayerResult);
   }));
 
   it('should be defined', function() {
