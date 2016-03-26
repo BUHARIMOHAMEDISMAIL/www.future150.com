@@ -4,7 +4,7 @@
   angular
     .module('future150')
     .constant('config', {
-      baseApiUrl: '//future150.herokuapp.com',
+      baseApiUrl: '',
       siteTwitterHandle: '@future150',
       siteTitle: 'Basketball Recruiting News with Player Rankings & Profiles',
       siteDescription: 'The best source for college basketball recruiting, class rankings and elite player profiles. Discover which high school players are the hottest recruits.',

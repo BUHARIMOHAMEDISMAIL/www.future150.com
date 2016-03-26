@@ -40,9 +40,6 @@ app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
-app.all('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 app.use(authenticationController);
 app.use(usersController);
@@ -55,5 +52,9 @@ app.use(eventsController);
 app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
+
+app.all('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(port);
