@@ -41,7 +41,6 @@ app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
-app.use('/robots.txt', express.static('public/robots.txt'));
 
 app.use(siteController);
 app.use(authenticationController);
