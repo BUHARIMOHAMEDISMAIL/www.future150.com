@@ -12,6 +12,7 @@ var express = require('express'),
   authenticationConfig = require('./config/authentication'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
+  siteController = require('./app/controllers/siteController'),
   authenticationController = require('./app/controllers/authenticationController'),
   usersController = require('./app/controllers/usersController'),
   contactsController = require('./app/controllers/contactsController'),
@@ -41,6 +42,7 @@ app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
 
+app.use(siteController);
 app.use(authenticationController);
 app.use(usersController);
 app.use(contactsController);
