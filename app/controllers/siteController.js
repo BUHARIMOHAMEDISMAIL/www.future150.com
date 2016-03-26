@@ -25,7 +25,7 @@ router.get('/sitemap.xml', function(req, res) {
   sitemap.add({ url: '/tournaments' });
   sitemap.add({ url: '/shop' });
   sitemap.add({ url: '/contact-us' });
-  sitemap.toXML( function (err, xml) {
+  sitemap.toXML(function (err, xml) {
     if (err) {
       return res.status(500).end();
     }
