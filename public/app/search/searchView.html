@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Player Search</h1>
+    <p ng-show="vm.q">Showing results for {{vm.q}}.</p>
+  </div>
+  <div class="row" ng-hide="vm.isLoading">
+    <div class="col-xs-12">
+      <div class="media" ng-repeat="player in vm.players">
+        <div class="media-left">
+          <a ui-sref="profile({ slug: '{{player.slug}}' })">
+            <img class="media-object" ng-src="{{player.imageUrl}}" err-src="{{defaultProfileImageUrl}}" alt="{{player.firstName}} {{player.lastName}}" style="width: 250px;">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{player.firstName}} {{player.lastName}} - {{player.position}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="vm.count" ng-model="vm.page" items-per-page="vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

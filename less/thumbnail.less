@@ -1,0 +1,14 @@
+.thumbnail {
+  border: none;
+  clear: both;
+  @media (max-width: 767px) {
+    & > img, > .video, > .overlay-wrapper {
+      float: left;
+      width: 50%;
+    }
+    & > .caption {
+      float: right;
+      width: 50%;
+    }
+  }
+}

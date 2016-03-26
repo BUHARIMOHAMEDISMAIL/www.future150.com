@@ -1,0 +1,17 @@
+.nav-pills {
+  background-color: #DFDFDF;
+  text-align: center;
+  & > li {
+    display: inline-block;
+    float: none;
+    text-transform: uppercase;
+    &.active > a, &.active > a:focus, &.active > a:hover {
+      background-color: @primary-color;
+    }
+    & > a {
+      background-color: transparent;
+      border-radius: 0;
+      color: @primary-color;
+    }
+  }
+}

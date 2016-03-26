@@ -1,0 +1,167 @@
+<div class="jumbotron" style="background-image: url('{{::vm.featuredArticle.imageUrl}}'), url('{{::defaultArticleImageUrl}}');">
+  <div class="jumbotron-inner">
+    <h1>{{::vm.featuredArticle.title}}</h1>
+    <hr class="hidden-xs">
+    <p>{{::vm.featuredArticle.description}} <a ui-sref="article({ slug: '{{::vm.featuredArticle.slug}}' })" class="text-green">Read&nbsp;Article&gt;</a></p>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Basketball Recruiting News</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="article in ::vm.highlighedArticles">
+              <a ui-sref="article({ slug: '{{::article.slug}}' })" class="thumbnail">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::article.imageUrl}}" err-src="{{::defaultArticleImageUrl}}" class="img-responsive" alt="{{::article.title}}">
+                  <span class="overlay">20 Shares</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::article.title}}</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More News <span class="caret"></span></a>
+          <a ui-sref="site.news({ site: site })" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Nationally Ranked High School Players</div>
+        <div class="panel-body">
+          <uib-tabset type="pills">
+            <uib-tab heading="{{::ranking.year}}" select="vm.selectRankings(ranking._id)" ng-repeat="ranking in ::vm.rankings"></uib-tab>
+          </uib-tabset>
+          <div class="row">
+            <div class="col-md-2 col-sm-4" ng-repeat="playerRankings in ::vm.selectedRanking.players">
+              <div class="thumbnail">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::playerRankings.player.imageUrl}}" class="img-responsive" alt="{{::playerRankings.player.firstName}} {{::playerRankings.player.lastName}}">
+                  <span class="overlay">#{{::playerRankings.rank}}</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::playerRankings.player.firstName}} {{::playerRankings.player.lastName}} - {{::playerRankings.player.position}}</h3>
+                  <a href class="btn btn-block btn-primary-outline"><i class="fa fa-plus"></i> Quick View</a>
+                  <a ui-sref="profile({ slug: '{{::playerRankings.player.slug}}' })" class="btn btn-block btn-default-outline"><i class="fa fa-share-square-o"></i> Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Players <span class="caret"></span></a>
+          <a ui-sref="rankings({ site: site, type: 'national' })" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Upcoming Future150 Events</div>
+        <div class="panel-body">
+          <uib-tabset type="pills">
+            <uib-tab heading="All" select="vm.selectEvents()"></uib-tab>
+            <uib-tab heading="Camps" select="vm.selectEvents('camp')"></uib-tab>
+            <uib-tab heading="Tournaments" select="vm.selectEvents('tournament')"></uib-tab>
+          </uib-tabset>
+          <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="event in ::vm.upcomingEvents">
+              <a ui-sref="event({ slug: '{{::event.slug}}' })" class="thumbnail">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::event.imageUrl}}" class="img-responsive" alt="{{::event.title}}">
+                  <span class="overlay">3 Spots Left</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::event.title}}</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Events <span class="caret"></span></a>
+          <a ui-sref="events" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">This Week's Top Player Videos</div>
+        <div class="panel-body">
+          <uib-tabset type="pills">
+            <uib-tab heading="Most Viewed" select="vm.selectVideos('viewed')"></uib-tab>
+            <uib-tab heading="Most Liked" select="vm.selectVideos('liked')"></uib-tab>
+            <uib-tab heading="Most Shared" select="vm.selectVideos('shared')"></uib-tab>
+          </uib-tabset>
+          <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="video in ::vm.topVideos">
+              <div class="thumbnail">
+                <div class="video overlay-wrapper">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <youtube-video video-id="video.youTubeId" class="embed-responsive-item"></youtube-video>
+                  </div>
+                  <span class="overlay">210 Views</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::video.title}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Videos <span class="caret"></span></a>
+          <a ui-sref="videos" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">This Week's Trending Players</div>
+        <div class="panel-body">
+          <uib-tabset type="pills">
+            <uib-tab heading="Most Viewed" select="vm.selectTrending('viewed')"></uib-tab>
+            <uib-tab heading="Most Liked" select="vm.selectTrending('liked')"></uib-tab>
+            <uib-tab heading="Most Shared" select="vm.selectTrending('shared')"></uib-tab>
+          </uib-tabset>
+          <div class="row">
+            <div class="col-md-2 col-sm-4" ng-repeat="player in ::vm.trendingPlayers">
+              <div class="thumbnail">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::player.imageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">
+                  <span class="overlay">22 Views</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::player.firstName}} {{::player.lastName}} - {{::player.position}}</h3>
+                  <a href class="btn btn-block btn-primary-outline"><i class="fa fa-plus"></i> Quick View</a>
+                  <a ui-sref="profile({ slug: '{{::player.slug}}' })" class="btn btn-block btn-default-outline"><i class="fa fa-share-square-o"></i> Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Players <span class="caret"></span></a>
+          <a ui-sref="trendingPlayers" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

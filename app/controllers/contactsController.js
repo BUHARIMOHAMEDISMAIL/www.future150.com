@@ -3,10 +3,12 @@ var express = require('express'),
   Contact = require('../models/contact');
 
 router.get('/contacts', function(req, res) {
+  var page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
   Contact.find()
     .sort('lastName')
-    .skip((req.query.page - 1 || 0) * 2)
-    .limit(req.query.pageSize || 10)
+    .skip(page * pageSize)
+    .limit(pageSize)
     .exec(function(err, contacts) {
       if (err) {
         throw err;
@@ -23,8 +25,17 @@ router.get('/contacts', function(req, res) {
     });
 });
 
-router.get('/contacts/:id', function(req, res) {
+router.get('/contacts/:id([0-9a-f]{24})', function(req, res) {
   Contact.findById(req.params.id, function(err, contact) {
+    if (err) {
+      throw err;
+    }
+    res.json(contact);
+  });
+});
+
+router.get('/contacts/:legacyId', function(req, res) {
+  Contact.findOne({ legacyId: req.params.legacyId }, function(err, contact) {
     if (err) {
       throw err;
     }

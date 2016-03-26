@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Colleges</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="college in vm.colleges">
+          <div class="row">
+            <div class="col-md-1">
+              <a ui-sref="college({ slug: '{{::college.slug}}' })">
+                <img class="img-rounded img-responsive" ng-src="{{::college.logoImageUrl}}" err-src="{{::defaultCollegeImageUrl}}" alt="{{::college.name}}">
+              </a>
+            </div>
+            <div class="col-md-3">
+              <h4>
+                <a ui-sref="college({ slug: '{{::college.slug}}' })">{{::college.name}}</a>
+              </h4>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="::vm.count" ng-model="::vm.page" items-per-page="::vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

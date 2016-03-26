@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-image" style="background-image: url('//images.designtrends.com/wp-content/uploads/2015/12/22053951/Cool-Basketball-Background.jpg'); min-height: 300px; background-size: cover; padding-top: 100px;">
+          <div class="col-md-3" ng-show="vm.player.imageUrl">
+            <img class="img-responsive img-thumbnail" ng-src="{{vm.player.imageUrl}}" alt="{{vm.player.firstName}} {{vm.player.lastName}}">
+          </div>
+          <div class="col-md-9">
+            <span class="badge">New Updates</span>
+            <h1>{{vm.player.firstName}} {{vm.player.lastName}}</h1>
+          </div>
+        </div>
+        <ul class="list-group list-group-inline text-uppercase">
+          <li class="list-group-item">
+            <i class="fa fa-globe fa-fw"></i> National <span>#19</span>
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-globe fa-fw"></i> Florida <span>#3</span>
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-times-circle fa-fw"></i> {{vm.player.position}} <span>#2</span>
+          </li>
+          <li class="list-group-item" ng-show="vm.player.stars && vm.player.score">
+            <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="vm.player.stars" read-only="true"></uib-rating>
+            <span>{{vm.player.score}}</span>
+          </li>
+        </ul>
+        <ul class="list-group list-group-inline list-group-inverse text-center">
+          <li class="list-group-item border-right">
+            <i class="fa fa-graduation-cap fa-fw"></i> {{vm.player.class}}
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-male fa-fw"></i> {{vm.player.heightFeet}}'{{vm.player.heightInches}}"
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-times-circle fa-fw"></i> {{vm.player.weight}}
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-times-circle fa-fw"></i> {{vm.player.position}}
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-users fa-fw"></i> {{vm.player.highSchool}} (AAU: {{vm.player.aauTeam}})
+          </li>
+          <li class="list-group-item border-right">
+            <i class="fa fa-map-marker fa-fw"></i> {{vm.player.hometownCity}}, {{vm.player.hometownState}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <ul class="list-group list-group-inline text-center text-uppercase">
+          <li class="list-group-item">Profile Stats</li>
+          <li class="list-group-item">
+            <i class="fa fa-eye fa-fw"></i> {{vm.player.views}} Views
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-thumbs-up fa-fw"></i> {{vm.player.likes}} Likes
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-plus-square-o fa-fw"></i> {{vm.player.followers}} Followers
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-external-link fa-fw"></i> {{vm.player.shares}} Shares:
+            <i class="fa fa-facebook-square fa-fw"></i>
+            <i class="fa fa-twitter-square fa-fw"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Player Updates</div>
+        <div class="panel-heading">2016</div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <b>November 29</b>
+              </div>
+              <div class="col-md-1">
+                <i class="fa fa-male fa-3x"></i>
+              </div>
+              <div class="col-md-2">
+                <a href="#">
+                  <img class="img-rounded img-responsive" src="//placehold.it/60x60">
+                </a>
+              </div>
+              <div class="col-md-6">
+                <h4>Profile Changed: Weight changed from 200 to 210</h4>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Updates <span class="caret"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

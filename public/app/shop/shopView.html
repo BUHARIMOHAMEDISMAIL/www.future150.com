@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Shop</h1>
+  </div>
+  <div class="row" ng-repeat="product in vm.products">
+    <div class="col-md-4">
+      <a ui-sref="product({ slug: '{{::product.slug}}' })">
+        <img class="img-rounded img-responsive" ng-src="{{::product.imageUrl}}" err-src="{{::defaultProductImageUrl}}" alt="{{::product.name}}">
+      </a>
+    </div>
+    <div class="col-md-8">
+      <a ui-sref="product({ slug: '{{::product.slug}}' })">{{::product.name}}</a>
+      <p>{{::product.description}}</p>
+      <a ui-sref="buyProduct({ slug: '{{::product.slug}}' })" class="btn btn-primary">Buy</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="::vm.count" ng-model="::vm.page" items-per-page="::vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

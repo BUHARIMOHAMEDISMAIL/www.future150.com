@@ -1,41 +1,80 @@
 var express = require('express'),
-router = express.Router();
+  router = express.Router(),
+  Article = require('../models/article'),
+  authenticate = require('../middleware/authenticate');
 
 router.get('/articles', function(req, res) {
-    var result =  {
-      count: 4,
-      articles: [
-        {
-          slug: 'looking-at-the-1-recruiting-class-kentucky-wildcats',
-          description: 'After picking up a commitment from elite SG Malik Monk, UK vaulted over Duke to take over the #1 spot.',
-          date: '',
-          title: 'Looking At The #1 Recruiting Class: Kentucky Wildcats',
-          imageUrl: '//future150.com/images/made/images/uploads/articles/wenyen-gabriel-kentucky-commit_643_341shar-60-.5-10_s_c1_c_c.png'
-        },
-        {
-          slug: 'johnny-newman-talks-recruitment-goals-for-this-season',
-          description: '2018 wing John Newman is becoming a big piece for Greensboro Day, and is gaining interest.',
-          date: '',
-          title: 'Johnny Newman Talks Recruitment And Goals',
-          imageUrl: '//future150.com/images/made/images/uploads/articles/Johnny_Newman_643_341_90shar-60-.5-10_s_c1_c_c.JPG'
-        },
-        {
-          slug: 'early-signing-period-comes-to-end-with-a-bang',
-          description: 'The early signing period came to a close in style on Wednesday, as a trio of top-40 recruits all announced their college destinations.',
-          date: '',
-          title: 'Early Signing Period Comes to End With A Bang',
-          imageUrl: '//future150.com/images/made/images/uploads/articles/Skal-Labissiere-Malik-Monk_643_341shar-60-.5-10_s_c1_c_t.png'
-        },
-        {
-          slug: 'tripp-greene-showing-promise',
-          description: '2018 G Tripp Greene has been showing promise as a potential lead guard at the D1 level',
-          date: '',
-          title: 'Tripp Greene Showing Promise',
-          imageUrl: '//future150.com/images/made/images/uploads/articles/IMG_1054_643_341_90shar-60-.5-10_s_c1_c_c.JPG'
+  var filter = {},
+    page = (req.query.page - 1) || 0,
+    pageSize = req.query.pageSize || 10;
+  if (req.query.site) {
+    filter.site = req.query.site;
+  }
+  Article.find(filter)
+    .sort('-createdDate')
+    .skip(page * pageSize)
+    .limit(pageSize)
+    .exec(function(err, articles) {
+      if (err) {
+        throw err;
+      }
+      Article.count(filter).exec(function(err, count) {
+        if (err) {
+          throw err;
         }
-      ]
-    };
-    res.json(result);
+        res.json({
+          count: count,
+          articles: articles
+        });
+      });
+    });
+});
+
+router.get('/articles/:id([0-9a-f]{24})', function(req, res) {
+  Article.findById(req.params.id, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
   });
+});
+
+router.get('/articles/:legacyId([0-9]+)', function(req, res) {
+  Article.findOne({ legacyId: req.params.legacyId }, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
+  });
+});
+
+router.get('/articles/:slug', function(req, res) {
+  Article.findOne({ slug: req.params.slug }, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.json(article);
+  });
+});
+
+router.post('/articles', function(req, res) {
+  var article = new Article(req.body);
+
+  article.save(function(err) {
+    if (err) {
+      throw err;
+    }
+    res.sendStatus(201);
+  });
+});
+
+router.put('/articles/:id', function(req, res) {
+  Article.findByIdAndUpdate(req.params.id, req.body, function(err, article) {
+    if (err) {
+      throw err;
+    }
+    res.sendStatus(204);
+  });
+});
 
 module.exports = router;
