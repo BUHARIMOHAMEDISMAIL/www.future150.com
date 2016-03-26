@@ -60,6 +60,10 @@ gulp.task('build', [
   'minifyHtmlFiles'
 ]);
 
+gulp.task('bower', function() {
+  return bower();
+});
+
 gulp.task('jasmine', function () {
   return gulp.src('tests/**/*.spec.js')
     .pipe(jasmine());
@@ -79,15 +83,11 @@ gulp.task('jscs', function() {
     .pipe(jscs.reporter('fail'));
 });
 
-gulp.task('karma', function (done) {
+gulp.task('karma', ['bower'], function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
-});
-
-gulp.task('bower', function() {
-  return bower();
 });
 
 gulp.task('bundleAndMinifyAppJsFiles', function() {
