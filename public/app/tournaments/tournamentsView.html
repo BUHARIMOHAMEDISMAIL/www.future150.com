@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Tournaments</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="tournament in vm.tournaments">
+          <div class="row">
+            <div class="col-md-3">
+              <a ui-sref="tournament({ slug: '{{camp.slug}}' })">
+                <img class="img-rounded img-responsive" ng-src="{{tournament.imageUrl}}" alt="{{tournament.title}}">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <h4>{{tournament.title}}</h4>
+              <a ui-sref="tournament({ slug: '{{tournament.slug}}' })" class="btn btn-default">Details</a>
+              <a ui-sref="registerTournament({ slug: '{{tournament.slug}}' })" class="btn btn-primary">Register</a>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="vm.count" ng-model="vm.page" items-per-page="vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

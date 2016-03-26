@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Message Boards</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Replies</th>
+              <th>Views</th>
+              <th>Last Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="thread in vm.threads">
+              <td>
+                <a ui-sref="messageBoardThread({ slug: '{{thread.slug}}' })">{{thread.title}}</a>
+                <p>{{thread.starter.fullName}}</p>
+              </td>
+              <td>{{thread.replies}}</td>
+              <td>{{thread.views}}</td>
+              <td>{{thread.lastMessage.poster.fullName}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="::vm.count" ng-model="::vm.page" items-per-page="::vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="future150">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="fragment" content="!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{::title}} | Future150</title>
+    <meta name="description" content="{{::description}}">
+    <link rel="stylesheet" href="/css/third-party.min.css">
+    <link rel="stylesheet" href="//future150-bootstrap.firebaseapp.com/css/future150-bootstrap.min.css">
+    <link rel="stylesheet" href="//f.fontdeck.com/s/css/uH5+KWQnibDTJRYggGJ9XZLTAgw/new.future150.com/61678.css" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{::title}}">
+    <meta name="twitter:site" content="{{::twitterHandle}}">
+    <meta name="twitter:creator" content="{{::twitterHandle}}">
+    <meta name="twitter:description" content="{{::description}}">
+    <meta name="twitter:image" content="{{::featuredImageUrl}}" ng-if="featuredImageUrl">
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{::title}}">
+    <meta property="og:type" content="website" >
+    <meta property="og:url" content="{{::url}}" >
+    <!--[if lt IE 9]>
+      <script src="bower_components/html5shiv/dist/html5shiv.min.js"></script>
+      <script src="bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+    <link rel="icon" href="/favicon.ico">
+    <base href="/">
+  </head>
+  <body>
+    <nav class="navbar navbar-top hidden-xs hidden-sm" ng-controller="topNavigationController as vm">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li>
+            <a>Divisions:</a>
+          </li>
+          <li ng-repeat="site in vm.sites">
+            <a ui-sref="site.home({ site: site.path })" ng-cloak>{{site.name}}</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a ui-sref="messageBoards">Message Boards</a>
+          </li>
+          <li>
+            <a href="http://future150report.com/" target="_blank">Future150 Report</a>
+          </li>
+          <li>
+            <a ui-sref="contactUs">Contact Us</a>
+          </li>
+          <li ng-if="!vm.user">
+            <a ui-sref="login" class="text-green">Login</a>
+          </li>
+          <li ng-if="!vm.user">
+            <a ui-sref="register" class="text-green">Register</a>
+          </li>
+          <li class="dropdown" ng-if="vm.user">
+            <a href class="dropdown-toggle" data-toggle="dropdown">
+              <img ng-src="{{vm.user.profileImageUrl}}" alt="{{vm.user.username}}" class="img-circle" style="height: 20px;">
+              {{vm.user.username}} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li>
+                <a href ng-click="vm.logout()">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="navbar navbar-default" ng-controller="navigationController as vm">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#future150-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ui-sref="site.home({ site: site })">
+            <img src="img/future150.png" alt="Future150" />
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="future150-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href class="dropdown-toggle" data-toggle="dropdown" ng-cloak>{{selectedSite.name}} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="site in vm.sites" ui-sref-active="active">
+                  <a ui-sref="site.home({ site: site.path })" ng-cloak>{{site.name}}</a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="rankings({ site: site, type: 'national' })">Rankings</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="site.news({ site: site })">News</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="videos">Videos</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-inverse">
+            <li ui-sref-active="active">
+              <a ui-sref="camps">
+                Camps <span class="badge hidden-xs hidden-sm" ng-cloak>{{::vm.campsCount}}</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="tournaments">
+                Tournaments <span class="badge hidden-xs hidden-sm" ng-cloak>{{::vm.tournamentsCount}}</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="shop">
+                Shop <i class="fa fa-user hidden-xs hidden-sm"></i>
+              </a>
+            </li>
+          </ul>
+          <form ng-submit="vm.search(q)" class="navbar-form navbar-right">
+            <div class="input-group">
+              <span class="input-group-addon" ng-click="expandSearch = !expandSearch">
+                <i class="fa fa-search"></i>
+              </span>
+              <input type="text" ng-show="expandSearch" class="form-control" ng-model="q">
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <ui-view ng-cloak autoscroll="true"></ui-view>
+    </div>
+    <footer class="container-fluid text-center-xs" ng-controller="footerController as vm">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-sm-4">
+              <h3>Fans &amp; Members</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <a ui-sref="messageBoards">Message Boards</a>
+                </li>
+                <li>
+                  <a ui-sref="site.news({ site: site })">News Articles</a>
+                </li>
+                <li>
+                  <a href>My Player Feed</a>
+                </li>
+                <li>
+                  <a ui-sref="videos">Recruiting Videos</a>
+                </li>
+                <li>
+                  <a ui-sref="rankings({ site: site, type: 'national' })">National Rankings</a>
+                </li>
+                <li>
+                  <a ui-sref="colleges">College Teams</a>
+                </li>
+                <li>
+                  <a ui-sref="search">Player Search</a>
+                </li>
+                <li>
+                  <a ui-sref="submitPlayerInfo">Submit Player Info</a>
+                </li>
+                <li>
+                  <a ui-sref="shop">Shop Gear</a>
+                </li>
+                <li>
+                  <a ui-sref="register">Join For Free</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h3>Basketball Players</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <a ui-sref="camps">Exposure Camps</a>
+                </li>
+                <li>
+                  <a ui-sref="collegeExposurePack">College Exposure Pack</a>
+                </li>
+                <li>
+                  <a href>Custom Exposure</a>
+                </li>
+                <li>
+                  <a href>My News Alerts</a>
+                </li>
+                <li>
+                  <a ui-sref="submitPlayerVideo">Submit My Video</a>
+                </li>
+                <li>
+                  <a href>Get Recruiting Video</a>
+                </li>
+                <li>
+                  <a ui-sref="aauTeams">AAU Team Rankings</a>
+                </li>
+                <li>
+                  <a ui-sref="colleges">College Teams</a>
+                </li>
+                <li>
+                  <a ui-sref="shop">Shop Gear</a>
+                </li>
+                <li>
+                  <a ui-sref="submitPlayerInfo">Submit Player Info</a>
+                </li>
+                <li>
+                  <a ui-sref="alumni">Future150 Alumni</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h3>AAU &amp; College Coaches</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <a ui-sref="tournaments">Exposure Tournaments</a>
+                </li>
+                <li>
+                  <a ui-sref="camps">Exposure Camps</a>
+                </li>
+                <li>
+                  <a ui-sref="submitPlayerVideo">Submit Player Video</a>
+                </li>
+                <li>
+                  <a ui-sref="rankings({ site: site, type: 'national' })">Player Rankings</a>
+                </li>
+                <li>
+                  <a ui-sref="aauTeams">AAU Team Rankings</a>
+                </li>
+                <li>
+                  <a ui-sref="submitPlayerInfo">Submit Player Info</a>
+                </li>
+                <li>
+                  <a href="http://future150report.com/" target="_blank">Future150 Report</a>
+                </li>
+                <li>
+                  <a ui-sref="alumni">Future150 Alumni</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12 col-sm-6 hidden-xs">
+              <h3>Latest Articles</h3>
+              <ul class="list-unstyled">
+                <li ng-repeat="article in ::vm.latestArticles">
+                  <a ui-sref="article({ slug: '{{::article.slug}}' })">
+                    <em>Article:</em> {{::article.title}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-12 col-sm-6">
+              <ul class="list-inline">
+                <li>
+                  <h3>Get in Touch:</h3>
+                </li>
+                <li>
+                  <a href="http://facebook.com/future150" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-inverse fa-stack-1x"></i>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://twitter.com/future150" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://instagram.com/future150" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-instagram fa-inverse fa-stack-1x"></i>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <p>&copy; 2016 Future150, LLC. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/third-party.min.js"></script>
+    <script src="js/future150.min.js"></script>
+    <script src="js/future150.tpls.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-72114036-1', 'auto');
+    </script>
+  </body>
+</html>

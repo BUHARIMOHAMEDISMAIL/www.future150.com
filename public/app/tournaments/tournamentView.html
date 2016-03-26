@@ -1,0 +1,16 @@
+<div class="jumbotron" style="background-image: url('{{vm.tournament.imageUrl}}');"></div>
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>{{vm.tournament.title}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <a ui-sref="registerTournament({ slug: '{{vm.tournament.slug}}' })" class="btn btn-primary">Register</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div ng-bind-html="vm.tournament.description"></div>
+    </div>
+  </div>
+</div>

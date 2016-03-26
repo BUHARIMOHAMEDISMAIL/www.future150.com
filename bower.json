@@ -1,0 +1,24 @@
+{
+  "name": "future150.com",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Future150/future150.com",
+  "description": "The best source for college basketball recruiting, class rankings and elite player profiles. Discover which high school players are the hottest recruits.",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0",
+    "html5shiv": "~3.7.3",
+    "respond": "~1.4.2",
+    "angular-youtube-mb": "~1.1.1",
+    "angular-bootstrap": "~0.14.3",
+    "angulartics-google-analytics": "~0.1.4",
+    "angular-local-storage": "~0.2.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.8",
+    "sinonjs": "~1.17.1",
+    "jasmine-sinon": "~0.4.0"
+  }
+}

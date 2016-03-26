@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Contact Us</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="contact in vm.contacts">
+          <div class="row">
+            <div class="col-md-1">
+              <img class="img-rounded img-responsive" ng-src="{{contact.profileImageUrl}}" alt="{{contact.firstName}} {{contact.lastName}}">
+            </div>
+            <div class="col-md-2">
+              <h4>{{contact.firstName}} {{contact.lastName}}</h4><br>
+              <strong>{{contact.title}}</strong>
+            </div>
+            <div class="col-md-9">
+              <address>
+                <strong>Phone</strong> {{contact.phoneNumber}}<br>
+                <strong>Email</strong> {{contact.emailAddress}}<br>
+                <strong>Twitter</strong> {{contact.twitterHandle}}<br>
+              </address>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

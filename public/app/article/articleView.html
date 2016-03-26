@@ -1,0 +1,12 @@
+<div class="jumbotron" style="background-image: url('{{vm.article.imageUrl}}');"></div>
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>{{vm.article.title}}</h1>
+    <p>{{vm.article.description}}</p>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div ng-bind-html="vm.article.body"></div>
+    </div>
+  </div>
+</div>

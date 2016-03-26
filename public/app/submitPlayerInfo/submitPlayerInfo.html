@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Submit Player Information</h1>
+  </div>
+  <form ng-submit="vm.submit(vm.player)">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" ng-model="vm.player.firstName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" ng-model="vm.player.lastName">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" ng-model="vm.player.city">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="state">State</label>
+        <select class="form-control" id="state" ng-model="vm.player.state">
+          <option></option>
+          <option>Alabama</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="school">School</label>
+        <input type="text" class="form-control" id="school" ng-model="vm.player.school">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="position">Position</label>
+        <select class="form-control" id="position" ng-model="vm.player.position">
+          <option></option>
+          <option>Point Guard</option>
+          <option>Shooting Guard</option>
+          <option>Small Forward</option>
+          <option>Power Forward</option>
+          <option>Center</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="height">Height</label>
+        <input type="text" class="form-control" id="height" ng-model="vm.player.height">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" ng-model="vm.player.weight">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="aauTeam">AAU Team</label>
+        <input type="text" class="form-control" id="aauTeam" ng-model="vm.player.aauTeam">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="class">Class</label>
+        <select class="form-control" id="class" ng-model="vm.player.class">
+          <option></option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="submit" class="btn btn-block btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

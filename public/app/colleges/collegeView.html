@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-responsive img-thumbnail" ng-src="{{vm.college.logoImageUrl}}" alt="{{vm.college.name}}">
+    </div>
+    <div class="col-md-9">
+      <h1>{{vm.college.name}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-tabset type="pills">
+        <uib-tab heading="{{ranking.year}}" select="vm.selectRankings(ranking._id)" ng-repeat="ranking in vm.rankings"></uib-tab>
+      </uib-tabset>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="playerRankings in vm.selectedRanking.players">
+          <div class="row">
+            <div class="col-md-3">
+              <a ui-sref="profile({ slug: '{{playerRankings.player.slug}}' })">
+                <img class="img-rounded img-responsive" ng-src="{{playerRankings.player.imageUrl}}" alt="{{playerRankings.player.firstName}} {{playerRankings.player.lastName}}">
+              </a>
+            </div>
+            <div class="col-md-2">
+              <a ui-sref="profile({ slug: '{{playerRankings.player.slug}}' })">{{playerRankings.player.firstName}} {{playerRankings.player.lastName}}</a>
+            </div>
+            <div class="col-md-1">
+              <p>{{playerRankings.player.position}}</p>
+            </div>
+            <div class="col-md-3">
+              <p>{{playerRankings.player.hometownCity}}, {{playerRankings.player.hometownState}}</p>
+            </div>
+            <div class="col-md-3">
+              <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="playerRankings.player.stars" read-only="true"></uib-rating>
+              <span>{{playerRankings.player.score}}</span>
+            </div>
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>

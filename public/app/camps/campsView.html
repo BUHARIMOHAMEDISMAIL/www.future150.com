@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Camps</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="media" ng-repeat="camp in vm.camps">
+        <div class="media-left">
+          <a ui-sref="camp({ slug: '{{camp.slug}}' })">
+            <img class="media-object" ng-src="{{camp.imageUrl}}" alt="{{camp.title}}" style="width: 500px;">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{camp.title}}</h4>
+          <a ui-sref="camp({ slug: '{{camp.slug}}' })" class="btn btn-default">Details</a>
+          <a ui-sref="registerCamp({ slug: '{{camp.slug}}' })" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-pagination total-items="vm.count" ng-model="vm.page" items-per-page="vm.pageSize" max-size="10"></uib-pagination>
+    </div>
+  </div>
+</div>

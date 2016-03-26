@@ -1,0 +1,16 @@
+<div class="jumbotron" style="background-image: url('{{vm.camp.imageUrl}}');"></div>
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>{{vm.camp.title}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <a ui-sref="registerCamp({ slug: '{{vm.camp.slug}}' })" class="btn btn-primary">Register</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div ng-bind-html="vm.camp.description"></div>
+    </div>
+  </div>
+</div>
