@@ -1,19 +1,19 @@
 {
-  "name": "api.future150.com",
-  "version": "1.0.0",
-  "description": "A data API for Future150.",
+  "name": "www.future150.com",
+  "version": "0.0.1",
+  "description": "The best source for college basketball recruiting, class rankings and elite player profiles. Discover which high school players are the hottest recruits.",
   "main": "server.js",
   "scripts": {
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Future150/api.future150.com.git"
+    "url": "https://github.com/Future150/www.future150.com.git"
   },
   "bugs": {
-    "url": "https://github.com/Future150/api.future150.com/issues"
+    "url": "https://github.com/Future150/www.future150.com/issues"
   },
-  "homepage": "https://github.com/Future150/api.future150.com",
+  "homepage": "https://github.com/Future150/www.future150.com",
   "dependencies": {
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
