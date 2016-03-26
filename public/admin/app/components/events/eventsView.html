@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1>Events</h1>
+</div>
+<div class="row">
+  <div class="col-sm-10">
+    <input type="text" ng-model="vm.q" class="form-control" />
+  </div>
+  <div class="col-sm-2">
+    <a ui-sref="event" class="btn btn-block btn-primary">Add</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>City</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="event in vm.events">
+            <td>
+              <a ui-sref="event({ id: event._id })" class="btn btn-link">Edit</a>
+            </td>
+            <td>{{event.title}}</td>
+            <td>{{event.city}}</td>
+            <td>{{event.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-right">
+    <uib-pagination total-items="vm.count" ng-model="vm.page" items-per-page="vm.pageSize"></uib-pagination>
+  </div>
+</div>

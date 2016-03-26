@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Add/Edit Player</h1>
+</div>
+<form ng-submit="vm.save(vm.player)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="row">
+          <div class="col-md-1">
+            <img ng-src="{{vm.player.imageUrl}}" alt="{{vm.player.firstName + ' ' + vm.player.lastName}}" class="img-rounded img-responsive">
+          </div>
+          <div class="col-md-11">
+            <label for="image" class="btn btn-default">Upload New Picture</label>
+            <input type="file" id="image" class="hidden">
+            <p class="help-block">You can also drag and drop a picture from your computer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" ng-model="vm.player.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" ng-model="vm.player.lastName">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="players" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>

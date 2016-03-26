@@ -15,7 +15,7 @@ router.post('/token', function(req, res) {
     }
     else {
       res.json({
-        token: jwt.sign(user, authenticationConfig.secret)
+        token: jwt.sign(user.toObject(), authenticationConfig.secret)
       });
     }
   });

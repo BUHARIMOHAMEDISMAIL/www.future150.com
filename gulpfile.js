@@ -15,6 +15,9 @@ var gulp = require('gulp'),
 var Server = require('karma').Server;
 
 var allJsFiles = [
+    './public/admin/*.js',
+    './public/admin/app/**/*.js',
+    './public/admin/tests/**/*.js',
     './public/*.js',
     './public/app/**/*.js',
     './public/tests/**/*.js',
@@ -26,20 +29,35 @@ var allJsFiles = [
     './public/app/app.module.js',
     './public/app/**/*.js'
   ],
+  adminJsFiles = [
+    './public/admin/app/app.module.js',
+    './public/admin/app/**/*.js'
+  ],
   libJsFiles = [
     './bower_components/jquery/dist/jquery.js',
     './bower_components/bootstrap/dist/js/bootstrap.js',
+    './bower_components/Chart.js/Chart.js',
     './bower_components/angular/angular.js',
     './bower_components/angular-ui-router/release/angular-ui-router.js',
     './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    './bower_components/summernote/dist/summernote.js',
+    './bower_components/angular-summernote/dist/angular-summernote.js',
+    './bower_components/ui-select/dist/select.js',
+    './bower_components/jquery-ui/jquery-ui.js',
     './bower_components/angular-youtube-mb/src/angular-youtube-embed.js',
     './bower_components/angulartics/src/angulartics.js',
     './bower_components/angulartics-google-analytics/lib/angulartics-google-analytics.js',
-    './bower_components/angular-local-storage/dist/angular-local-storage.js'
+    './bower_components/angular-local-storage/dist/angular-local-storage.js',
+    './bower_components/jquery-ui/ui/sortable.js',
+    './bower_components/angular-ui-sortable/sortable.js',
+    './bower_components/angular-chart.js/dist/angular-chart.js'
   ],
   libCssFiles = [
     './bower_components/bootstrap/dist/css/bootstrap.css',
-    './bower_components/font-awesome/css/font-awesome.css'
+    './bower_components/font-awesome/css/font-awesome.css',
+    './bower_components/summernote/dist/summernote.css',
+    './bower_components/ui-select/dist/select.css',
+    './bower_components/angular-chart.js/dist/angular-chart.css'
   ],
   fontFiles = './bower_components/font-awesome/fonts/*.*',
   htmlFiles = './public/app/**/*.html';
@@ -53,6 +71,7 @@ gulp.task('test', [
 
 gulp.task('build', [
   'bundleAndMinifyAppJsFiles',
+  'bundleAndMinifyAdminJsFiles',
   'bundleAndMinifyLibJsFiles',
   'compileBundleAndMinifyAppCssFiles',
   'bundleAndMinifyLibCssFiles',
@@ -96,6 +115,16 @@ gulp.task('bundleAndMinifyAppJsFiles', function() {
     .pipe(concat('future150.js'))
     .pipe(uglify())
     .pipe(rename('future150.min.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('bundleAndMinifyAdminJsFiles', function() {
+  return gulp.src(adminJsFiles, { base: './admin/app' })
+    .pipe(sourcemaps.init())
+    .pipe(concat('future150-admin.js'))
+    .pipe(uglify())
+    .pipe(rename('future150-admin.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/js'));
 });

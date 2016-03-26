@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1>Add/Edit Contact</h1>
+</div>
+<form ng-submit="vm.save(vm.contact)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="row">
+          <div class="col-md-1">
+            <img ng-src="{{vm.contact.profileImageUrl}}" alt="{{vm.contact.firstName + ' ' + vm.contact.lastName}}" class="img-rounded img-responsive">
+          </div>
+          <div class="col-md-11">
+            <label for="image" class="btn btn-default">Upload New Picture</label>
+            <input type="file" id="image" class="hidden">
+            <p class="help-block">You can also drag and drop a picture from your computer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" ng-model="vm.contact.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" ng-model="vm.contact.lastName">
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="vm.contact.title">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" ng-model="vm.contact.phoneNumber">
+      </div>
+      <div class="form-group">
+        <label for="emailAddress">Email Address</label>
+        <input type="text" class="form-control" id="emailAddress" ng-model="vm.contact.emailAddress">
+      </div>
+      <div class="form-group">
+        <label for="twitterHandle">Twitter Handle</label>
+        <input type="text" class="form-control" id="twitterHandle" ng-model="vm.contact.twitterHandle">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="contacts" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>

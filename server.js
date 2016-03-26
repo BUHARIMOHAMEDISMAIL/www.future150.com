@@ -37,6 +37,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+app.use('/admin', express.static('public/admin'));
 app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
