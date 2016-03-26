@@ -16,7 +16,7 @@ describe('contactsService', function() {
     contactsService = _contactsService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/contacts').respond(mockContactResult);
+    $httpBackend.whenGET('/contacts').respond(mockContactResult);
   }));
 
   afterEach(function() {

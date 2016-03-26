@@ -15,8 +15,8 @@ describe('videosService', function() {
     videosService = _videosService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/videos').respond(mockVideoResult);
-    $httpBackend.whenGET('//future150.herokuapp.com/videos?page=1&pageSize=4&site=hs').respond(mockVideoResult);
+    $httpBackend.whenGET('/videos').respond(mockVideoResult);
+    $httpBackend.whenGET('/videos?page=1&pageSize=4&site=hs').respond(mockVideoResult);
   }));
 
   afterEach(function() {

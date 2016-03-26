@@ -16,9 +16,9 @@ describe('playersService', function() {
     playersService = _playersService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/players').respond(mockPlayersResult);
-    $httpBackend.whenGET('//future150.herokuapp.com/players/test-player').respond(mockPlayerResult);
-    $httpBackend.whenGET('//future150.herokuapp.com/players/trending?site=hs').respond(mockPlayersResult);
+    $httpBackend.whenGET('/players').respond(mockPlayersResult);
+    $httpBackend.whenGET('/players/test-player').respond(mockPlayerResult);
+    $httpBackend.whenGET('/players/trending?site=hs').respond(mockPlayersResult);
   }));
 
   afterEach(function() {

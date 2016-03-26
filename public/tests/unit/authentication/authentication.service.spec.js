@@ -28,8 +28,8 @@ describe('authenticationService', function() {
       }
     };
 
-    $httpBackend.whenPOST('//future150.herokuapp.com/token').respond(testLoginResult);
-    $httpBackend.whenGET('//future150.herokuapp.com/profile').respond(testProfileResult);
+    $httpBackend.whenPOST('/token').respond(testLoginResult);
+    $httpBackend.whenGET('/profile').respond(testProfileResult);
   }));
 
   it('should be defined', function() {

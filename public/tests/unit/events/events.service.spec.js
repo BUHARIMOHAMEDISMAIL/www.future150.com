@@ -16,7 +16,7 @@ describe('eventsService', function() {
     eventsService = _eventsService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/events').respond(mockEventResult);
+    $httpBackend.whenGET('/events').respond(mockEventResult);
   }));
 
   afterEach(function() {

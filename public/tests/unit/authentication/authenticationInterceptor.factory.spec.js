@@ -21,7 +21,7 @@ describe('authenticationInterceptor', function() {
 
     it('should call getAuthToken function of authenticationService with correct parameters', function() {
       var config = {
-        url: ''
+        headers: {}
       };
       authenticationInterceptor.request(config);
       expect(authenticationServiceGetAuthTokenStub).toHaveBeenCalled();
@@ -29,12 +29,12 @@ describe('authenticationInterceptor', function() {
 
     it('should return correct value', function() {
       var config = {
-        url: '//future150.herokuapp.com/test',
+        url: '/test',
         headers: {}
       };
       config = authenticationInterceptor.request(config);
       var expectedConfig = {
-        url: '//future150.herokuapp.com/test',
+        url: '/test',
         headers: {
           Authorization: 'Bearer 1234'
         }

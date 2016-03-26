@@ -16,7 +16,7 @@ describe('articlesService', function() {
     articlesService = _articlesService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/articles').respond(mockArticleResult);
+    $httpBackend.whenGET('/articles').respond(mockArticleResult);
   }));
 
   afterEach(function() {

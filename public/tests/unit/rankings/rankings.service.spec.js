@@ -12,8 +12,8 @@ describe('rankingsService', function() {
     rankingsService = _rankingsService_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('//future150.herokuapp.com/rankings/national?site=hs').respond(mockRankingsResult);
-    $httpBackend.whenGET('//future150.herokuapp.com/rankings/1234').respond(mockRankingResult);
+    $httpBackend.whenGET('/rankings/national?site=hs').respond(mockRankingsResult);
+    $httpBackend.whenGET('/rankings/1234').respond(mockRankingResult);
   }));
 
   afterEach(function() {
