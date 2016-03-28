@@ -86,6 +86,12 @@
         });
 
       $stateProvider
+        .state('submitTournamentRoster', {
+          url: '/tournament/:slug/submitRoster',
+          templateUrl: '/app/tournaments/submitTournamentRoster.html'
+        });
+
+      $stateProvider
         .state('contactUs', {
           url: '/contact-us',
           templateUrl: '/app/contactUs/contactUsView.html',
