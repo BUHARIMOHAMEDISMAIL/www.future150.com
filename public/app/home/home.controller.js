@@ -39,11 +39,13 @@
       });
 
       playersService.getTrendingPlayers($rootScope.site, null, null, 6).then(function(trendingPlayers) {
-        trendingPlayers.forEach(function(player) {
-          if (!player.imageUrl) {
-            player.imageUrl = config.defaultProfileImageUrl;
-          }
-        });
+        if (angular.isArray(trendingPlayers)) {
+          trendingPlayers.forEach(function(player) {
+            if (!player.imageUrl) {
+              player.imageUrl = config.defaultProfileImageUrl;
+            }
+          });
+        }
         vm.trendingPlayers = trendingPlayers;
       });
     }
