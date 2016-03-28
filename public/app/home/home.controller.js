@@ -5,9 +5,9 @@
     .module('future150')
     .controller('homeController', homeController);
 
-  homeController.$inject = ['$rootScope', 'articlesService', 'rankingsService', 'eventsService', 'videosService', 'playersService'];
+  homeController.$inject = ['$rootScope', 'config', 'articlesService', 'rankingsService', 'eventsService', 'videosService', 'playersService'];
 
-  function homeController($rootScope, articlesService, rankingsService, eventsService, videosService, playersService) {
+  function homeController($rootScope, config, articlesService, rankingsService, eventsService, videosService, playersService) {
     var vm = this;
     vm.selectRankings = selectRankings;
     vm.selectEvents = selectEvents;
@@ -39,6 +39,11 @@
       });
 
       playersService.getTrendingPlayers($rootScope.site, null, null, 6).then(function(trendingPlayers) {
+        trendingPlayers.forEach(function(player) {
+          if (!player.imageUrl) {
+            player.imageUrl = config.defaultProfileImageUrl;
+          }
+        });
         vm.trendingPlayers = trendingPlayers;
       });
     }

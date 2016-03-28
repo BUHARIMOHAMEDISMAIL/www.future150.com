@@ -145,7 +145,7 @@
             <div class="col-md-2 col-sm-4" ng-repeat="player in ::vm.trendingPlayers">
               <div class="thumbnail">
                 <div class="overlay-wrapper">
-                  <img ng-src="{{::player.imageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">
+                  <img ng-src="{{::player.imageUrl}}" err-src="{{::defaultProfileImageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">
                   <span class="overlay">22 Views</span>
                 </div>
                 <div class="caption text-center">
