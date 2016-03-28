@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1>Register for {{vm.event.title}}</h1>
+  </div>
+  <form ng-submit="vm.register(vm.tournament)">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="teamName">Team Name</label>
+        <input type="text" class="form-control" id="teamName" ng-model="vm.tournament.teamName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="teamClassYear" id="teamClassYear" ng-model="vm.tournament.teamClassYear">Team Class/Year</label>
+        <select class="form-control">
+          <option>2017 - 17U</option>
+          <option>2018 - 16U</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="coachName">Coach's Name</label>
+        <input type="text" class="form-control" id="coachName" ng-model="vm.tournament.coachName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="coachMobile">Coach's Mobile</label>
+        <input type="text" class="form-control" id="coachMobile" ng-model="vm.tournament.coachMobile">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="coachEmail">Coach's Email</label>
+        <input type="email" class="form-control" id="coachEmail" ng-model="vm.tournament.coachEmail">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="coachStreet">Coach's Street</label>
+        <input type="text" class="form-control" id="coachStreet" ng-model="vm.tournament.coachStreet">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="coachCity">Coach's City</label>
+        <input type="text" class="form-control" id="coachCity" ng-model="vm.tournament.coachCity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="coachState">Coach's State</label>
+        <input type="text" class="form-control" id="coachState" ng-model="vm.tournament.coachState">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="coachZip">Coach's Zip</label>
+        <input type="text" class="form-control" id="coachZip" ng-model="vm.tournament.coachZip">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> I agree to provide correct athlete information in advance of the event. I also understand that not providing accurate team, coach and athlete information, including the use of Future150's preferred submission method, will make the above team subject to disqualification to the event - without any refund.
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="submit" class="btn btn-block btn-primary">Register</button>
+      </div>
+    </div>
+  </form>
+</div>

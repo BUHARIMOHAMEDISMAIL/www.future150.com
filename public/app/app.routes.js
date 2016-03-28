@@ -80,7 +80,7 @@
       $stateProvider
         .state('registerTournament', {
           url: '/tournament/:slug/register',
-          templateUrl: '/app/events/eventRegisterView.html',
+          templateUrl: '/app/tournaments/registerTournamentView.html',
           controller: 'eventRegisterController',
           controllerAs: 'vm'
         });
