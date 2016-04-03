@@ -38,6 +38,37 @@
         });
 
       $stateProvider
+        .state('account', {
+          url: '/account',
+          abstract: true,
+          templateUrl: '/app/account/accountView.html'
+        });
+
+      $stateProvider
+        .state('account.personal', {
+          url: '/personal',
+          templateUrl: '/app/account/personalView.html'
+        });
+
+      $stateProvider
+        .state('account.settings', {
+          url: '/settings',
+          templateUrl: '/app/account/settingsView.html'
+        });
+
+      $stateProvider
+        .state('account.billing', {
+          url: '/billing',
+          templateUrl: '/app/account/billingView.html'
+        });
+
+      $stateProvider
+        .state('pricing', {
+          url: '/pricing',
+          templateUrl: '/app/pricing/pricing.html'
+        });
+
+      $stateProvider
         .state('camps', {
           url: '/camps',
           templateUrl: '/app/camps/campsView.html',

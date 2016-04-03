@@ -54,7 +54,7 @@
             <a ui-sref="login" class="text-green">Login</a>
           </li>
           <li ng-if="!vm.user">
-            <a ui-sref="register" class="text-green">Register</a>
+            <a ui-sref="pricing" class="text-green">Register</a>
           </li>
           <li class="dropdown" ng-if="vm.user">
             <a href class="dropdown-toggle" data-toggle="dropdown">
@@ -62,6 +62,9 @@
               {{vm.user.username}} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+              <li ui-sref-active="active">
+                <a ui-sref="account.personal">Account</a>
+              </li>
               <li class="divider"></li>
               <li>
                 <a href ng-click="vm.logout()">Logout</a>
