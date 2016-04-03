@@ -60,7 +60,8 @@ var allJsFiles = [
     './bower_components/angular-chart.js/dist/angular-chart.css'
   ],
   fontFiles = './bower_components/font-awesome/fonts/*.*',
-  htmlFiles = './public/app/**/*.html';
+  htmlFiles = './public/app/**/*.html',
+  lessFiles = './less/*.less';
 
 gulp.task('test', [
   'lint',
@@ -78,6 +79,29 @@ gulp.task('build', [
   'copyFontFiles',
   'minifyHtmlFiles'
 ]);
+
+gulp.task('watch', [
+  'watchAppJsFiles',
+  'watchAdminJsFiles',
+  'watchAppCssFiles',
+  'watchHtmlFiles'
+]);
+
+gulp.task('watchAppJsFiles', function() {
+  gulp.watch(appJsFiles, ['bundleAndMinifyAppJsFiles']);
+});
+
+gulp.task('watchAdminJsFiles', function() {
+  gulp.watch(adminJsFiles, ['bundleAndMinifyAdminJsFiles']);
+});
+
+gulp.task('watchAppCssFiles', function() {
+  gulp.watch(lessFiles, ['compileBundleAndMinifyAppCssFiles']);
+});
+
+gulp.task('watchHtmlFiles', function() {
+  gulp.watch(htmlFiles, ['minifyHtmlFiles']);
+});
 
 gulp.task('bower', function() {
   return bower();
