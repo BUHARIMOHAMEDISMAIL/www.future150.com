@@ -56,8 +56,15 @@ app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
 
-app.all('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get(['/favicon.ico', '/apple-touch-icon.png'], function(req, res) {
+  res.sendFile(req.path, {
+    root: path.join(__dirname, '/public')
+  });
+});
+app.get('/*', function(req, res) {
+  res.sendFile('index.html', {
+    root: path.join(__dirname, '/public')
+  });
 });
 
 app.listen(port);
