@@ -1,29 +1,312 @@
 <div class="page-header">
-  <h1>Add/Edit Player</h1>
+  <h1>Player Details</h1>
 </div>
 <form ng-submit="vm.save(vm.player)">
   <div class="row">
     <div class="col-xs-12">
-      <div class="form-group">
-        <label for="image">Image</label>
-        <div class="row">
-          <div class="col-md-1">
-            <img ng-src="{{vm.player.imageUrl}}" alt="{{vm.player.firstName + ' ' + vm.player.lastName}}" class="img-rounded img-responsive">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="image">Image</label>
+          <div class="row">
+            <div class="col-md-4">
+              <img ng-src="{{vm.player.imageUrl}}" alt="{{vm.player.firstName + ' ' + vm.player.lastName}}" class="img-rounded img-responsive">
+            </div>
+            <div class="col-md-8">
+              <label for="image" class="btn btn-default">Upload New Picture</label>
+              <input type="file" id="image" class="hidden">
+              <p class="help-block">You can also drag and drop a picture from your computer.</p>
+            </div>
           </div>
-          <div class="col-md-11">
-            <label for="image" class="btn btn-default">Upload New Picture</label>
-            <input type="file" id="image" class="hidden">
-            <p class="help-block">You can also drag and drop a picture from your computer.</p>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Url</label>
+          <p>/{{vm.player.slug}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" ng-model="vm.player.firstName">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" ng-model="vm.player.lastName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="position">Position</label>
+          <select class="form-control" id="position" ng-model="vm.player.position">
+            <option value="PG">PG</option>
+            <option value="SG">SG</option>
+            <option value="SF">SF</option>
+            <option value="PF">PF</option>
+            <option value="C">C</option>
+            <option value="CG">CG</option>
+            <option value="CF">CF</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="class">Class</label>
+          <input type="text" class="form-control" id="class" ng-model="vm.player.class">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="hometownCity">City</label>
+          <input type="text" class="form-control" id="hometownCity" ng-model="vm.player.hometownCity">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="hometownState">State</label>
+          <input type="text" class="form-control" id="hometownState" ng-model="vm.player.hometownState">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="highSchool">High School</label>
+          <input type="text" class="form-control" id="highSchool" ng-model="vm.player.highSchool">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="aauTeam">AAU</label>
+          <input type="text" class="form-control" id="aauTeam" ng-model="vm.player.aauTeam">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="heightFeet">Height</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="heightFeet" ng-model="vm.player.heightFeet">
+            <span class="input-group-addon">ft</span>
+            <input type="text" class="form-control" id="heightInches" ng-model="vm.player.heightInches">
+            <span class="input-group-addon">in</span>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="weight">Weight</label>
+          <input type="text" class="form-control" id="weight" ng-model="vm.player.weight">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="stars">Stars</label>
+          <div>
+            <uib-rating state-on="'fa fa-2x fa-star'" state-off="'fa fa-2x fa-star-o'" ng-model="vm.player.stars"></uib-rating>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="score">Score</label>
+          <input type="text" class="form-control" id="score" ng-model="vm.player.score">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="satAct">SAT/ACT</label>
+          <input type="text" class="form-control" id="satAct" ng-model="vm.player.satAct">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="twitter">Twitter</label>
+          <input type="text" class="form-control" id="twitter" ng-model="vm.player.twitter">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Stats</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Points</th>
+                <th>Rebounds</th>
+                <th>Assists</th>
+                <th>Steals</th>
+                <th>Blocks</th>
+                <th>Turnovers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Colleges</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>College</th>
+                <th>Level of Interest</th>
+                <th>Offer</th>
+                <th>Visit Date</th>
+                <th>Commit Date</th>
+                <th>Sign Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="vm.player.paywall"> Paywall
+        </label>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label for="leagues">Leagues</label>
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="eybl"> EYBL
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="uaa"> UAA
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="adidas"> Adidas
+            </label>
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" ng-model="vm.player.firstName">
+      <h2>Scouting</h2>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="shooting">Shooting</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.shooting" value="average"> Average
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.shooting" value="good"> Good
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.shooting" value="excellent"> Excellent
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="dribbling">Dribbling</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.dribbling" value="average"> Average
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.dribbling" value="good"> Good
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.dribbling" value="excellent"> Excellent
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="passing">Passing</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.passing" value="average"> Average
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.passing" value="good"> Good
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.passing" value="excellent"> Excellent
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="rebounding">Rebounding</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.rebounding" value="average"> Average
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.rebounding" value="good"> Good
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.rebounding" value="excellent"> Excellent
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="intangibles">Intangibles</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.intangibles" value="average"> Average
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.intangibles" value="good"> Good
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.intangibles" value="excellent"> Excellent
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" ng-model="vm.player.lastName">
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label>Notes</label>
+          <summernote ng-model="vm.player.notes" height="300"></summernote>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="strengths">Strengths</label>
+          <input type="text" class="form-control" id="strengths" ng-model="vm.player.strengths">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="needsToImprove">Needs to Improve</label>
+          <input type="text" class="form-control" id="needsToImprove" ng-model="vm.player.needsToImprove">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label for="projections">Projections</label>
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="unknown"> Unknown
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="high-major"> High-Major
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="mid-major"> Mid-Major
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="low-major"> Low-Major
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="divisionIi"> Division II
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="naia"> NAIA
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="divisionIii"> Division III
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="juco"> JUCO
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="vm.player.projections" value="collegeProspect"> College Prospect
+            </label>
+          </div>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
       <a ui-sref="players" class="btn btn-default">Cancel</a>
