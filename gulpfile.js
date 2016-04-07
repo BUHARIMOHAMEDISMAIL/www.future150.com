@@ -50,14 +50,19 @@ var allJsFiles = [
     './bower_components/angular-local-storage/dist/angular-local-storage.js',
     './bower_components/jquery-ui/ui/sortable.js',
     './bower_components/angular-ui-sortable/sortable.js',
-    './bower_components/angular-chart.js/dist/angular-chart.js'
+    './bower_components/angular-chart.js/dist/angular-chart.js',
+    './bower_components/checklist-model/checklist-model.js',
+    './bower_components/underscore/underscore.js',
+    './bower_components/ng-tags-input/ng-tags-input.js'
   ],
   libCssFiles = [
     './bower_components/bootstrap/dist/css/bootstrap.css',
     './bower_components/font-awesome/css/font-awesome.css',
     './bower_components/summernote/dist/summernote.css',
     './bower_components/ui-select/dist/select.css',
-    './bower_components/angular-chart.js/dist/angular-chart.css'
+    './bower_components/angular-chart.js/dist/angular-chart.css',
+    './bower_components/ng-tags-input/ng-tags-input.css',
+    './bower_components/ng-tags-input/ng-tags-input.bootstrap.css'
   ],
   fontFiles = './bower_components/font-awesome/fonts/*.*',
   htmlFiles = './public/app/**/*.html',

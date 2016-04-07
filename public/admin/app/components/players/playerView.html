@@ -121,17 +121,47 @@
                 <th>Steals</th>
                 <th>Blocks</th>
                 <th>Turnovers</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
+              <tr ng-repeat="stat in vm.player.stats">
+                <td>{{stat.year}}</td>
+                <td>{{stat.points}}</td>
+                <td>{{stat.rebounds}}</td>
+                <td>{{stat.assists}}</td>
+                <td>{{stat.steals}}</td>
+                <td>{{stat.blocks}}</td>
+                <td>{{stat.turnovers}}</td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.removeStat(stat)">Remove</button>
+                </td>
+              </tr>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.year" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.points" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.rebounds" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.assists" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.steals" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.blocks" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newStat.turnovers" />
+                </td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.addStat(vm.newStat)">Add</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -149,16 +179,50 @@
                 <th>Visit Date</th>
                 <th>Commit Date</th>
                 <th>Sign Date</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
+              <tr ng-repeat="college in vm.player.colleges">
+                <td>{{college.college.name}}</td>
+                <td>{{college.levelOfInterest}}</td>
+                <td>{{college.offer}}</td>
+                <td>{{college.visitDate | date : 'shortDate'}}</td>
+                <td>{{college.commitDate | date : 'shortDate'}}</td>
+                <td>{{college.signDate | date : 'shortDate'}}</td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.removeCollege(college)">Remove</button>
+                </td>
+              </tr>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  <ui-select ng-model="vm.newCollege.college">
+                    <ui-select-match>
+                      <span ng-bind="$select.selected.name"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="college in vm.colleges">
+                      <span ng-bind="college.name"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newCollege.levelOfInterest" />
+                </td>
+                <td>
+                  <input type="checkbox" ng-model="vm.newCollege.offer" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newCollege.visitDate" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newCollege.commitDate" />
+                </td>
+                <td>
+                  <input type="text" class="form-control" ng-model="vm.newCollege.signDate" />
+                </td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.addCollege(vm.newCollege)">Add</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -166,7 +230,7 @@
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="vm.player.paywall"> Paywall
+          <input type="checkbox" ng-model="vm.player.isPaywall"> Paywall
         </label>
       </div>
       <div class="row">
@@ -174,13 +238,13 @@
           <label for="leagues">Leagues</label>
           <div class="checkbox">
             <label class="checkbox-inline">
-              <input type="checkbox" value="eybl"> EYBL
+              <input type="checkbox" checklist-model="vm.player.leagues" value="eybl"> EYBL
             </label>
             <label class="checkbox-inline">
-              <input type="checkbox" value="uaa"> UAA
+              <input type="checkbox" checklist-model="vm.player.leagues" value="uaa"> UAA
             </label>
             <label class="checkbox-inline">
-              <input type="checkbox" value="adidas"> Adidas
+              <input type="checkbox" checklist-model="vm.player.leagues" value="adidas"> Adidas
             </label>
           </div>
         </div>
@@ -267,11 +331,15 @@
       <div class="row">
         <div class="form-group col-md-6">
           <label for="strengths">Strengths</label>
-          <input type="text" class="form-control" id="strengths" ng-model="vm.player.strengths">
+          <tags-input ng-model="vm.player.strengths">
+            <auto-complete source="vm.loadStrengths($query)"></auto-complete>
+          </tags-input>
         </div>
         <div class="form-group col-md-6">
           <label for="needsToImprove">Needs to Improve</label>
-          <input type="text" class="form-control" id="needsToImprove" ng-model="vm.player.needsToImprove">
+          <tags-input ng-model="vm.player.needsToImprove">
+            <auto-complete source="vm.loadImprovements($query)"></auto-complete>
+          </tags-input>
         </div>
       </div>
       <div class="row">

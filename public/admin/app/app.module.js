@@ -3,5 +3,5 @@
 
   angular
     .module('future150Admin', ['ui.router', 'ui.bootstrap', 'ui.select', 'ui.sortable',
-      'summernote', 'LocalStorageModule', 'chart.js']);
+      'summernote', 'LocalStorageModule', 'chart.js', 'checklist-model', 'ngTagsInput']);
 })();
