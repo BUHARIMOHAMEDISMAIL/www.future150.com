@@ -47,12 +47,14 @@ router.get('/players/trending', function(req, res) {
 });
 
 router.get('/players/:id([0-9a-f]{24})', function(req, res) {
-  Player.findById(req.params.id, function(err, player) {
-    if (err) {
-      throw err;
-    }
-    res.json(player);
-  });
+  Player.findById(req.params.id)
+    .populate('colleges.college')
+    .exec(function(err, player) {
+      if (err) {
+        throw err;
+      }
+      res.json(player);
+    });
 });
 
 router.get('/players/:legacyId([0-9]+)', function(req, res) {
