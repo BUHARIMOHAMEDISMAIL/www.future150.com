@@ -18,7 +18,10 @@
     "angular-ui-sortable": "~0.13.4",
     "angular-summernote": "~0.7.0",
     "angular-local-storage": "~0.2.3",
-    "ui-select": "angular-ui-select#~0.13.2"
+    "ui-select": "angular-ui-select#~0.13.2",
+    "checklist-model": "^0.9.0",
+    "underscore": "^1.8.3",
+    "ng-tags-input": "^3.0.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.8",
