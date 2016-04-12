@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Player', {
+var playerSchema = mongoose.Schema({
   legacyId: Number,
   slug: {
     type: String,
@@ -54,5 +54,51 @@ module.exports = mongoose.model('Player', {
   notes: String,
   strengths: [String],
   needsToImprove: [String],
-  projections: String
+  projections: String,
+  views: {
+    type: Number,
+    default: 0
+  },
+  likes: {
+    type: Number,
+    default: 0
+  },
+  shares: {
+    type: Number,
+    default: 0
+  },
+  followers: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }]
+}, {
+  toJSON: {
+    virtuals: true
+  }
 });
+
+playerSchema
+  .virtual('followersCount')
+  .get(function () {
+    return this.followers.length;
+  });
+
+playerSchema
+  .virtual('fullName')
+  .get(function () {
+    return this.firstName + ' ' + this.lastName;
+  });
+
+playerSchema
+  .virtual('height')
+  .get(function () {
+    return this.heightFeet + '\'' + this.heightInches + '\"';
+  });
+
+playerSchema
+  .virtual('hometownCityState')
+  .get(function () {
+    return this.hometownCity + ', ' + this.hometownState;
+  });
+
+module.exports = mongoose.model('Player', playerSchema);

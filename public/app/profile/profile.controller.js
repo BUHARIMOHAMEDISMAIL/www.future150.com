@@ -12,10 +12,6 @@
 
     if ($state.params.slug) {
       playersService.getBySlug($state.params.slug).then(function(player) {
-        player.views = 180;
-        player.likes = 20;
-        player.followers = 10;
-        player.shares = 60;
         player.notes = $sce.trustAsHtml(player.notes);
         vm.player = player;
       });

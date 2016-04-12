@@ -8,7 +8,7 @@
           </div>
           <div class="col-md-9">
             <span class="badge badge-green">New Updates</span>
-            <h1 class="text-white">{{vm.player.firstName}} {{vm.player.lastName}}</h1>
+            <h1 class="text-white">{{vm.player.fullName}}</h1>
           </div>
         </div>
         <ul class="list-group list-group-inline text-uppercase">
@@ -31,7 +31,7 @@
             <i class="fa fa-graduation-cap fa-fw"></i> {{vm.player.class}}
           </li>
           <li class="list-group-item border-right">
-            <i class="fa fa-male fa-fw"></i> {{vm.player.heightFeet}}'{{vm.player.heightInches}}"
+            <i class="fa fa-male fa-fw"></i> {{vm.player.height}}
           </li>
           <li class="list-group-item border-right">
             <i class="fa fa-times-circle fa-fw"></i> {{vm.player.weight}}
@@ -43,7 +43,7 @@
             <i class="fa fa-users fa-fw"></i> {{vm.player.highSchool}} (AAU: {{vm.player.aauTeam}})
           </li>
           <li class="list-group-item border-right">
-            <i class="fa fa-map-marker fa-fw"></i> {{vm.player.hometownCity}}, {{vm.player.hometownState}}
+            <i class="fa fa-map-marker fa-fw"></i> {{vm.player.hometownCityState}}
           </li>
         </ul>
       </div>
@@ -61,7 +61,7 @@
             <i class="fa fa-thumbs-up fa-fw"></i> {{vm.player.likes}} Likes
           </li>
           <li class="list-group-item">
-            <i class="fa fa-plus-square-o fa-fw"></i> {{vm.player.followers}} Followers
+            <i class="fa fa-plus-square-o fa-fw"></i> {{vm.player.followersCount}} Followers
           </li>
           <li class="list-group-item">
             <i class="fa fa-external-link fa-fw"></i> {{vm.player.shares}} Shares:
