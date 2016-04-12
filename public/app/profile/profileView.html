@@ -75,8 +75,19 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
+        <ul class="list-group list-group-inline text-center text-uppercase">
+          <li class="list-group-item" ng-repeat="college in vm.player.colleges">
+            <img ng-src="{{college.college.logoImageUrl}}" class="img-rounded" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
         <div class="panel-heading">Player Updates</div>
-        <div class="panel-heading">2016</div>
+        <div class="panel-heading panel-heading-inverse">2016</div>
         <ul class="list-group">
           <li class="list-group-item">
             <div class="row">
@@ -99,6 +110,75 @@
         </ul>
         <div class="panel-footer text-center">
           <a href class="btn btn-primary">More Updates <span class="caret"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Scouting Report</div>
+        <div class="panel-heading panel-heading-inverse">Scout's Notes</div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <b>November 29</b>
+              </div>
+              <div class="col-md-1">
+                <i class="fa fa-pencil fa-3x"></i>
+              </div>
+              <div class="col-md-2">
+                <a href="#">
+                  <img class="img-rounded img-responsive" src="//placehold.it/60x60">
+                </a>
+              </div>
+              <div class="col-md-6">
+                <p ng-bind-html="vm.player.notes"></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="panel-heading panel-heading-inverse">Strengths &amp; Areas to Improve</div>
+        <ul class="list-group list-group-inline text-center">
+          <li class="list-group-item" ng-repeat="strength in vm.player.strengths">
+            <i class="fa fa-plus fa-fw"></i> {{strength}}
+          </li>
+        </ul>
+        <ul class="list-group list-group-inline text-center">
+          <li class="list-group-item" ng-repeat="needToImprove in vm.player.needsToImprove">
+            <i class="fa fa-minus fa-fw"></i> {{needToImprove}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Player News</div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More News <span class="caret"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Player Videos</div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Videos <span class="caret"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Player Photos</div>
+        <div class="panel-footer text-center">
+          <a href class="btn btn-primary">More Photos <span class="caret"></span></a>
         </div>
       </div>
     </div>

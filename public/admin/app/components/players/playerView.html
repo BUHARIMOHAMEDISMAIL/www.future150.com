@@ -110,65 +110,6 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <h3>Stats</h3>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Points</th>
-                <th>Rebounds</th>
-                <th>Assists</th>
-                <th>Steals</th>
-                <th>Blocks</th>
-                <th>Turnovers</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="stat in vm.player.stats">
-                <td>{{stat.year}}</td>
-                <td>{{stat.points}}</td>
-                <td>{{stat.rebounds}}</td>
-                <td>{{stat.assists}}</td>
-                <td>{{stat.steals}}</td>
-                <td>{{stat.blocks}}</td>
-                <td>{{stat.turnovers}}</td>
-                <td>
-                  <button type="button" class="btn btn-block btn-default" ng-click="vm.removeStat(stat)">Remove</button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.year" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.points" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.rebounds" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.assists" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.steals" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.blocks" />
-                </td>
-                <td>
-                  <input type="text" class="form-control" ng-model="vm.newStat.turnovers" />
-                </td>
-                <td>
-                  <button type="button" class="btn btn-block btn-default" ng-click="vm.addStat(vm.newStat)">Add</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
           <h3>Colleges</h3>
           <table class="table table-bordered">
             <thead>

@@ -67,7 +67,9 @@ router.get('/players/:legacyId([0-9]+)', function(req, res) {
 });
 
 router.get('/players/:slug', function(req, res) {
-  Player.findOne({ slug: req.params.slug }, function(err, player) {
+  Player.findOne({ slug: req.params.slug })
+  .populate('colleges.college')
+  .exec(function(err, player) {
     if (err) {
       throw err;
     }
