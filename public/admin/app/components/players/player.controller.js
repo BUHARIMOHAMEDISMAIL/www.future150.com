@@ -5,18 +5,21 @@
     .module('future150Admin')
     .controller('playerController', playerController);
 
-  playerController.$inject = ['$stateParams', '$state', 'playersService', 'collegesService'];
+  playerController.$inject = ['$stateParams', '$state', '$sce', 'playersService', 'collegesService', 'authenticationService'];
 
-  function playerController($stateParams, $state, playersService, collegesService) {
+  function playerController($stateParams, $state, $sce, playersService, collegesService, authenticationService) {
     var vm = this;
     vm.save = save;
-    vm.addStat = addStat;
-    vm.removeStat = removeStat;
     vm.addCollege = addCollege;
     vm.removeCollege = removeCollege;
+    vm.addNote = addNote;
+    vm.removeNote = removeNote;
     vm.loadStrengths = loadStrengths;
     vm.loadImprovements = loadImprovements;
-    vm.newStat = {};
+    vm.newNote = {
+      createdDate: new Date(),
+      author: authenticationService.getCurrentUser()
+    };
     vm.newCollege = {};
 
     activate();
@@ -24,6 +27,9 @@
     function activate() {
       playersService.getById($stateParams.id).then(function(player) {
         player.imageUrl = player.imageUrl || '/assets/img/profile.png';
+        player.notes.forEach(function(note) {
+          note.noteHtml = $sce.trustAsHtml(note.note);
+        });
         vm.player = player;
       });
       collegesService.getAll().then(function(result) {
@@ -39,15 +45,6 @@
       });
     }
 
-    function addStat(stat) {
-      vm.player.stats.push(stat);
-      vm.newStat = {};
-    }
-
-    function removeStat(stat) {
-      vm.player.stats = _.without(vm.player.stats, _.findWhere(vm.player.stats, stat));
-    }
-
     function addCollege(college) {
       vm.player.colleges.push(college);
       vm.newCollege = {};
@@ -55,6 +52,19 @@
 
     function removeCollege(college) {
       vm.player.colleges = _.without(vm.player.colleges, _.findWhere(vm.player.colleges, college));
+    }
+
+    function addNote(note) {
+      note.noteHtml = $sce.trustAsHtml(note.note);
+      vm.player.notes.push(note);
+      vm.newNote = {
+        createdDate: new Date(),
+        author: {}
+      };
+    }
+
+    function removeNote(note) {
+      vm.player.notes = _.without(vm.player.notes, _.findWhere(vm.player.notes, note));
     }
 
     function loadStrengths() {

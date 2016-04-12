@@ -120,21 +120,21 @@
         <div class="panel-heading">Scouting Report</div>
         <div class="panel-heading panel-heading-inverse">Scout's Notes</div>
         <ul class="list-group">
-          <li class="list-group-item">
+          <li class="list-group-item" ng-repeat="note in vm.player.notes">
             <div class="row">
               <div class="col-md-3 text-center">
-                <b>November 29</b>
+                <b>{{note.createdDate | date : 'shortDate'}}</b>
               </div>
               <div class="col-md-1">
                 <i class="fa fa-pencil fa-3x"></i>
               </div>
               <div class="col-md-2">
                 <a href="#">
-                  <img class="img-rounded img-responsive" src="//placehold.it/60x60">
+                  <img class="img-rounded img-responsive" ng-src="{{note.author.profileImageUrl}}">
                 </a>
               </div>
               <div class="col-md-6">
-                <p ng-bind-html="vm.player.notes"></p>
+                <p ng-bind-html="note.noteHtml"></p>
               </div>
             </div>
           </li>

@@ -264,9 +264,42 @@
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-xs-12">
-          <label>Notes</label>
-          <summernote ng-model="vm.player.notes" height="300"></summernote>
+        <div class="col-xs-12">
+          <h3>Notes</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Author</th>
+                <th>Note</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="note in vm.player.notes">
+                <td>{{note.createdDate | date : 'shortDate'}}</td>
+                <td>{{note.author.fullName}}</td>
+                <td ng-bind-html="note.noteHtml"></td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.removeNote(note)">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>{{vm.newNote.createdDate | date : 'shortDate'}}</p>
+                </td>
+                <td>
+                  <p>{{vm.newNote.author.fullName}}</p>
+                </td>
+                <td>
+                  <summernote ng-model="vm.newNote.note" height="300"></summernote>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-block btn-default" ng-click="vm.addNote(vm.newNote)">Add</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="row">

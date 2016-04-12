@@ -12,7 +12,9 @@
 
     if ($state.params.slug) {
       playersService.getBySlug($state.params.slug).then(function(player) {
-        player.notes = $sce.trustAsHtml(player.notes);
+        player.notes.forEach(function(note) {
+          note.noteHtml = $sce.trustAsHtml(note.note);
+        });
         vm.player = player;
       });
     }

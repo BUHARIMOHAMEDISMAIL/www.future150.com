@@ -51,7 +51,14 @@ var playerSchema = mongoose.Schema({
   passing: String,
   rebounding: String,
   intangibles: String,
-  notes: String,
+  notes: [{
+    createdDate: Date,
+    author: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    },
+    note: String
+  }],
   strengths: [String],
   needsToImprove: [String],
   projections: String,
