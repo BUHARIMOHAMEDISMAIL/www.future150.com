@@ -13,6 +13,20 @@ router.get('/rankings/:id([0-9a-f]{24})', function(req, res) {
     });
 });
 
+router.get('/rankings/:type/:year', function(req, res) {
+  var filter = {
+    type: req.params.type,
+    year: req.params.year
+  };
+  Ranking.findOne(filter)
+    .exec(function(err, rankings) {
+      if (err) {
+        throw err;
+      }
+      res.json(rankings);
+    });
+});
+
 router.get('/rankings/:type', function(req, res) {
   Ranking.find({ type: req.params.type })
     .sort('year')
