@@ -27,10 +27,18 @@
     activate();
 
     function activate() {
-      rankingsService.getById($stateParams.id).then(function(ranking) {
-        vm.ranking = ranking;
-        nextRanking = ranking.players.length + 1;
-      });
+      if ($stateParams.id) {
+        rankingsService.getById($stateParams.id).then(function(ranking) {
+          vm.ranking = ranking;
+          nextRanking = ranking.players.length + 1;
+        });
+      }
+      else {
+        vm.ranking = {
+          type: 'national',
+          players: []
+        };
+      }
     }
 
     function save(ranking) {
