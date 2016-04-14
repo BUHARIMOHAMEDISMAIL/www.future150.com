@@ -24,15 +24,6 @@ var playerSchema = mongoose.Schema({
   score: Number,
   satAct: String,
   twitter: String,
-  stats: [{
-    year: Number,
-    points: Number,
-    rebounds: Number,
-    assists: Number,
-    steals: Number,
-    blocks: Number,
-    turnovers: Number
-  }],
   colleges: [{
     college: {
       type: mongoose.Schema.ObjectId,
