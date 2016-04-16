@@ -25,7 +25,7 @@
             <i class="fa fa-times-circle fa-fw"></i> {{vm.player.position}} <span>#2</span>
           </li>
           <li class="list-group-item" ng-show="vm.player.stars && vm.player.score">
-            <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="vm.player.stars" read-only="true"></uib-rating>
+            <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="vm.player.stars" readonly="true"></uib-rating>
             <span>{{vm.player.score}}</span>
           </li>
         </ul>
@@ -80,7 +80,7 @@
       <div class="panel panel-default">
         <ul class="list-group list-group-inline text-center text-uppercase">
           <li class="list-group-item" ng-repeat="college in vm.player.colleges">
-            <img ng-src="{{college.college.logoImageUrl}}" class="img-rounded img-border img-small" />
+            <img ng-src="{{college.college.logoImageUrl}}" alt="{{college.college.name}}" class="img-rounded img-border img-small" />
           </li>
         </ul>
       </div>
