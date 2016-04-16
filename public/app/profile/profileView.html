@@ -80,7 +80,7 @@
       <div class="panel panel-default">
         <ul class="list-group list-group-inline text-center text-uppercase">
           <li class="list-group-item" ng-repeat="college in vm.player.colleges">
-            <img ng-src="{{college.college.logoImageUrl}}" class="img-rounded" />
+            <img ng-src="{{college.college.logoImageUrl}}" class="img-rounded img-border img-small" />
           </li>
         </ul>
       </div>
@@ -145,12 +145,12 @@
         <div class="panel-heading panel-heading-inverse">Strengths &amp; Areas to Improve</div>
         <ul class="list-group list-group-inline text-center" ng-show="vm.player.strengths">
           <li class="list-group-item" ng-repeat="strength in vm.player.strengths">
-            <i class="fa fa-plus fa-fw"></i> {{strength}}
+            <i class="fa fa-plus-circle fa-fw text-green"></i> {{strength}}
           </li>
         </ul>
         <ul class="list-group list-group-inline text-center" ng-show="vm.player.needsToImprove">
           <li class="list-group-item" ng-repeat="needToImprove in vm.player.needsToImprove">
-            <i class="fa fa-minus fa-fw"></i> {{needToImprove}}
+            <i class="fa fa-minus-circle fa-fw text-red"></i> {{needToImprove}}
           </li>
         </ul>
       </div>
