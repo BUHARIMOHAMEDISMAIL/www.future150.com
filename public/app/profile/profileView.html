@@ -6,9 +6,12 @@
           <div class="col-md-3" ng-show="vm.player.imageUrl">
             <img class="img-responsive img-thumbnail" ng-src="{{vm.player.imageUrl}}" alt="{{vm.player.firstName}} {{vm.player.lastName}}">
           </div>
-          <div class="col-md-9">
+          <div class="col-md-6" style="margin-top: 80px;">
             <span class="badge badge-green">New Updates</span>
             <h1 class="text-white">{{vm.player.fullName}}</h1>
+          </div>
+          <div class="col-md-3 text-right" style="margin-top: 100px;">
+            <img src="img/eybl.png" alt="EYBL" />
           </div>
         </div>
         <ul class="list-group list-group-inline text-uppercase">
