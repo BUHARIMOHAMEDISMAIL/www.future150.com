@@ -12,6 +12,10 @@
 
     if ($state.params.slug) {
       playersService.getBySlug($state.params.slug).then(function(player) {
+        player.colleges.forEach(function(collegeInterest) {
+          collegeInterest.isFavorite = (collegeInterest.levelOfInterest == 'Favorite');
+          collegeInterest.isLowInterest = (collegeInterest.levelOfInterest == 'Low');
+        });
         player.notes.forEach(function(note) {
           note.noteHtml = $sce.trustAsHtml(note.note);
         });
