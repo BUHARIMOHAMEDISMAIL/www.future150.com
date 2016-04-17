@@ -53,6 +53,17 @@ var playerSchema = mongoose.Schema({
   strengths: [String],
   needsToImprove: [String],
   projections: String,
+  pictures: [{
+    imageUrl: String,
+    title: String,
+    photographer: String,
+    location: String,
+    takenDate: Date
+  }],
+  videos: [{
+    videoUrl: String,
+    title: String
+  }],
   views: {
     type: Number,
     default: 0
