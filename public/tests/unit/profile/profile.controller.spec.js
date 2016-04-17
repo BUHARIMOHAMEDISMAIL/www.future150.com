@@ -30,7 +30,8 @@ describe('profileController', function() {
     testPlayer = {
       firstName: 'Test',
       lastName: 'Player',
-      notes: []
+      notes: [],
+      videos: []
     };
 
     playersServiceGetBySlugStub = sinon.stub(mockPlayersService, 'getBySlug')
