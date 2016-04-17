@@ -156,7 +156,7 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="vm.player.news">
+  <div class="row" ng-show="vm.player.news.length > 0">
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">Player News</div>
@@ -166,20 +166,53 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="vm.player.videos">
+  <div class="row" ng-show="vm.player.videos.length > 0">
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">Player Videos</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="video in ::vm.player.videos">
+              <div class="thumbnail">
+                <div class="video overlay-wrapper">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <!--<youtube-video video-id="video.youTubeId" class="embed-responsive-item"></youtube-video>-->
+                    <iframe class="embed-responsive-item" ng-src="{{video.videoUrl}}"></iframe>
+                  </div>
+                  <span class="overlay">210 Views</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::video.title}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="panel-footer text-center">
           <a href class="btn btn-primary">More Videos <span class="caret"></span></a>
         </div>
       </div>
     </div>
   </div>
-  <div class="row" ng-show="vm.player.photos">
+  <div class="row" ng-show="vm.player.pictures.length > 0">
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">Player Photos</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-2 col-sm-4" ng-repeat="picture in ::vm.player.pictures">
+              <div class="thumbnail">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::picture.imageUrl}}" class="img-responsive">
+                  <span class="overlay">{{::picture.views}} Views</span>
+                </div>
+                <div class="caption text-center">
+                  <h3>{{::picture.title}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="panel-footer text-center">
           <a href class="btn btn-primary">More Photos <span class="caret"></span></a>
         </div>

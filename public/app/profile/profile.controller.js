@@ -15,6 +15,9 @@
         player.notes.forEach(function(note) {
           note.noteHtml = $sce.trustAsHtml(note.note);
         });
+        player.videos.forEach(function(video) {
+          video.videoUrl = $sce.trustAsResourceUrl(video.videoUrl);
+        });
         vm.player = player;
       });
     }
