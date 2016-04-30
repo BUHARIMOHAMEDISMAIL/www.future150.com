@@ -5,11 +5,10 @@ describe('homeController', function() {
     $rootScope,
     $scope,
     homeController,
-    articlesServiceGetFeaturedArticleStub,
-    articlesServiceGetHighlighedArticlesStub,
+    articlesServiceGetAllStub,
     rankingsServiceGetAllStub,
-    eventsServiceGetUpcomingEventsStub,
-    videosServiceGetTopVideosStub,
+    eventsServiceGetAllStub,
+    videosServiceGetAllStub,
     playersServiceGetTrendingPlayersStub;
 
   beforeEach(inject(function(_$controller_,
@@ -21,31 +20,28 @@ describe('homeController', function() {
     $controller = _$controller_;
 
     var mockArticlesService = {
-      getFeaturedArticle: function() {},
-      getHighlighedArticles: function() {}
+      getAll: function() {}
     };
     var mockRankingsService = {
       getAll: function() {}
     };
     var mockEventsService = {
-      getUpcomingEvents: function() {}
+      getAll: function() {}
     };
     var mockVideosService = {
-      getTopVideos: function() {}
+      getAll: function() {}
     };
     var mockPlayersService = {
       getTrendingPlayers: function() {}
     };
 
-    articlesServiceGetFeaturedArticleStub = sinon.stub(mockArticlesService, 'getFeaturedArticle')
-      .returns(_$q_.resolve({ featuredArticle: '/test-article.jpg' }));
-    articlesServiceGetHighlighedArticlesStub = sinon.stub(mockArticlesService, 'getHighlighedArticles')
+    articlesServiceGetAllStub = sinon.stub(mockArticlesService, 'getAll')
       .returns(_$q_.resolve({}));
     rankingsServiceGetAllStub = sinon.stub(mockRankingsService, 'getAll')
       .returns(_$q_.resolve({}));
-    eventsServiceGetUpcomingEventsStub = sinon.stub(mockEventsService, 'getUpcomingEvents')
+    eventsServiceGetAllStub = sinon.stub(mockEventsService, 'getAll')
       .returns(_$q_.resolve({}));
-    videosServiceGetTopVideosStub = sinon.stub(mockVideosService, 'getTopVideos')
+    videosServiceGetAllStub = sinon.stub(mockVideosService, 'getAll')
       .returns(_$q_.resolve({}));
     playersServiceGetTrendingPlayersStub = sinon.stub(mockPlayersService, 'getTrendingPlayers')
       .returns(_$q_.resolve({}));
@@ -64,20 +60,16 @@ describe('homeController', function() {
     expect(homeController).toBeDefined();
   });
 
-  it('should call getFeaturedArticle method of articles service', function() {
-    expect(articlesServiceGetFeaturedArticleStub).toHaveBeenCalledWith('hs');
-  });
-
-  it('should call getHighlighedArticles method of articles service', function() {
-    expect(articlesServiceGetHighlighedArticlesStub).toHaveBeenCalledWith('hs');
+  it('should call getAll method of articles service', function() {
+    expect(articlesServiceGetAllStub).toHaveBeenCalledWith('hs');
   });
 
   it('should call getAll method of rankings service', function() {
     expect(rankingsServiceGetAllStub).toHaveBeenCalledWith('national', 'hs');
   });
 
-  it('should call getUpcomingEvents method of events service', function() {
-    expect(eventsServiceGetUpcomingEventsStub).toHaveBeenCalled();
+  it('should call getAll method of events service', function() {
+    expect(eventsServiceGetAllStub).toHaveBeenCalled();
   });
 
   describe('selectRankings', function() {

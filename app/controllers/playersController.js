@@ -37,7 +37,7 @@ router.get('/players', function(req, res) {
 router.get('/players/trending', function(req, res) {
   Player.find()
     .sort('lastName')
-    .limit(req.query.pageSize || 4)
+    .limit(req.query.pageSize || 10)
     .exec(function(err, players) {
       if (err) {
         throw err;

@@ -22,6 +22,11 @@
         pageSize: pageSize
       };
       return $http.get(config.baseApiUrl + '/players', { params: params }).then(function(result) {
+        if (result.data && result.data.players && angular.isArray(result.data.players)) {
+          result.data.players.forEach(function(player) {
+            player.imageUrl = player.imageUrl || config.defaultProfileImageUrl;
+          });
+        }
         return result.data;
       });
     }
@@ -40,6 +45,11 @@
         pageSize: pageSize
       };
       return $http.get(config.baseApiUrl + '/players/trending', { params: params }).then(function(result) {
+        if (result.data && angular.isArray(result.data)) {
+          result.data.forEach(function(player) {
+            player.imageUrl = player.imageUrl || config.defaultProfileImageUrl;
+          });
+        }
         return result.data;
       });
     }

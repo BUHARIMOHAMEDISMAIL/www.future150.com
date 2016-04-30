@@ -48,12 +48,6 @@ describe('eventsService', function() {
     });
   });
 
-  describe('getUpcomingEvents', function() {
-    it('should be defined', function() {
-      expect(eventsService.getUpcomingEvents).toBeDefined();
-    });
-  });
-
   describe('getBySlug', function() {
     it('should be defined', function() {
       expect(eventsService.getBySlug).toBeDefined();

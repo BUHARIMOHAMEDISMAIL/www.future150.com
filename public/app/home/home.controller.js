@@ -13,39 +13,38 @@
     vm.selectEvents = selectEvents;
     vm.selectVideos = selectVideos;
     vm.selectTrending = selectTrending;
+    vm.showMoreNews = showMoreNews;
+    vm.showMoreRankingPlayers = showMoreRankingPlayers;
+    vm.showMoreEvents = showMoreEvents;
+    vm.showMoreVideos = showMoreVideos;
+    vm.showMoreTrendingPlayers = showMoreTrendingPlayers;
 
     activate();
 
     function activate() {
-      articlesService.getFeaturedArticle($rootScope.site).then(function(result) {
-        vm.featuredArticle = result.featuredArticle;
-        $rootScope.featuredImageUrl = result.featuredArticle.imageUrl;
-      });
+      vm.visibleArticleCount = 4;
+      vm.visibleRankingPlayerCount = 6;
+      vm.visibleEventCount = 4;
+      vm.visibleVideoCount = 4;
+      vm.visibleTrendingPlayerCount = 6;
 
-      articlesService.getHighlighedArticles($rootScope.site).then(function(result) {
-        vm.highlighedArticles = result.highlighedArticles;
+      articlesService.getAll($rootScope.site).then(function(result) {
+        vm.articles = result.articles;
       });
 
       rankingsService.getAll('national', $rootScope.site).then(function(result) {
         vm.rankings = result.rankings;
       });
 
-      eventsService.getUpcomingEvents().then(function(result) {
-        vm.upcomingEvents = result.upcomingEvents;
+      eventsService.getAll().then(function(result) {
+        vm.events = result.events;
       });
 
-      videosService.getTopVideos($rootScope.site).then(function(result) {
-        vm.topVideos = result.topVideos;
+      videosService.getAll($rootScope.site).then(function(result) {
+        vm.videos = result.videos;
       });
 
-      playersService.getTrendingPlayers($rootScope.site, null, null, 6).then(function(trendingPlayers) {
-        if (angular.isArray(trendingPlayers)) {
-          trendingPlayers.forEach(function(player) {
-            if (!player.imageUrl) {
-              player.imageUrl = config.defaultProfileImageUrl;
-            }
-          });
-        }
+      playersService.getTrendingPlayers($rootScope.site).then(function(trendingPlayers) {
         vm.trendingPlayers = trendingPlayers;
       });
     }
@@ -66,6 +65,26 @@
 
     function selectTrending(sort) {
 
+    }
+
+    function showMoreNews() {
+      vm.visibleArticleCount += 4;
+    }
+
+    function showMoreRankingPlayers() {
+      vm.visibleRankingPlayerCount += 6;
+    }
+
+    function showMoreEvents() {
+      vm.visibleEventCount += 4;
+    }
+
+    function showMoreVideos() {
+      vm.visibleVideoCount += 4;
+    }
+
+    function showMoreTrendingPlayers() {
+      vm.visibleTrendingPlayerCount += 6;
     }
   }
 })();

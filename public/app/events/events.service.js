@@ -10,7 +10,6 @@
   function eventsService($http, config) {
     var service = {
       getAll: getAll,
-      getUpcomingEvents: getUpcomingEvents,
       getBySlug: getBySlug,
       getCamps: getCamps,
       getTournaments: getTournaments
@@ -49,14 +48,6 @@
       };
       return $http.get(config.baseApiUrl + '/events', { params: params }).then(function(result) {
         return result.data;
-      });
-    }
-
-    function getUpcomingEvents() {
-      return getAll(null, 1, 4).then(function(result) {
-        return {
-          upcomingEvents: result.events
-        };
       });
     }
 
