@@ -11,7 +11,8 @@ var gulp = require('gulp'),
   bower = require('gulp-bower'),
   htmlmin = require('gulp-htmlmin'),
   ngHtml2Js = require('gulp-ng-html2js'),
-  less = require('gulp-less');
+  less = require('gulp-less'),
+  runSequence = require('run-sequence');
 var Server = require('karma').Server;
 
 var allJsFiles = [
@@ -68,13 +69,15 @@ var allJsFiles = [
   htmlFiles = './public/app/**/*.html',
   lessFiles = './less/*.less';
 
-gulp.task('test', [
-  'lint',
-  'jscs',
-  'jsTests',
-  'unitTests',
-  'integrationTests'
-]);
+gulp.task('test', function() {
+  runSequence(
+    ['lint',
+    'jscs'],
+    'jsTests',
+    'unitTests',
+    'integrationTests'
+  );
+});
 
 gulp.task('build', [
   'bundleAndMinifyAppJsFiles',
