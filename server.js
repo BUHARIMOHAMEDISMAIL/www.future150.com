@@ -18,16 +18,21 @@ var express = require('express'),
   authenticationController = require('./app/controllers/authenticationController'),
   usersController = require('./app/controllers/usersController'),
   contactsController = require('./app/controllers/contactsController'),
-  articlesController = require('./app/controllers/articlesController'),
+  ArticlesController = require('./app/controllers/articlesController'),
   playersController = require('./app/controllers/playersController'),
   rankingsController = require('./app/controllers/rankingsController'),
   collegesController = require('./app/controllers/collegesController'),
   eventsController = require('./app/controllers/eventsController'),
   videosController = require('./app/controllers/videosController'),
   productsController = require('./app/controllers/productsController'),
-  messageBoardsController = require('./app/controllers/messageBoardsController');
+  messageBoardsController = require('./app/controllers/messageBoardsController'),
+  // Routers
+  ArticlesRouter = require('./app/routers/articlesRouter'),
+  // Services
+  ArticleDataService = require('./app/services/articleDataService');
 
 mongoose.connect(databaseConfig.url);
+mongoose.Promise = require('q').Promise;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -49,7 +54,6 @@ app.use(siteController);
 app.use(authenticationController);
 app.use(usersController);
 app.use(contactsController);
-app.use(articlesController);
 app.use(playersController);
 app.use(rankingsController);
 app.use(collegesController);
@@ -57,6 +61,11 @@ app.use(eventsController);
 app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
+
+var articleDataService = new ArticleDataService();
+var articlesController = new ArticlesController(articleDataService);
+var articlesRouter = new ArticlesRouter(articlesController);
+app.use(articlesRouter);
 
 app.get(['/favicon.ico', '/apple-touch-icon.png'], function(req, res) {
   res.sendFile(req.path, {
@@ -70,3 +79,5 @@ app.get('/*', function(req, res) {
 });
 
 app.listen(port);
+
+module.exports = app;
