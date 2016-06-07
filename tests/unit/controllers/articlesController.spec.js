@@ -1,7 +1,7 @@
 var ArticlesController = require('../../../app/controllers/articlesController'),
   ArticleDataService = require('../../../app/services/articleDataService'),
   MockRequest = require('../../mocks/mockRequest'),
-  MockResponse = require('../../mocks/MockResponse'),
+  MockResponse = require('../../mocks/mockResponse'),
   Q = require('q');
 
 describe('Articles Controller', function() {
