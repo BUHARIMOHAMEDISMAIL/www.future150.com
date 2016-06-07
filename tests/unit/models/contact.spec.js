@@ -1,4 +1,4 @@
-var Contact = require('../../app/models/contact');
+var Contact = require('../../../app/models/contact');
 
 describe('Contact', function() {
   var contact;

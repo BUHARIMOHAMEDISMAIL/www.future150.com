@@ -71,8 +71,9 @@ var allJsFiles = [
 gulp.task('test', [
   'lint',
   'jscs',
-  'karma',
-  'jasmine'
+  'jsTests',
+  'unitTests',
+  'integrationTests'
 ]);
 
 gulp.task('build', [
@@ -112,11 +113,6 @@ gulp.task('bower', function() {
   return bower();
 });
 
-gulp.task('jasmine', function () {
-  return gulp.src('tests/**/*.spec.js')
-    .pipe(jasmine());
-});
-
 gulp.task('lint', function() {
   return gulp.src(allJsFiles)
     .pipe(jshint())
@@ -131,11 +127,21 @@ gulp.task('jscs', function() {
     .pipe(jscs.reporter('fail'));
 });
 
-gulp.task('karma', ['bower'], function (done) {
+gulp.task('jsTests', ['bower'], function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
+});
+
+gulp.task('unitTests', function () {
+  return gulp.src('tests/unit/**/*.spec.js')
+    .pipe(jasmine());
+});
+
+gulp.task('integrationTests', function () {
+  return gulp.src('tests/integration/**/*.spec.js')
+    .pipe(jasmine({ timeout: 10000 }));
 });
 
 gulp.task('bundleAndMinifyAppJsFiles', function() {
