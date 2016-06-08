@@ -5,9 +5,9 @@
     .module('future150')
     .controller('homeController', homeController);
 
-  homeController.$inject = ['$rootScope', 'config', 'articlesService', 'rankingsService', 'eventsService', 'videosService', 'playersService'];
+  homeController.$inject = ['$rootScope', 'config', 'articlesService', 'rankingsService', 'campsService', 'videosService', 'playersService'];
 
-  function homeController($rootScope, config, articlesService, rankingsService, eventsService, videosService, playersService) {
+  function homeController($rootScope, config, articlesService, rankingsService, campsService, videosService, playersService) {
     var vm = this;
     vm.selectRankings = selectRankings;
     vm.selectEvents = selectEvents;
@@ -36,8 +36,8 @@
         vm.rankings = result.rankings;
       });
 
-      eventsService.getAll().then(function(result) {
-        vm.events = result.events;
+      campsService.getAll().then(function(result) {
+        vm.camps = result.camps;
       });
 
       videosService.getAll($rootScope.site).then(function(result) {

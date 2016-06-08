@@ -22,14 +22,19 @@ var express = require('express'),
   playersController = require('./app/controllers/playersController'),
   rankingsController = require('./app/controllers/rankingsController'),
   collegesController = require('./app/controllers/collegesController'),
-  eventsController = require('./app/controllers/eventsController'),
+  CampsController = require('./app/controllers/campsController'),
   videosController = require('./app/controllers/videosController'),
   productsController = require('./app/controllers/productsController'),
   messageBoardsController = require('./app/controllers/messageBoardsController'),
+  TournamentsController = require('./app/controllers/tournamentsController'),
   // Routers
   ArticlesRouter = require('./app/routers/articlesRouter'),
+  CampsRouter = require('./app/routers/campsRouter'),
+  TournamentsRouter = require('./app/routers/tournamentsRouter'),
   // Services
-  ArticleDataService = require('./app/services/articleDataService');
+  ArticleDataService = require('./app/services/articleDataService'),
+  CampDataService = require('./app/services/campDataService'),
+  TournamentDataService = require('./app/services/tournamentDataService');
 
 mongoose.connect(databaseConfig.url);
 mongoose.Promise = require('q').Promise;
@@ -57,7 +62,6 @@ app.use(contactsController);
 app.use(playersController);
 app.use(rankingsController);
 app.use(collegesController);
-app.use(eventsController);
 app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
@@ -66,6 +70,16 @@ var articleDataService = new ArticleDataService();
 var articlesController = new ArticlesController(articleDataService);
 var articlesRouter = new ArticlesRouter(articlesController);
 app.use(articlesRouter);
+
+var campDataService = new CampDataService();
+var campsController = new CampsController(campDataService);
+var campsRouter = new CampsRouter(campsController);
+app.use(campsRouter);
+
+var tournamentDataService = new TournamentDataService();
+var tournamentsController = new TournamentsController(tournamentDataService);
+var tournamentsRouter = new TournamentsRouter(tournamentsController);
+app.use(tournamentsRouter);
 
 app.get(['/favicon.ico', '/apple-touch-icon.png'], function(req, res) {
   res.sendFile(req.path, {

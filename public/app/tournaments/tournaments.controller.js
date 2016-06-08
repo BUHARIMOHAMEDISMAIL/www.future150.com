@@ -5,21 +5,19 @@
     .module('future150')
     .controller('tournamentsController', tournamentsController);
 
-  tournamentsController.$inject = ['$state', '$scope', 'eventsService'];
+  tournamentsController.$inject = ['$state', '$scope', 'tournamentsService'];
 
-  function tournamentsController($state, $scope, eventsService) {
+  function tournamentsController($state, $scope, tournamentsService) {
     var vm = this;
     vm.page = 1;
     vm.pageSize = 10;
-
-    vm.title = 'Tournaments';
 
     activate();
     $scope.$watchGroup(['vm.page'], activate);
 
     function activate() {
-      eventsService.getTournaments(null, vm.page, vm.pageSize).then(function(result) {
-        vm.tournaments = result.events;
+      tournamentsService.getAll(null, vm.page, vm.pageSize).then(function(result) {
+        vm.tournaments = result.tournaments;
         vm.count = result.count;
       });
     }

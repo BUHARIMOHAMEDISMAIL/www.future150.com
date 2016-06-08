@@ -87,8 +87,8 @@
       $stateProvider
         .state('registerCamp', {
           url: '/camp/:slug/register',
-          templateUrl: '/app/events/eventRegisterView.html',
-          controller: 'eventRegisterController',
+          templateUrl: '/app/camps/campRegisterView.html',
+          controller: 'campRegisterController',
           controllerAs: 'vm'
         });
 
@@ -112,7 +112,7 @@
         .state('registerTournament', {
           url: '/tournament/:slug/register',
           templateUrl: '/app/tournaments/registerTournamentView.html',
-          controller: 'eventRegisterController',
+          controller: 'tournamentRegisterController',
           controllerAs: 'vm'
         });
 

@@ -7,7 +7,7 @@ describe('homeController', function() {
     homeController,
     articlesServiceGetAllStub,
     rankingsServiceGetAllStub,
-    eventsServiceGetAllStub,
+    campsServiceGetAllStub,
     videosServiceGetAllStub,
     playersServiceGetTrendingPlayersStub;
 
@@ -25,7 +25,7 @@ describe('homeController', function() {
     var mockRankingsService = {
       getAll: function() {}
     };
-    var mockEventsService = {
+    var mockCampsService = {
       getAll: function() {}
     };
     var mockVideosService = {
@@ -39,7 +39,7 @@ describe('homeController', function() {
       .returns(_$q_.resolve({}));
     rankingsServiceGetAllStub = sinon.stub(mockRankingsService, 'getAll')
       .returns(_$q_.resolve({}));
-    eventsServiceGetAllStub = sinon.stub(mockEventsService, 'getAll')
+    campsServiceGetAllStub = sinon.stub(mockCampsService, 'getAll')
       .returns(_$q_.resolve({}));
     videosServiceGetAllStub = sinon.stub(mockVideosService, 'getAll')
       .returns(_$q_.resolve({}));
@@ -49,7 +49,7 @@ describe('homeController', function() {
     homeController = $controller('homeController', {
       articlesService: mockArticlesService,
       rankingsService: mockRankingsService,
-      eventsService: mockEventsService,
+      campsService: mockCampsService,
       videosService: mockVideosService,
       playersService: mockPlayersService
     });
@@ -69,7 +69,7 @@ describe('homeController', function() {
   });
 
   it('should call getAll method of events service', function() {
-    expect(eventsServiceGetAllStub).toHaveBeenCalled();
+    expect(campsServiceGetAllStub).toHaveBeenCalled();
   });
 
   describe('selectRankings', function() {

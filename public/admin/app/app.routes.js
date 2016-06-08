@@ -138,19 +138,37 @@
         });
 
       $stateProvider
-        .state('events', {
-          url: '/events',
-          templateUrl: 'app/components/events/eventsView.html',
-          controller: 'eventsController',
+        .state('camps', {
+          url: '/camps',
+          templateUrl: 'app/components/camps/campsView.html',
+          controller: 'campsController',
           controllerAs: 'vm',
           authenticate: true
         });
 
       $stateProvider
-        .state('event', {
-          url: '/event/:id',
-          templateUrl: 'app/components/events/eventView.html',
-          controller: 'eventController',
+        .state('camp', {
+          url: '/camp/:id',
+          templateUrl: 'app/components/camps/campView.html',
+          controller: 'campController',
+          controllerAs: 'vm',
+          authenticate: true
+        });
+
+      $stateProvider
+        .state('tournaments', {
+          url: '/tournaments',
+          templateUrl: 'app/components/tournaments/tournamentsView.html',
+          controller: 'tournamentsController',
+          controllerAs: 'vm',
+          authenticate: true
+        });
+
+      $stateProvider
+        .state('tournament', {
+          url: '/tournament/:id',
+          templateUrl: 'app/components/tournaments/tournamentView.html',
+          controller: 'tournamentController',
           controllerAs: 'vm',
           authenticate: true
         });

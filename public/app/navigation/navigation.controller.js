@@ -5,19 +5,19 @@
     .module('future150')
     .controller('navigationController', navigationController);
 
-  navigationController.$inject = ['$state', 'eventsService', 'sites'];
+  navigationController.$inject = ['$state', 'campsService', 'tournamentsService', 'sites'];
 
-  function navigationController($state, eventsService, sites) {
+  function navigationController($state, campsService, tournamentsService, sites) {
     var vm = this;
     vm.sites = sites;
     vm.search = search;
     activate();
 
     function activate() {
-      eventsService.getCamps().then(function(result) {
+      campsService.getAll().then(function(result) {
         vm.campsCount = result.count;
       });
-      eventsService.getTournaments().then(function(result) {
+      tournamentsService.getAll().then(function(result) {
         vm.tournamentsCount = result.count;
       });
     }

@@ -6,8 +6,8 @@ describe('campsController', function() {
     $rootScope,
     campsController,
     $httpBackend,
-    mockEventsService,
-    eventsServiceGetCampsStub;
+    mockCampsService,
+    campsServiceGetAllStub;
 
   beforeEach(inject(function(_$controller_,
       _$rootScope_,
@@ -18,23 +18,23 @@ describe('campsController', function() {
     $scope = _$rootScope_.$new();
     $httpBackend = _$httpBackend_;
 
-    mockEventsService = {
-      getCamps: function() {}
+    mockCampsService = {
+      getAll: function() {}
     };
 
-    var mockEventsResult = {
+    var mockCampsResult = {
       count: 2,
-      events: [
+      camps: [
         {},
         {}
       ]
     };
-    eventsServiceGetCampsStub = sinon.stub(mockEventsService, 'getCamps')
-      .returns(_$q_.resolve(mockEventsResult));
+    campsServiceGetAllStub = sinon.stub(mockCampsService, 'getAll')
+      .returns(_$q_.resolve(mockCampsResult));
 
     campsController = $controller('campsController', {
       $scope: $scope,
-      eventsService: mockEventsService
+      campsService: mockCampsService
     });
     $scope.$apply();
   }));
@@ -53,7 +53,7 @@ describe('campsController', function() {
   });
 
   it('should call getCamps function of eventsService with correct params', function() {
-    expect(eventsServiceGetCampsStub).toHaveBeenCalledWith(null, 1, 10);
+    expect(campsServiceGetAllStub).toHaveBeenCalledWith(null, 1, 10);
   });
 
   describe('count', function() {

@@ -5,9 +5,9 @@
     .module('future150')
     .controller('campsController', campsController);
 
-  campsController.$inject = ['$state', '$scope', 'eventsService'];
+  campsController.$inject = ['$state', '$scope', 'campsService'];
 
-  function campsController($state, $scope, eventsService) {
+  function campsController($state, $scope, campsService) {
     var vm = this;
     vm.page = 1;
     vm.pageSize = 10;
@@ -18,8 +18,8 @@
     $scope.$watchGroup(['vm.page'], activate);
 
     function activate() {
-      eventsService.getCamps(null, vm.page, vm.pageSize).then(function(result) {
-        vm.camps = result.events;
+      campsService.getAll(null, vm.page, vm.pageSize).then(function(result) {
+        vm.camps = result.camps;
         vm.count = result.count;
       });
     }

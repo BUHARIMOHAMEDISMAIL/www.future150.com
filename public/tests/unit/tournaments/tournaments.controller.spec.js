@@ -6,8 +6,8 @@ describe('tournamentsController', function() {
     $rootScope,
     tournamentsController,
     $httpBackend,
-    mockEventsService,
-    eventsServiceGetTournamentsStub;
+    mockTournamentsService,
+    tournamentsServiceGetAllStub;
 
   beforeEach(inject(function(_$controller_,
       _$rootScope_,
@@ -18,23 +18,23 @@ describe('tournamentsController', function() {
     $scope = _$rootScope_.$new();
     $httpBackend = _$httpBackend_;
 
-    mockEventsService = {
-      getTournaments: function() {}
+    mockTournamentsService = {
+      getAll: function() {}
     };
 
-    var mockEventsResult = {
+    var mockTournamentsResult = {
       count: 2,
-      events: [
+      tournaments: [
         {},
         {}
       ]
     };
-    eventsServiceGetTournamentsStub = sinon.stub(mockEventsService, 'getTournaments')
-      .returns(_$q_.resolve(mockEventsResult));
+    tournamentsServiceGetAllStub = sinon.stub(mockTournamentsService, 'getAll')
+      .returns(_$q_.resolve(mockTournamentsResult));
 
     tournamentsController = $controller('tournamentsController', {
       $scope: $scope,
-      eventsService: mockEventsService
+      tournamentsService: mockTournamentsService
     });
     $scope.$apply();
   }));
@@ -48,12 +48,8 @@ describe('tournamentsController', function() {
     expect(tournamentsController).toBeDefined();
   });
 
-  it('should return Camps', function() {
-    expect(tournamentsController.title).toEqual('Tournaments');
-  });
-
   it('should call getCamps function of eventsService with correct params', function() {
-    expect(eventsServiceGetTournamentsStub).toHaveBeenCalledWith(null, 1, 10);
+    expect(tournamentsServiceGetAllStub).toHaveBeenCalledWith(null, 1, 10);
   });
 
   describe('count', function() {
