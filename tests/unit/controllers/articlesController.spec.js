@@ -5,7 +5,10 @@ var ArticlesController = require('../../../app/controllers/articlesController'),
   Q = require('q');
 
 describe('Articles Controller', function() {
-  var articleDataService = new ArticleDataService(),
+  var articleDataService = {
+      getAll: function() {},
+      getCount: function() {}
+    },
     articlesController = new ArticlesController(articleDataService);
   it('should be defined', function() {
     expect(articlesController).toBeDefined();
