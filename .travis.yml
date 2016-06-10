@@ -1,5 +1,8 @@
 language: node_js
 node_js:
-  - '4.2.1'
+- 4.2.1
 before_script:
-  - npm install -g gulp
+- npm install -g gulp
+notifications:
+  slack:
+    secure: QeUe6GCBNrtODJsF/V/q8r/x2+ANPV6fOF/P+Klwt7eNBoFqV9WGV+jNNick2c0cNnXSCxjEGitrK8aat4WMINPBLAgPhPSrmP4JP2mUP009UtGwWkO94ZwuJMnHfCl6MaVkaqGkolWWFbSPXBx/3X2mSmZdCuQDfHRYfbQEa4ynP30ehqhb/0m60NSQiNPsZRXDBV11qYMZrSG2sJOzcNiPtiF+6LUgmGo87fipFyFqcH6i8LLC+PnWDAhdfAQOzUECAvdA+nvALcOzLR2RtMwj4fExoqnMEHf717LiDtjZc/HCAW0+cVFJDIyaB2mLaihA2GjGqBu8ry+kQa1kLtkREFjuHA4Kf9tMwLDngrm7U9pGSZNqyNzLFyMKJMleDmIMvvDa/DYwDY3D3rgZK1IMjQluQ2Ec725HcPC652fNtSqEljqRYAsQCaFGumjWYr4hYgxoHlaC+O3qe1WqLvrLQb+a0QUSaVWq7lyT1CQAZTsT4J++Tgb6x/wPRzUaxB57n+mXz/vYDT5oXd6szokQYwEkW6UT+kDyeEJl+u1o0p9fJIPu3Tn13gjbdv5sy1L/8jdKXse5Ef0IgOOPKsv8D+i44ljfILjZf90xhHDt2pj4FnhrBvLPuBHhE4zG5zRM5tDHyjbBx8vk1EWUz0FfGTLWi/nolghlVeOcwHQ=
