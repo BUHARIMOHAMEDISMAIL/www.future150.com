@@ -14,7 +14,7 @@ var express = require('express'),
   authenticationConfig = require('./config/authentication'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
-  siteController = require('./app/controllers/siteController'),
+  SiteController = require('./app/controllers/siteController'),
   authenticationController = require('./app/controllers/authenticationController'),
   usersController = require('./app/controllers/usersController'),
   contactsController = require('./app/controllers/contactsController'),
@@ -28,6 +28,7 @@ var express = require('express'),
   messageBoardsController = require('./app/controllers/messageBoardsController'),
   TournamentsController = require('./app/controllers/tournamentsController'),
   // Routers
+  SiteRouter = require('./app/routers/siteRouter'),
   ArticlesRouter = require('./app/routers/articlesRouter'),
   CampsRouter = require('./app/routers/campsRouter'),
   TournamentsRouter = require('./app/routers/tournamentsRouter'),
@@ -55,7 +56,6 @@ app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
 
-app.use(siteController);
 app.use(authenticationController);
 app.use(usersController);
 app.use(contactsController);
@@ -65,6 +65,10 @@ app.use(collegesController);
 app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
+
+var siteController = new SiteController();
+var siteRouter = new SiteRouter(siteController);
+app.use(siteRouter);
 
 var articleDataService = new ArticleDataService();
 var articlesController = new ArticlesController(articleDataService);
