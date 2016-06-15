@@ -68,7 +68,7 @@
     }
 
     function showMoreNews() {
-      vm.visibleArticleCount += 4;
+      vm.visibleArticleCount += 3;
     }
 
     function showMoreRankingPlayers() {
