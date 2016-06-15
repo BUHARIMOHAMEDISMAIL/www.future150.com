@@ -22,7 +22,7 @@
     activate();
 
     function activate() {
-      vm.visibleArticleCount = 4;
+      vm.visibleArticleCount = 3;
       vm.visibleRankingPlayerCount = 6;
       vm.visibleEventCount = 4;
       vm.visibleVideoCount = 4;

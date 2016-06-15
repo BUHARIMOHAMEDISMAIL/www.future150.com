@@ -1,8 +1,16 @@
-<div class="jumbotron" style="background-image: url('{{::vm.articles[0].imageUrl}}'), url('{{::defaultArticleImageUrl}}');">
+<div class="jumbotron">
+  <img ng-src="{{::vm.articles[0].imageUrl}}" err-src="{{::defaultArticleImageUrl}}" alt="{{::vm.articles[0].title}}" class="img-background" />
   <div class="jumbotron-inner">
-    <h1>{{::vm.articles[0].title}}</h1>
-    <hr class="hidden-xs">
-    <p>{{::vm.articles[0].description}} <a ui-sref="article({ slug: '{{::vm.articles[0].slug}}' })" class="text-green">Read&nbsp;Article&gt;</a></p>
+    <div class="row">
+      <div class="col-md-6">
+        <img ng-src="{{::vm.articles[0].imageUrl}}" err-src="{{::defaultArticleImageUrl}}" alt="{{::vm.articles[0].title}}" class="img-responsive" />
+      </div>
+      <div class="col-md-6">
+        <h1>{{::vm.articles[0].title}}</h1>
+        <p>{{::vm.articles[0].description}}</p>
+        <a ui-sref="article({ slug: '{{::vm.articles[0].slug}}' })" class="btn btn-default">Read Article</a>
+      </div>
+    </div>
   </div>
 </div>
 <div class="container-fluid">
@@ -12,7 +20,7 @@
         <div class="panel-heading">Basketball Recruiting News</div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="article in vm.articles | limitTo: vm.visibleArticleCount : 1">
+            <div class="col-md-4 col-sm-6" ng-repeat="article in vm.articles | limitTo: vm.visibleArticleCount : 1">
               <a ui-sref="article({ slug: '{{::article.slug}}' })" class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::article.imageUrl}}" err-src="{{::defaultArticleImageUrl}}" class="img-responsive" alt="{{::article.title}}">
