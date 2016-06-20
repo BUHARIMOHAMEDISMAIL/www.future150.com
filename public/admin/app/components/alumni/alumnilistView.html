@@ -1,0 +1,31 @@
+	<div class="page-header">
+    <h3 class="pull-left">
+       Add Alumni
+    </h3>
+    <div class="pull-right">
+        <div class="btn-group">
+          <!-- <button type="button" class="btn btn-info btn-md btn-space" ng-click="addalumni(1)"  ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 1}">Alumni</button> -->					
+          <a ui-sref="alumniView"><button type="button" class="btn btn-info btn-md btn-space" ng-click="addalumni(2)" ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 2}">Add Alumni</button></a>
+          <a ui-sref="editalumniView"><button type="button" class="btn btn-danger btn-md btn-space" ng-click="addalumni(3)" ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 3}">Edit Alumni</button></a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+	</div>
+    <div class="container-fluid">
+  <div class="col-lg-12 well">
+  <div class="row" ng-show="addalumni">
+        <form>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Enter Name Here.." ng-model="vm.name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Class</label>
+              <input type="text" placeholder="Enter Class Here.." ng-model="vm.class" class="form-control">
+            </div>
+          </div>
+        </form>
+  </div>
+  </div>
+</div>

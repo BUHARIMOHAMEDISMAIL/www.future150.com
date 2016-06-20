@@ -141,8 +141,8 @@
         .state('camps', {
           url: '/camps',
           templateUrl: 'app/components/camps/campsView.html',
-          controller: 'campsController',
-          controllerAs: 'vm',
+          // controller: 'campsController',
+          // controllerAs: 'vm',
           authenticate: true
         });
 
@@ -150,8 +150,8 @@
         .state('camp', {
           url: '/camp/:id',
           templateUrl: 'app/components/camps/campView.html',
-          controller: 'campController',
-          controllerAs: 'vm',
+          // controller: 'campController',
+          // controllerAs: 'vm',
           authenticate: true
         });
 
@@ -227,6 +227,26 @@
         .state('alumni', {
           url: '/alumni',
           templateUrl: 'app/components/alumni/alumniView.html',
+          controller: 'alumniController',
+          controllerAs: 'vm',
+          authenticate: true
+        });
+
+      $stateProvider
+        .state('alumni', {
+          url: '/alumnilist',
+          templateUrl: 'app/components/alumni/alumnilistView.html',
+          controller: 'alumniController',
+          controllerAs: 'vm',
+          authenticate: true
+        });
+
+        $stateProvider
+        .state('alumni', {
+          url: '/editalumni',
+          templateUrl: 'app/components/alumni/editalumniView.html',
+          controller: 'alumniController',
+          controllerAs: 'vm',
           authenticate: true
         });
     }]);
