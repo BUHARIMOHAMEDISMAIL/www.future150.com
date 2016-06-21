@@ -5,18 +5,18 @@
     .module('future150Admin')
     .controller('alumniController', alumniController);
 
-  campController.$inject = ['$stateParams', '$state', 'alumniService'];
+  alumniController.$inject = ['$stateParams', '$state', 'alumniService'];
 
-  function campController($stateParams, $state, campsService) {
+  function alumniController($stateParams, $state, alumniService) {
     var vm = this;
     vm.ent = ent;
 
-    campsService.getById($stateParams.id).then(function(camp) {
-      vm.camp = camp;
+    alumniService.getById($stateParams.id).then(function(alumni) {
+      vm.alumni = alumni;
     });
 
     function ent(alumni) {
-      alumniService.save(alumni).then(function() {
+      alumniService.ent(alumni).then(function() {
         $state.go('alumni');
       });
     }

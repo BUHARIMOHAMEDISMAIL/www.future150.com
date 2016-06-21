@@ -2,7 +2,7 @@ var express = require('express'),
   router = express.Router(),
   Alumni = require('../models/alumni');
 
-router.get('/Alumni', function(req, res) {
+router.get('/alumnies', function(req, res) {
   var page = (req.query.page - 1) || 0,
     pageSize = req.query.pageSize || 10;
   Alumni.find()
@@ -19,31 +19,31 @@ router.get('/Alumni', function(req, res) {
         }
         res.json({
           count: count,
-          Alumni: Alumni
+          alumni: alumni
         });
       });
     });
 });
 
-router.get('/alumni/:id([0-9a-f]{24})', function(req, res) {
-  alumni.findById(req.params.id, function(err, alumni) {
+router.get('/alumnies/:id([0-9a-f]{24})', function(req, res) {
+  Alumni.findById(req.params.id, function(err, alumni) {
     if (err) {
       throw err;
     }
-    res.json(Alumni);
+    res.json(alumni);
   });
 });
 
-router.get('/alumni/:legacyId([0-9]+)', function(req, res) {
-  Alumni.findOne({ legacyId: req.params.legacyId }, function(err, alumni) {
-    if (err) {
-      throw err;
-    }
-    res.json(Alumni);
-  });
-});
+// router.get('/alumnies/:legacyId([0-9]+)', function(req, res) {
+//   Alumni.findOne({ legacyId: req.params.legacyId }, function(err, alumni) {
+//     if (err) {
+//       throw err;
+//     }
+//     res.json(Alumni);
+//   });
+// });
 
-router.get('/alumni/:slug', function(req, res) {
+router.get('/alumnies/:slug', function(req, res) {
   Alumni.findOne({ slug: req.params.slug }, function(err, alumni) {
     if (err) {
       throw err;
@@ -52,10 +52,10 @@ router.get('/alumni/:slug', function(req, res) {
   });
 });
 
-router.post('/alumni', function(req, res) {
-  var Alumni = new Alumni(req.body);
+router.post('/alumnies', function(req, res) {
+  var alumni = new Alumni(req.body);
 
-  Alumni.save(function(err) {
+  alumni.save(function(err) {
     if (err) {
       throw err;
     }
@@ -63,7 +63,7 @@ router.post('/alumni', function(req, res) {
   });
 });
 
-router.put('/alumni/:id', function(req, res) {
+router.put('/alumnies/:id', function(req, res) {
   Alumni.findByIdAndUpdate(req.params.id, req.body, function(err, alumni) {
     if (err) {
       throw err;

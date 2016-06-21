@@ -21,21 +21,21 @@
         page: page,
         pageSize: pageSize
       };
-      return $http.get(config.baseApiUrl + '/alumni', { params: params }).then(function(result) {
+      return $http.get(config.baseApiUrl + '/alumnies', { params: params }).then(function(result) {
         return result.data;
       });
     }
     function getById(id) {
-      return $http.get(config.baseApiUrl + '/alumni/' + id).then(function(result) {
+      return $http.get(config.baseApiUrl + '/alumnies/' + id).then(function(result) {
         return result.data;
       });
     }
-    function save(camp) {
+    function ent(alumni) {
       if (alumni._id) {
-        return $http.put(config.baseApiUrl + '/alumni/' + alumni._id, alumni);
+        return $http.put(config.baseApiUrl + '/alumnies/' + alumni._id, alumni);
       }
       else {
-        return $http.post(config.baseApiUrl + '/alumni', alumni);
+        return $http.post(config.baseApiUrl + '/alumnies', alumni);
       }
     }
   }

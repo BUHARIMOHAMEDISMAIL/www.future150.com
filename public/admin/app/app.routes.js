@@ -232,22 +232,22 @@
           authenticate: true
         });
 
-      $stateProvider
-        .state('alumni', {
-          url: '/alumnilist',
-          templateUrl: 'app/components/alumni/alumnilistView.html',
-          controller: 'alumniController',
-          controllerAs: 'vm',
-          authenticate: true
-        });
+      // $stateProvider
+      //   .state('alumni', {
+      //     url: '/alumnilist',
+      //     templateUrl: 'app/components/alumni/alumnilistView.html',
+      //     controller: 'alumniController',
+      //     controllerAs: 'vm',
+      //     authenticate: true
+      //   });
 
-        $stateProvider
-        .state('alumni', {
-          url: '/editalumni',
-          templateUrl: 'app/components/alumni/editalumniView.html',
-          controller: 'alumniController',
-          controllerAs: 'vm',
-          authenticate: true
-        });
+      //   $stateProvider
+      //   .state('alumni', {
+      //     url: '/editalumni',
+      //     templateUrl: 'app/components/alumni/editalumniView.html',
+      //     controller: 'alumniController',
+      //     controllerAs: 'vm',
+      //     authenticate: true
+      //   });
     }]);
 })();
