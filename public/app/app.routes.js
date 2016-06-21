@@ -249,9 +249,7 @@
       $stateProvider
         .state('alumni', {
           url: '/alumni',
-          templateUrl: '/app/alumni/alumniView.html',
-          controller: 'alumniController',
-          controllerAs: 'vm'
+          templateUrl: '/app/alumni/alumniView.html'
         });
 
       $stateProvider
