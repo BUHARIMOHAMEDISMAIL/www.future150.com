@@ -13,6 +13,13 @@
         color: #fff;
         padding: 5px;
         text-transform: uppercase;
+        &.separator:after {
+          content: '/';
+          margin-left: 10px;
+        }
+      }
+      &:last-child > a.separator:after {
+        content: '';
       }
     }
   }

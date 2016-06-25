@@ -4,9 +4,9 @@ describe('campController', function() {
   var $scope,
     $rootScope,
     campController,
-    mockEventsService,
-    eventsServiceGetBySlugStub,
-    testEvent,
+    mockCampsService,
+    campsServiceGetBySlugStub,
+    testCamp,
     $httpBackend;
 
   beforeEach(inject(function(_$controller_,
@@ -17,25 +17,25 @@ describe('campController', function() {
     $scope = _$rootScope_.$new();
     $httpBackend = _$httpBackend_;
 
-    mockEventsService = {
+    mockCampsService = {
       getBySlug: function() {}
     };
 
     var mockState = {
       params: {
-        slug: 'test-event'
+        slug: 'test-camp'
       }
     };
 
-    testEvent = {
+    testCamp = {
     };
 
-    eventsServiceGetBySlugStub = sinon.stub(mockEventsService, 'getBySlug')
-      .returns(_$q_.resolve(testEvent));
+    campsServiceGetBySlugStub = sinon.stub(mockCampsService, 'getBySlug')
+      .returns(_$q_.resolve(testCamp));
 
     campController = _$controller_('campController', {
       $state: mockState,
-      eventsService: mockEventsService
+      campsService: mockCampsService
     });
     $scope.$apply();
   }));
@@ -51,7 +51,7 @@ describe('campController', function() {
 
   describe('camp', function() {
     it('should return correct camp', function() {
-      expect(campController.camp).toBe(testEvent);
+      expect(campController.camp).toBe(testCamp);
     });
   });
 });

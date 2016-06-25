@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="fragment" content="!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{::title}} | Future150</title>
-    <meta name="description" content="{{::description}}">
+    <title>{{title}} | Future150</title>
+    <meta name="description" content="{{description}}">
     <link rel="stylesheet" href="/css/third-party.min.css">
     <link rel="stylesheet" href="/css/future150-bootstrap.min.css">
     <link rel="stylesheet" href="//f.fontdeck.com/s/css/uH5+KWQnibDTJRYggGJ9XZLTAgw/new.future150.com/61678.css" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{::title}}">
+    <meta name="twitter:title" content="{{title}}">
     <meta name="twitter:site" content="{{::twitterHandle}}">
     <meta name="twitter:creator" content="{{::twitterHandle}}">
-    <meta name="twitter:description" content="{{::description}}">
-    <meta name="twitter:image" content="{{::featuredImageUrl}}" ng-if="featuredImageUrl">
+    <meta name="twitter:description" content="{{description}}">
+    <meta name="twitter:image" content="{{featuredImageUrl}}" ng-if="featuredImageUrl">
     <!-- Open Graph -->
-    <meta property="og:title" content="{{::title}}">
+    <meta property="og:title" content="{{title}}">
     <meta property="og:type" content="website" >
     <meta property="og:url" content="{{::url}}" >
     <!--[if lt IE 9]>
@@ -26,6 +26,7 @@
       <script src="bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
     <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <base href="/">
   </head>
   <body>
@@ -36,7 +37,7 @@
             <a>Divisions:</a>
           </li>
           <li ng-repeat="site in vm.sites">
-            <a ui-sref="site.home({ site: site.path })" ng-cloak>{{site.name}}</a>
+            <a ui-sref="site.home({ site: site.path })" class="separator" ng-cloak>{{site.name}}</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -53,7 +54,7 @@
             <a ui-sref="login" class="text-green">Login</a>
           </li>
           <li ng-if="!vm.user">
-            <a ui-sref="register" class="text-green">Register</a>
+            <a ui-sref="pricing" class="text-green">Register</a>
           </li>
           <li class="dropdown" ng-if="vm.user">
             <a href class="dropdown-toggle" data-toggle="dropdown">
@@ -61,6 +62,9 @@
               {{vm.user.username}} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+              <li ui-sref-active="active">
+                <a ui-sref="account.personal">Account</a>
+              </li>
               <li class="divider"></li>
               <li>
                 <a href ng-click="vm.logout()">Logout</a>
@@ -132,7 +136,7 @@
       </div>
     </nav>
     <div class="container-fluid">
-      <ui-view ng-cloak autoscroll="true"></ui-view>
+      <ui-view ng-cloak></ui-view>
     </div>
     <footer class="container-fluid text-center-xs" ng-controller="footerController as vm">
       <div class="row">

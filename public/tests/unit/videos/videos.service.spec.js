@@ -42,13 +42,4 @@ describe('videosService', function() {
       $httpBackend.flush();
     });
   });
-
-  describe('getTopVideos', function() {
-    it('should return 2 videos', function() {
-      videosService.getTopVideos('hs').then(function(videoResult) {
-        expect(videoResult.topVideos.length).toEqual(2);
-      });
-      $httpBackend.flush();
-    });
-  });
 });

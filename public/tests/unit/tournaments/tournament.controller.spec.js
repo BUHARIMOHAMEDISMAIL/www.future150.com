@@ -4,9 +4,9 @@ describe('tournamentController', function() {
   var $scope,
     $rootScope,
     tournamentController,
-    mockEventsService,
-    eventsServiceGetBySlugStub,
-    testEvent,
+    mockTournamentsService,
+    tournamentsServiceGetBySlugStub,
+    testTournament,
     $httpBackend;
 
   beforeEach(inject(function(_$controller_,
@@ -17,25 +17,25 @@ describe('tournamentController', function() {
     $scope = _$rootScope_.$new();
     $httpBackend = _$httpBackend_;
 
-    mockEventsService = {
+    mockTournamentsService = {
       getBySlug: function() {}
     };
 
     var mockState = {
       params: {
-        slug: 'test-event'
+        slug: 'test-tournament'
       }
     };
 
-    testEvent = {
+    testTournament = {
     };
 
-    eventsServiceGetBySlugStub = sinon.stub(mockEventsService, 'getBySlug')
-      .returns(_$q_.resolve(testEvent));
+    tournamentsServiceGetBySlugStub = sinon.stub(mockTournamentsService, 'getBySlug')
+      .returns(_$q_.resolve(testTournament));
 
     tournamentController = _$controller_('tournamentController', {
       $state: mockState,
-      eventsService: mockEventsService
+      tournamentsService: mockTournamentsService
     });
     $scope.$apply();
   }));
@@ -49,9 +49,9 @@ describe('tournamentController', function() {
     expect(tournamentController).toBeDefined();
   });
 
-  describe('camp', function() {
-    it('should return correct camp', function() {
-      expect(tournamentController.tournament).toBe(testEvent);
+  describe('tournament', function() {
+    it('should return correct tournament', function() {
+      expect(tournamentController.tournament).toBe(testTournament);
     });
   });
 });

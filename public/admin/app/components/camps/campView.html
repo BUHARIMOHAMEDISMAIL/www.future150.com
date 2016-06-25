@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>Add/Edit Camp</h1>
+</div>
+<form ng-submit="vm.save(vm.camp)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="row">
+          <div class="col-md-6">
+            <img ng-src="{{vm.camp.imageUrl}}" alt="{{vm.camp.title}}" class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <label for="image" class="btn btn-default">Upload New Picture</label>
+            <input type="file" id="image" class="hidden">
+            <p class="help-block">You can also drag and drop a picture from your computer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="vm.camp.title">
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" ng-model="vm.camp.city">
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" ng-model="vm.camp.state">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="camps" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>

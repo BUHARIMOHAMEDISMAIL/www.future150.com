@@ -1,8 +1,16 @@
-<div class="jumbotron" style="background-image: url('{{::vm.featuredArticle.imageUrl}}'), url('{{::defaultArticleImageUrl}}');">
+<div class="jumbotron">
+  <img ng-src="{{::vm.articles[0].imageUrl}}" err-src="{{::defaultArticleImageUrl}}" alt="{{::vm.articles[0].title}}" class="img-background" />
   <div class="jumbotron-inner">
-    <h1>{{::vm.featuredArticle.title}}</h1>
-    <hr class="hidden-xs">
-    <p>{{::vm.featuredArticle.description}} <a ui-sref="article({ slug: '{{::vm.featuredArticle.slug}}' })" class="text-green">Read&nbsp;Article&gt;</a></p>
+    <div class="row">
+      <div class="col-md-6">
+        <img ng-src="{{::vm.articles[0].imageUrl}}" err-src="{{::defaultArticleImageUrl}}" alt="{{::vm.articles[0].title}}" class="img-responsive" />
+      </div>
+      <div class="col-md-6">
+        <h1>{{::vm.articles[0].title}}</h1>
+        <p>{{::vm.articles[0].description}}</p>
+        <a ui-sref="article({ slug: '{{::vm.articles[0].slug}}' })" class="btn btn-default">Read Article</a>
+      </div>
+    </div>
   </div>
 </div>
 <div class="container-fluid">
@@ -12,7 +20,7 @@
         <div class="panel-heading">Basketball Recruiting News</div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="article in ::vm.highlighedArticles">
+            <div class="col-md-4 col-sm-6" ng-repeat="article in vm.articles | limitTo: vm.visibleArticleCount : 1">
               <a ui-sref="article({ slug: '{{::article.slug}}' })" class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::article.imageUrl}}" err-src="{{::defaultArticleImageUrl}}" class="img-responsive" alt="{{::article.title}}">
@@ -26,7 +34,7 @@
           </div>
         </div>
         <div class="panel-footer text-center">
-          <a href class="btn btn-primary">More News <span class="caret"></span></a>
+          <button ng-click="vm.showMoreNews()" class="btn btn-primary">More News <span class="caret"></span></button>
           <a ui-sref="site.news({ site: site })" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>
@@ -41,7 +49,7 @@
             <uib-tab heading="{{::ranking.year}}" select="vm.selectRankings(ranking._id)" ng-repeat="ranking in ::vm.rankings"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-2 col-sm-4" ng-repeat="playerRankings in ::vm.selectedRanking.players">
+            <div class="col-md-2 col-sm-4" ng-repeat="playerRankings in vm.selectedRanking.players | limitTo: vm.visibleRankingPlayerCount">
               <div class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::playerRankings.player.imageUrl}}" class="img-responsive" alt="{{::playerRankings.player.firstName}} {{::playerRankings.player.lastName}}">
@@ -57,7 +65,7 @@
           </div>
         </div>
         <div class="panel-footer text-center">
-          <a href class="btn btn-primary">More Players <span class="caret"></span></a>
+          <button ng-click="vm.showMoreRankingPlayers()" class="btn btn-primary">More Players <span class="caret"></span></button>
           <a ui-sref="rankings({ site: site, type: 'national' })" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>
@@ -74,7 +82,7 @@
             <uib-tab heading="Tournaments" select="vm.selectEvents('tournament')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="event in ::vm.upcomingEvents">
+            <div class="col-md-3 col-sm-6" ng-repeat="event in vm.events | limitTo: vm.visibleEventCount">
               <a ui-sref="event({ slug: '{{::event.slug}}' })" class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::event.imageUrl}}" class="img-responsive" alt="{{::event.title}}">
@@ -92,7 +100,7 @@
           </div>
         </div>
         <div class="panel-footer text-center">
-          <a href class="btn btn-primary">More Events <span class="caret"></span></a>
+          <button ng-click="vm.showMoreEvents()" class="btn btn-primary">More Events <span class="caret"></span></button>
           <a ui-sref="events" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>
@@ -109,7 +117,7 @@
             <uib-tab heading="Most Shared" select="vm.selectVideos('shared')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="video in ::vm.topVideos">
+            <div class="col-md-3 col-sm-6" ng-repeat="video in vm.videos | limitTo: vm.visibleVideoCount">
               <div class="thumbnail">
                 <div class="video overlay-wrapper">
                   <div class="embed-responsive embed-responsive-16by9">
@@ -125,7 +133,7 @@
           </div>
         </div>
         <div class="panel-footer text-center">
-          <a href class="btn btn-primary">More Videos <span class="caret"></span></a>
+          <button ng-click="vm.showMoreVideos()" class="btn btn-primary">More Videos <span class="caret"></span></button>
           <a ui-sref="videos" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>
@@ -142,11 +150,11 @@
             <uib-tab heading="Most Shared" select="vm.selectTrending('shared')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-2 col-sm-4" ng-repeat="player in ::vm.trendingPlayers">
+            <div class="col-md-2 col-sm-4" ng-repeat="player in vm.trendingPlayers | limitTo: vm.visibleTrendingPlayerCount">
               <div class="thumbnail">
                 <div class="overlay-wrapper">
-                  <img ng-src="{{::player.imageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">
-                  <span class="overlay">22 Views</span>
+                  <img ng-src="{{::player.imageUrl}}" err-src="{{::defaultProfileImageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">
+                  <span class="overlay">{{::player.views}} Views</span>
                 </div>
                 <div class="caption text-center">
                   <h3>{{::player.firstName}} {{::player.lastName}} - {{::player.position}}</h3>
@@ -158,7 +166,7 @@
           </div>
         </div>
         <div class="panel-footer text-center">
-          <a href class="btn btn-primary">More Players <span class="caret"></span></a>
+          <button ng-click="vm.showMoreTrendingPlayers()" class="btn btn-primary">More Players <span class="caret"></span></button>
           <a ui-sref="trendingPlayers" class="btn btn-default">View All <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>

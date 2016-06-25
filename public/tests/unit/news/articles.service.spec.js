@@ -43,18 +43,6 @@ describe('articlesService', function() {
     });
   });
 
-  describe('getFeaturedArticle', function() {
-    it('should be defined', function() {
-      expect(articlesService.getFeaturedArticle).toBeDefined();
-    });
-  });
-
-  describe('getHighlighedArticles', function() {
-    it('should be defined', function() {
-      expect(articlesService.getHighlighedArticles).toBeDefined();
-    });
-  });
-
   describe('getBySlug', function() {
     it('should be defined', function() {
       expect(articlesService.getBySlug).toBeDefined();

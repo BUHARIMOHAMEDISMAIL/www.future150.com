@@ -37,7 +37,7 @@ router.get('/players', function(req, res) {
 router.get('/players/trending', function(req, res) {
   Player.find()
     .sort('lastName')
-    .limit(req.query.pageSize || 4)
+    .limit(req.query.pageSize || 10)
     .exec(function(err, players) {
       if (err) {
         throw err;
@@ -47,12 +47,15 @@ router.get('/players/trending', function(req, res) {
 });
 
 router.get('/players/:id([0-9a-f]{24})', function(req, res) {
-  Player.findById(req.params.id, function(err, player) {
-    if (err) {
-      throw err;
-    }
-    res.json(player);
-  });
+  Player.findById(req.params.id)
+    .populate('colleges.college')
+    .populate('notes.author')
+    .exec(function(err, player) {
+      if (err) {
+        throw err;
+      }
+      res.json(player);
+    });
 });
 
 router.get('/players/:legacyId([0-9]+)', function(req, res) {
@@ -65,7 +68,10 @@ router.get('/players/:legacyId([0-9]+)', function(req, res) {
 });
 
 router.get('/players/:slug', function(req, res) {
-  Player.findOne({ slug: req.params.slug }, function(err, player) {
+  Player.findOneAndUpdate({ slug: req.params.slug }, { $inc: { views: 1 } })
+  .populate('colleges.college')
+  .populate('notes.author')
+  .exec(function(err, player) {
     if (err) {
       throw err;
     }

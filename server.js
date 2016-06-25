@@ -1,3 +1,5 @@
+require('newrelic');
+
 var express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
@@ -12,20 +14,31 @@ var express = require('express'),
   authenticationConfig = require('./config/authentication'),
   authenticate = require('./app/middleware/authenticate'),
   // Controllers
-  siteController = require('./app/controllers/siteController'),
+  SiteController = require('./app/controllers/siteController'),
   authenticationController = require('./app/controllers/authenticationController'),
   usersController = require('./app/controllers/usersController'),
   contactsController = require('./app/controllers/contactsController'),
-  articlesController = require('./app/controllers/articlesController'),
+  ArticlesController = require('./app/controllers/articlesController'),
   playersController = require('./app/controllers/playersController'),
   rankingsController = require('./app/controllers/rankingsController'),
   collegesController = require('./app/controllers/collegesController'),
-  eventsController = require('./app/controllers/eventsController'),
+  CampsController = require('./app/controllers/campsController'),
   videosController = require('./app/controllers/videosController'),
   productsController = require('./app/controllers/productsController'),
-  messageBoardsController = require('./app/controllers/messageBoardsController');
+  messageBoardsController = require('./app/controllers/messageBoardsController'),
+  TournamentsController = require('./app/controllers/tournamentsController'),
+  // Routers
+  SiteRouter = require('./app/routers/siteRouter'),
+  ArticlesRouter = require('./app/routers/articlesRouter'),
+  CampsRouter = require('./app/routers/campsRouter'),
+  TournamentsRouter = require('./app/routers/tournamentsRouter'),
+  // Services
+  ArticleDataService = require('./app/services/articleDataService'),
+  CampDataService = require('./app/services/campDataService'),
+  TournamentDataService = require('./app/services/tournamentDataService');
 
 mongoose.connect(databaseConfig.url);
+mongoose.Promise = require('q').Promise;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,26 +50,52 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+app.use('/admin', express.static('public/admin'));
 app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('public/fonts'));
 app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
 
-app.use(siteController);
 app.use(authenticationController);
 app.use(usersController);
 app.use(contactsController);
-app.use(articlesController);
 app.use(playersController);
 app.use(rankingsController);
 app.use(collegesController);
-app.use(eventsController);
 app.use(videosController);
 app.use(productsController);
 app.use(messageBoardsController);
 
-app.all('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+var siteController = new SiteController();
+var siteRouter = new SiteRouter(siteController);
+app.use(siteRouter);
+
+var articleDataService = new ArticleDataService();
+var articlesController = new ArticlesController(articleDataService);
+var articlesRouter = new ArticlesRouter(articlesController);
+app.use(articlesRouter);
+
+var campDataService = new CampDataService();
+var campsController = new CampsController(campDataService);
+var campsRouter = new CampsRouter(campsController);
+app.use(campsRouter);
+
+var tournamentDataService = new TournamentDataService();
+var tournamentsController = new TournamentsController(tournamentDataService);
+var tournamentsRouter = new TournamentsRouter(tournamentsController);
+app.use(tournamentsRouter);
+
+app.get(['/favicon.ico', '/apple-touch-icon.png'], function(req, res) {
+  res.sendFile(req.path, {
+    root: path.join(__dirname, '/public')
+  });
+});
+app.get('/*', function(req, res) {
+  res.sendFile('index.html', {
+    root: path.join(__dirname, '/public')
+  });
 });
 
 app.listen(port);
+
+module.exports = app;

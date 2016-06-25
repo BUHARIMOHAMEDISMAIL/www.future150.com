@@ -16,7 +16,10 @@
           <div class="row">
             <div class="col-md-3">
               <a ui-sref="profile({ slug: '{{playerRankings.player.slug}}' })">
-                <img class="img-rounded img-responsive" ng-src="{{playerRankings.player.imageUrl}}" alt="{{playerRankings.player.firstName}} {{playerRankings.player.lastName}}">
+                <div class="overlay-wrapper">
+                  <img ng-src="{{::playerRankings.player.imageUrl}}" class="img-rounded img-responsive" alt="{{::playerRankings.player.fullName}}">
+                  <span class="overlay">#{{::playerRankings.rank}}</span>
+                </div>
               </a>
             </div>
             <div class="col-md-2">
@@ -29,7 +32,7 @@
               <p>{{playerRankings.player.hometownCity}}, {{playerRankings.player.hometownState}}</p>
             </div>
             <div class="col-md-3">
-              <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="playerRankings.player.stars" read-only="true"></uib-rating>
+              <uib-rating state-on="'fa fa-star'" state-off="'fa fa-star-o'" ng-model="playerRankings.player.stars" readonly="true"></uib-rating>
               <span>{{playerRankings.player.score}}</span>
             </div>
           </li>

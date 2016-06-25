@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Add/Edit Video</h1>
+</div>
+<form ng-submit="vm.save(vm.video)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="vm.video.title">
+      </div>
+        <div class="form-group">
+          <label for="youTubeId">YouTube Id</label>
+          <input type="text" class="form-control" id="youTubeId" ng-model="vm.video.youTubeId">
+        </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="videos" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>
