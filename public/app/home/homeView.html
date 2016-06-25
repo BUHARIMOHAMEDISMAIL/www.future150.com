@@ -7,8 +7,9 @@
       </div>
       <div class="col-md-6">
         <h1>{{::vm.articles[0].title}}</h1>
+        <p class="author">by Jason Pratt</p>
         <p>{{::vm.articles[0].description}}</p>
-        <a ui-sref="article({ slug: '{{::vm.articles[0].slug}}' })" class="btn btn-default">Read Article</a>
+        <a ui-sref="article({ slug: '{{::vm.articles[0].slug}}' })" class="btn btn-lg btn-secondary">Read Article <i class="fa fa-share-square-o"></i></a>
       </div>
     </div>
   </div>
