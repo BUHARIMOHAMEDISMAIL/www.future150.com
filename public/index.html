@@ -37,7 +37,7 @@
             <a>Divisions:</a>
           </li>
           <li ng-repeat="site in vm.sites">
-            <a ui-sref="site.home({ site: site.path })" class="separator" ng-cloak>{{site.name}}</a>
+            <a ui-sref="site.home({ site: site.path })" class="separator" ng-class="{ active: site == selectedSite }" ng-cloak>{{site.name}}</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
