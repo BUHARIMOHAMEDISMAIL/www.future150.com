@@ -27,25 +27,35 @@
       vm.visibleEventCount = 4;
       vm.visibleVideoCount = 4;
       vm.visibleTrendingPlayerCount = 6;
+      vm.isNewsLoading = true;
+      vm.isRankingsLoading = true;
+      vm.isCampsLoading = true;
+      vm.isVideosLoading = true;
+      vm.isPlayersLoading = true;
 
       articlesService.getAll($rootScope.site).then(function(result) {
         vm.articles = result.articles;
+        vm.isNewsLoading = false;
       });
 
       rankingsService.getAll('national', $rootScope.site).then(function(result) {
         vm.rankings = result.rankings;
+        vm.isRankingsLoading = false;
       });
 
       campsService.getAll().then(function(result) {
         vm.camps = result.camps;
+        vm.isCampsLoading = false;
       });
 
       videosService.getAll($rootScope.site).then(function(result) {
         vm.videos = result.videos;
+        vm.isVideosLoading = false;
       });
 
       playersService.getTrendingPlayers($rootScope.site).then(function(trendingPlayers) {
         vm.trendingPlayers = trendingPlayers;
+        vm.isPlayersLoading = false;
       });
     }
 
