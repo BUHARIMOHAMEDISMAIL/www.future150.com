@@ -22,12 +22,13 @@ var express = require('express'),
   playersController = require('./app/controllers/playersController'),
   rankingsController = require('./app/controllers/rankingsController'),
   collegesController = require('./app/controllers/collegesController'),
-  alumniController = require('./app/controllers/alumniController'),
   CampsController = require('./app/controllers/campsController'),
   videosController = require('./app/controllers/videosController'),
   productsController = require('./app/controllers/productsController'),
   messageBoardsController = require('./app/controllers/messageBoardsController'),
   TournamentsController = require('./app/controllers/tournamentsController'),
+  merchandiseController = require('./app/controllers/merchandiseController'),
+  alumnilistController = require('./app/controllers/alumnilistController'),
   // Routers
   SiteRouter = require('./app/routers/siteRouter'),
   ArticlesRouter = require('./app/routers/articlesRouter'),
@@ -58,7 +59,8 @@ app.use('/img', express.static('public/img'));
 app.use('/js', express.static('public/js'));
 
 app.use(authenticationController);
-app.use(alumniController);
+app.use(alumnilistController);
+app.use(merchandiseController);
 app.use(usersController);
 app.use(contactsController);
 app.use(playersController);
