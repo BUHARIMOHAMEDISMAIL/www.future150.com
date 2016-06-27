@@ -1,31 +1,101 @@
+<div class="alumni-main" ng-controller="alumniController">
 	<div class="page-header">
     <h3 class="pull-left">
-       Add Alumni
+       {{alumnihead}}
     </h3>
     <div class="pull-right">
-        <div class="btn-group">
-          <!-- <button type="button" class="btn btn-info btn-md btn-space" ng-click="addalumni(1)"  ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 1}">Alumni</button> -->					
-          <a ui-sref="alumniView"><button type="button" class="btn btn-info btn-md btn-space" ng-click="addalumni(2)" ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 2}">Add Alumni</button></a>
-          <a ui-sref="editalumniView"><button type="button" class="btn btn-danger btn-md btn-space" ng-click="addalumni(3)" ng-model ="alumni" ng-class="{'activestuffbtn' : alumnitab == 3}">Edit Alumni</button></a>
-        </div>
+        <div class="btn-group">		
+          <button type="button" class="btn btn-info btn-md btn-space" ng-model="alumnitit" ng-click="addalumni(1)">{{alumniadd}}</button>
+          <button type="button" class="btn btn-danger btn-md btn-space" ng-model="alumnitit2" ng-click="addalumni(2)">{{listalumni}}</button>
+        </div>	
     </div>
     <div class="clearfix"></div>
 	</div>
-    <div class="container-fluid">
-  <div class="col-lg-12 well">
-  <div class="row" ng-show="addalumni">
-        <form>
-          <div class="col-sm-12">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Enter Name Here.." ng-model="vm.name" class="form-control">
+ <div class="dum-alum1" ng-show="addalumniview">
+ <div class="dummy">
+ <div class="col-lg-12 well">
+ <div class="row">
+ <form ng-submit="submit(alumni)">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" placeholder="Enter Name Here.." class="form-control" ng-model="alumni.name">
+					</div>
+          <div class="form-group">
+             <label for="image">Image</label>
+                <div class="row">
+                  <div class="col-md-1">
+                  <img ng-src="{{alumni.imageUrl}}" class="img-rounded img-responsive">
+                </div>
+                <div class="col-md-11">
+                  <label for="image" class="btn btn-default">Upload New Picture</label>
+                  <input type="file" id="image" class="hidden">
+                  <p class="help-block">You can also drag and drop a picture from your computer.</p>
+                 </div>
+                </div>
             </div>
-            <div class="form-group">
-              <label>Class</label>
-              <input type="text" placeholder="Enter Class Here.." ng-model="vm.class" class="form-control">
-            </div>
-          </div>
-        </form>
+					<div class="form-group">
+						<label>Biography</label>
+						<textarea placeholder="Enter bio Here.." rows="3" class="form-control" ng-model="alumni.bio"></textarea>
+					</div>	
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Hometown City</label>
+							<input type="text" placeholder="Enter City Name Here.." class="form-control" ng-model="alumni.city">
+						</div>	
+						<div class="col-sm-6 form-group">
+							<label>Hometown State</label>
+							<input type="text" placeholder="Enter State Name Here.." class="form-control" ng-model="alumni.state">
+						</div>			
+					</div>
+					<div class="form-group">
+						<label>Camp</label>
+						<input type="text" placeholder="Enter Camp Here.." class="form-control" ng-model="alumni.camp">
+					</div>		
+					<div class="form-group">
+						<label>College</label>
+						<input type="text" placeholder="Enter College Here.." class="form-control" ng-model="alumni.college">
+					</div>	
+					<div class="form-group">
+						<label>Class</label>
+						<input type="number" placeholder="Enter Class Here.." ng-pattern="/^\d{4}$/" class="form-control" ng-model="alumni.class"> 
+            <i> Please enter 4 digit number</i>
+					</div>
+					<input type="submit" class="btn btn-block btn-primary btn-md" id="submit" value="Submit" />					
+			</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dum-alum" ng-show="listalumniview">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="cont in contents">
+            <td><a ng-click="editalumni(1,cont)" class="btn btn-link">Edit</a></td>
+            <td>{{cont.name}}</td>
+            <td>{{cont.class}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-right">
+    <uib-pagination total-items="count" ng-model="page" items-per-page="pageSize" max-size="10"></uib-pagination>
   </div>
+</div>
+</div>
 </div>
