@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h1>Add/Edit Article</h1>
+</div>
+<form ng-submit="vm.save(vm.article)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="row">
+          <div class="col-md-6">
+            <img ng-src="{{vm.article.imageUrl}}" alt="{{vm.article.title}}" class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <label for="image" class="btn btn-default">Upload New Picture</label>
+            <input type="file" id="image" class="hidden">
+            <p class="help-block">You can also drag and drop a picture from your computer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Created Date</label>
+        <p class="form-control-static">{{vm.article.createdDate | date: 'short'}}</p>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="vm.article.title">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" ng-model="vm.article.description">
+      </div>
+      <div class="form-group">
+        <label>Body</label>
+        <summernote ng-model="vm.article.body" height="300"></summernote>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="vm.article.isPaywalled"> Paywalled
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Site</label>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" ng-model="vm.article.site" value="HS"> HS
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="vm.article.site" value="JR"> JR
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="vm.article.site" value="GIRLS"> Girls
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="articles" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>

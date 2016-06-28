@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Add/Edit User</h1>
+</div>
+<form ng-submit="vm.save(vm.user)">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" ng-model="vm.user.username">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" ng-model="vm.user.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" ng-model="vm.user.lastName">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a ui-sref="users" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
+</form>

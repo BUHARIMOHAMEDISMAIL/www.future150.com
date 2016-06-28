@@ -5,13 +5,13 @@
     .module('future150')
     .controller('tournamentController', tournamentController);
 
-  tournamentController.$inject = ['$state', '$sce', 'eventsService'];
+  tournamentController.$inject = ['$state', '$sce', 'tournamentsService'];
 
-  function tournamentController($state, $sce, eventsService) {
+  function tournamentController($state, $sce, tournamentsService) {
     var vm = this;
 
     if ($state.params.slug) {
-      eventsService.getBySlug($state.params.slug).then(function(tournament) {
+      tournamentsService.getBySlug($state.params.slug).then(function(tournament) {
         tournament.description = $sce.trustAsHtml(tournament.description);
         vm.tournament = tournament;
       });

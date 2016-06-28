@@ -3,8 +3,8 @@ describe('navigationController', function() {
 
   var $scope,
     navigationController,
-    eventsServiceGetCampsStub,
-    eventsServiceGetTournamentsStub,
+    campsServiceGetAllStub,
+    tournamentsServiceGetAllStub,
     $httpBackend;
 
   beforeEach(inject(function(_$controller_,
@@ -14,18 +14,21 @@ describe('navigationController', function() {
     $httpBackend = _$httpBackend_;
     $scope = _$rootScope_.$new();
 
-    var mockEventsService = {
-      getCamps: function() {},
-      getTournaments: function() {}
+    var mockCampsService = {
+      getAll: function() {}
+    };
+    var mockTournamentsService = {
+      getAll: function() {}
     };
 
-    eventsServiceGetCampsStub = sinon.stub(mockEventsService, 'getCamps')
+    campsServiceGetAllStub = sinon.stub(mockCampsService, 'getAll')
       .returns(_$q_.resolve({}));
-    eventsServiceGetTournamentsStub = sinon.stub(mockEventsService, 'getTournaments')
+    tournamentsServiceGetAllStub = sinon.stub(mockTournamentsService, 'getAll')
       .returns(_$q_.resolve({}));
 
     navigationController = _$controller_('navigationController', {
-      eventsService: mockEventsService
+      campsService: mockCampsService,
+      tournamentsService: mockTournamentsService
     });
     $scope.$apply();
   }));
