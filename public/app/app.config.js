@@ -11,7 +11,8 @@
       defaultProfileImageUrl: '//www.clker.com/cliparts/C/N/O/F/T/X/blank-profile-hi.png',
       defaultArticleImageUrl: '//placehold.it/643x341?text=No Image',
       defaultProductImageUrl: '//placehold.it/60x60?text=No Image',
-      defaultCollegeImageUrl: '//placehold.it/60x60?text=No Image'
+      defaultCollegeImageUrl: '//placehold.it/60x60?text=No Image',
+      currentRankingsYear: 2017
     })
     .constant('sites', [
       {

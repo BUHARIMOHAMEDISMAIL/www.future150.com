@@ -50,10 +50,10 @@
         <div class="panel-heading">Nationally Ranked High School Players</div>
         <div class="panel-body">
           <uib-tabset type="pills">
-            <uib-tab heading="{{::ranking.year}}" select="vm.selectRankings(ranking._id)" ng-repeat="ranking in ::vm.rankings"></uib-tab>
+            <uib-tab heading="{{::ranking.year}}" select="vm.selectRankings(ranking._id)" ng-repeat="ranking in ::vm.rankings" active="ranking.isSelected"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-2 col-sm-4" ng-repeat="playerRankings in vm.selectedRanking.players | limitTo: vm.visibleRankingPlayerCount" ng-hide="vm.isRankingsLoading">
+            <div class="col-md-2_4 col-sm-4" ng-repeat="playerRankings in vm.selectedRanking.players | limitTo: vm.visibleRankingPlayerCount" ng-hide="vm.isRankingsLoading">
               <div class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::playerRankings.player.imageUrl}}" class="img-responsive" alt="{{::playerRankings.player.firstName}} {{::playerRankings.player.lastName}}">
@@ -89,7 +89,7 @@
             <uib-tab heading="Tournaments" select="vm.selectEvents('tournament')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="event in vm.events | limitTo: vm.visibleEventCount" ng-hide="vm.isCampsLoading">
+            <div class="col-md-4 col-sm-6" ng-repeat="event in vm.events | limitTo: vm.visibleEventCount" ng-hide="vm.isCampsLoading">
               <a ui-sref="event({ slug: '{{::event.slug}}' })" class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::event.imageUrl}}" class="img-responsive" alt="{{::event.title}}">
@@ -123,7 +123,7 @@
             <uib-tab heading="Most Shared" select="vm.selectVideos('shared')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="video in vm.videos | limitTo: vm.visibleVideoCount" ng-hide="vm.isVideosLoading">
+            <div class="col-md-4 col-sm-6" ng-repeat="video in vm.videos | limitTo: vm.visibleVideoCount" ng-hide="vm.isVideosLoading">
               <div class="thumbnail">
                 <div class="video overlay-wrapper">
                   <div class="embed-responsive embed-responsive-16by9">
@@ -159,7 +159,7 @@
             <uib-tab heading="Most Shared" select="vm.selectTrending('shared')"></uib-tab>
           </uib-tabset>
           <div class="row">
-            <div class="col-md-2 col-sm-4" ng-repeat="player in vm.trendingPlayers | limitTo: vm.visibleTrendingPlayerCount" ng-hide="vm.isPlayersLoading">
+            <div class="col-md-2_4 col-sm-4" ng-repeat="player in vm.trendingPlayers | limitTo: vm.visibleTrendingPlayerCount" ng-hide="vm.isPlayersLoading">
               <div class="thumbnail">
                 <div class="overlay-wrapper">
                   <img ng-src="{{::player.imageUrl}}" err-src="{{::defaultProfileImageUrl}}" class="img-responsive" alt="{{::player.firstName}} {{::player.lastName}}">

@@ -7,6 +7,10 @@
     text-transform: uppercase;
     &.active > a, &.active > a:focus, &.active > a:hover {
       background-color: @primary-color;
+      &::before {
+        content: '►';
+        color: #fff;
+      }
     }
     & > a {
       background-color: transparent;
