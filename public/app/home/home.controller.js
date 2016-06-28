@@ -40,8 +40,10 @@
 
       rankingsService.getAll('national', $rootScope.site).then(function(result) {
         vm.rankings = result.rankings;
-        vm.activeRanking = $filter('filter')(vm.rankings, { year: config.currentRankingsYear })[0];
-        selectRankings(vm.activeRanking._id);
+        if (vm.rankings) {
+          vm.activeRanking = $filter('filter')(vm.rankings, { year: config.currentRankingsYear })[0];
+          selectRankings(vm.activeRanking._id);
+        }
         vm.isRankingsLoading = false;
       });
 
