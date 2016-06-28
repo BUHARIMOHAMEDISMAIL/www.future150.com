@@ -17,6 +17,9 @@
           content: '/';
           margin-left: 10px;
         }
+        &.active {
+          text-decoration: underline;
+        }
       }
       &:last-child > a.separator:after {
         content: '';
@@ -35,7 +38,6 @@
         background-color: #000;
         border-right: 1px solid #fff;
         &.active {
-          border: none;
           & > a {
             background-color: #07256C;
             color: #fff;
