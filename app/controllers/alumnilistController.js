@@ -1,43 +1,60 @@
-(function() {
-'use strict';
-angular.module('future150Admin')
-.controller('alumniController', function($scope, alumniService, $stateParams, $state) {
-$scope.alumniadd = "Add Alumni";
-$scope.listalumni = "Alumni List";
-$scope.alumnihead = $scope.listalumni;
-$scope.listalumniview = true;
-$scope.addalumni = function(val, item) {
-$scope.alumnitab = val;
-if($scope.alumnitab==1){
-$scope.alumnihead= $scope.alumniadd;
-console.log($scope.alumniadd);
-$scope.addalumniview=true;
-$scope.listalumniview=false;
-}else if($scope.alumnitab==2){
-$scope.alumnihead=$scope.listalumni;
-console.log($scope.listalumni);
-$scope.addalumniview=false;
-$scope.listalumniview=true;
+var express = require('express'),
+router = express.Router(),
+Alumni = require('../models/alumnilist');
+router.get('/alumnilists', function(req, res) {
+console.log("insdie alumni function");
+var page = (req.query.page - 1) || 0,
+pageSize = req.query.pageSize || 10;
+Alumni.find()
+.sort('name')
+.skip(page * pageSize)
+.limit(pageSize)
+.exec(function(err, alumnilists) {
+if (err) {
+throw err;
 }
+Alumni.count().exec(function(err, count) {
+if (err) {
+throw err;
 }
-$scope.editalumni=function(val, item) {
-$scope.alumni = {name:item.name, bio:item.bio, city:item.city, id:item._id, state:item.state, camp:item.camp, college:item.college, class:item.class, imageUrl:item.imageUrl}
-$scope.addalumniview=true;
-$scope.listalumniview=false;
-$scope.alumnihead ="Edit Alumni";
-}
-$scope.submit = function(alumni) {
-$scope.enter = alumni;
-alumniService.save(alumni).then(function() {
-$state.go('dashboard');
+res.json({
+count: count,
+alumnilists: alumnilists
 });
-};
-activate();
-function activate() {
-alumniService.getAll().then(function(result) {
-$scope.contents = result.alumnilists;
-console.log(result.alumnilists);
 });
+});
+});
+router.get('/alumnilists/:id([0-9a-f]{24})', function(req, res) {
+Alumni.findById(req.params.id, function(err, conts) {
+if (err) {
+throw err;
 }
+res.json(conts);
 });
-})();
+});
+router.get('/alumnilists/:class', function(req, res) {
+Alumni.findOne({ class: req.params.class }, function(err, alumnilists) {
+if (err) {
+throw err;
+}
+res.json(alumnilists);
+});
+});
+router.put('/alumnilists/:id', function(req, res) {
+Alumni.findByIdAndUpdate(req.params.id, req.body, function(err, alumnilists) {
+if (err) {
+throw err;
+}
+res.sendStatus(204);
+});
+});
+router.post('/alumnilists', function(req, res) {
+var alumni = new Alumni(req.body);
+alumni.save(function(err) {
+if (err) {
+throw err;
+}
+res.sendStatus(201);
+});
+});
+module.exports = router;
