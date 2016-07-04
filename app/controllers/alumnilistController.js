@@ -2,7 +2,6 @@ var express = require('express'),
 router = express.Router(),
 Alumni = require('../models/alumnilist');
 router.get('/alumnilists', function(req, res) {
-console.log("insdie alumni function");
 var page = (req.query.page - 1) || 0,
 pageSize = req.query.pageSize || 10;
 Alumni.find()
