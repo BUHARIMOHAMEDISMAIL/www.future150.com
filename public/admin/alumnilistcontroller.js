@@ -40,28 +40,14 @@ $scope.editalumni=function(val, item) {
         $state.go('dashboard');
       });
       };
-
-    // var vm = this;
-    // vm.q = '';
-    // vm.page = 1;
-    // vm.pageSize = 10;
-
-
-      
     activate();
-    // $scope.$watchGroup(['vm.q', 'vm.page'], activate);
-
     function activate() {
       alumniService.getAll().then(function(result) {
         $scope.contents = result.alumnilists;
         console.log(result.alumnilists);
-        // vm.count = result.count;
-        // vm.start = (vm.page - 1) * vm.pageSize + 1;
-        // vm.end = (vm.start + vm.pageSize < result.count) ? (vm.page - 1) * vm.pageSize + vm.pageSize : result.count;
+
       });
     }
-
-
     });
 
 })();
