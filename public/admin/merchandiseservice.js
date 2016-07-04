@@ -10,8 +10,6 @@
   function merchandiseService($http, config) {
     var service = {
       getAll: getAll,
-      // getById: getById,
-      // save: save
     };
     return service;
 
@@ -26,18 +24,5 @@
         console.log(result.data);
       });
     }
-    // function getById(id) {
-    //   return $http.get(config.baseApiUrl + '/dummies/' + id).then(function(result) {
-    //     return result.data;
-    //   });
-    // }
-    // function save(dummy) {
-    //   if (dummy._id) {
-    //     return $http.put(config.baseApiUrl + '/dummies/' + dummy._id, dummy);
-    //   }
-    //   else {
-    //     return $http.post(config.baseApiUrl + '/dummies', dummy);
-    //   }
-    // }
   }
 })();
