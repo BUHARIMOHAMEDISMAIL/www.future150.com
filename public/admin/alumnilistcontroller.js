@@ -2,15 +2,10 @@
   'use strict';
       angular.module('future150Admin')
     .controller('alumniController', function($scope, alumniService, $stateParams, $state) {
-
-    //display the view
     $scope.alumniadd = "Add Alumni";
     $scope.listalumni = "Alumni List";
     $scope.alumnihead= $scope.listalumni;
-
-
     $scope.listalumniview=true;
-
     $scope.addalumni=function(val, item){
         $scope.alumnitab = val;
 if($scope.alumnitab==1){
